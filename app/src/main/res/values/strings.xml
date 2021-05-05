@@ -10,4 +10,17 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--Inicio Fragment administrador de indicadores -->
+    <string name="indicators_admin_title">Administrador de indicadores</string>
+    <string name="indicators_admin_btn_edit">Editar</string>
+    <string name="indicators_admin_btn_delete">Eliminar</string>
+    <string name="indicators_admin_view_more">Ver más</string>
+    <string name="indicators_admin_actual_value">Valor actual</string>
+
+
+
+
+
+    <!--Fin Fragment administrador de indicadores -->
 </resources>
