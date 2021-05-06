@@ -10,5 +10,6 @@ tools:context=".SplashActivity">
         android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#FFFFFF"
         app:srcCompat="@drawable/visualizar_logo" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
