@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -18,6 +19,12 @@ private const val ARG_PARAM2 = "param2"
  */
 class fragment_acciones : Fragment() {
     // TODO: Rename and change types of parameters
+    lateinit var v : View
+    lateinit var btnEdit : Button
+    lateinit var btnDelete : Button
+    lateinit var btnUpdate : Button
+
+
     private var param1: String? = null
     private var param2: String? = null
 
@@ -27,6 +34,8 @@ class fragment_acciones : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+
+
     }
 
     override fun onCreateView(
@@ -34,7 +43,11 @@ class fragment_acciones : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_acciones, container, false)
+        v = inflater.inflate(R.layout.indicador_alta, container, false)
+        btnEdit = v.findViewById(R.id.buttonEditIndicator)
+        btnDelete = v.findViewById(R.id.buttonDeleteIndicator)
+        btnUpdate = v.findViewById(R.id.buttonUpdateValue)
+        return v
     }
 
     companion object {

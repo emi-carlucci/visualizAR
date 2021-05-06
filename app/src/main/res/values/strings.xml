@@ -17,6 +17,10 @@
     <string name="indicators_admin_btn_delete">Eliminar</string>
     <string name="indicators_admin_view_more">Ver más</string>
     <string name="indicators_admin_actual_value">Valor actual</string>
+    <string name="indicators_admin_btn_update_value">Actualizar actual</string>
+    <string name="indicators_admin_last_update">Última actualización:</string>
+
+
 
 
 
