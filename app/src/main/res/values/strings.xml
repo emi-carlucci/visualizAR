@@ -5,7 +5,7 @@
     <!-- Strings used for Login Page -->
     <string name="username_placeholder_text">Ingresá tu usuario</string>
     <string name="password_placeholder_text">Ingresá tu contraseña</string>
-    <string name="login_btn_text">  Ingresá  </string>
+    <string name="login_btn_text">  Ingresar  </string>
     <string name="login_logo_content_description">Visualizar logo in login action</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
