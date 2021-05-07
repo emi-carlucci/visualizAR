@@ -10,6 +10,9 @@
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
+            android:id="@+id/action_home2_to_actualizarValorFragment"
+            app:destination="@id/actualizarValorFragment" />
+        <action
             android:id="@+id/action_home2_to_indicador_ALTA"
             app:destination="@id/indicador_ALTA" />
     </fragment>
@@ -18,4 +21,9 @@
         android:name="com.example.visualizar.Indicador_ALTA"
         android:label="indicador_alta"
         tools:layout="@layout/indicador_alta" />
+    <fragment
+        android:id="@+id/actualizarValorFragment"
+        android:name="com.example.visualizar.ActualizarValorFragment"
+        android:label="fragment_actualizar_valor"
+        tools:layout="@layout/fragment_actualizar_valor" />
 </navigation>
