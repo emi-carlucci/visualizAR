@@ -35,6 +35,8 @@ class Home : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         v = inflater.inflate(R.layout.fragment_home, container, false)
+
+
         btnALTA = v.findViewById(R.id.btnALTA)
         return v
     }
@@ -45,7 +47,7 @@ class Home : Fragment() {
             // lleva a FORMULARIO DE ALTA
             println("ALTA de INDICADOR....")
 
-            val action = HomeDirections.actionHome2ToIndicadorALTA()
+            val action = HomeDirections.actionHome2ToFragmentAcciones()
             v.findNavController().navigate(action)
         }
     }
