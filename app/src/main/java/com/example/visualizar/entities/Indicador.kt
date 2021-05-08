@@ -4,7 +4,7 @@ import android.os.Parcel
 import android.os.Parcelable
 
 
-class Contacto(nombre: String?, edad: Int?, curso: String?) {
+class Indicador(nombre: String?, edad: Int?, curso: String?) {
     var nombre: String = ""
 
     var curso: String = ""

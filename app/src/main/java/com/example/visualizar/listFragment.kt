@@ -9,8 +9,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 
-import com.example.visualizar.entities.Contacto
-import com.example.visualizar.adapters.ContactoListAdapter
+import com.example.visualizar.entities.Indicador
+import com.example.visualizar.adapters.IndicadorListAdapter
 
 class listFragment : Fragment() {
 
@@ -18,11 +18,11 @@ class listFragment : Fragment() {
 
     lateinit var recContactos : RecyclerView
 
-    var contactos : MutableList<Contacto> = ArrayList<Contacto>()
+    var indicadors : MutableList<Indicador> = ArrayList<Indicador>()
 
     private lateinit var linearLayoutManager: LinearLayoutManager
 
-    private lateinit var contactoListAdapter: ContactoListAdapter
+    private lateinit var indicadorListAdapter: IndicadorListAdapter
 
     companion object {
         fun newInstance() = listFragment()
@@ -45,7 +45,7 @@ class listFragment : Fragment() {
         super.onStart()
 
         for (i in 1..10) {
-            contactos.add(Contacto("Indicador Nº $i",26, Contacto.Constants.cursoA))
+            indicadors.add(Indicador("Indicador Nº $i",26, Indicador.Constants.cursoA))
 //            contactos.add(Contacto("Indicador Nº $i",30, Contacto.Constants.cursoA))
      //       contactos.add(Contacto("Indicador Nº $i",28, Contacto.Constants.cursoB))
   //          contactos.add(Contacto("Indicador Nº $i",37, Contacto.Constants.cursoB))
@@ -59,14 +59,14 @@ class listFragment : Fragment() {
         recContactos.layoutManager = linearLayoutManager
 
 
-        contactoListAdapter = ContactoListAdapter(contactos);
+        indicadorListAdapter = IndicadorListAdapter(indicadors);
 
         /*
         contactoListAdapter = ContactoListAdapter(contactos) { x ->
             onItemClick(x)
         }*/
 
-        recContactos.adapter = contactoListAdapter
+        recContactos.adapter = indicadorListAdapter
 
     }
 

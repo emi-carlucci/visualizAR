@@ -4,11 +4,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.visualizar.R
-import com.example.visualizar.entities.Contacto
+import com.example.visualizar.entities.Indicador
 import com.example.visualizar.holders.ContactoHolder
 
-class ContactoListAdapter(
-    private var contactsList: MutableList<Contacto>/*,
+class IndicadorListAdapter(
+    private var contactsList: MutableList<Indicador>/*,
     val onItemClick: (Int) -> Boolean*/
 
 ) : RecyclerView.Adapter<ContactoHolder>() {
@@ -28,7 +28,7 @@ class ContactoListAdapter(
         return contactsList.size
     }
 
-    fun setData(newData: ArrayList<Contacto>) {
+    fun setData(newData: ArrayList<Indicador>) {
         this.contactsList = newData
         this.notifyDataSetChanged()
     }
