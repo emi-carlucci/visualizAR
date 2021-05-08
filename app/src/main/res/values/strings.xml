@@ -5,7 +5,7 @@
     <!-- Strings used for Login Page -->
     <string name="username_placeholder_text">Ingresá tu usuario</string>
     <string name="password_placeholder_text">Ingresá tu contraseña</string>
-    <string name="login_btn_text">  Ingresá  </string>
+    <string name="login_btn_text">  Ingresar  </string>
     <string name="login_logo_content_description">Visualizar logo in login action</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -25,7 +25,6 @@
     <string name="indicators_admin_actual_value">Valor actual</string>
     <string name="indicators_admin_btn_update_value">Actualizar actual</string>
     <string name="indicators_admin_last_update">Última actualización:</string>
-
     <!--Fin Fragment administrador de indicadores -->
 
     <!--Inicio Fragment administrador de indicadores -->
@@ -35,4 +34,9 @@
     <string name="indicators_update_btn_update_value">Actualizar Valor</string>
     <string name="indicators_update_cal">FORMULA DE CALCULO</string>
     <!--Fin Fragment administrador de indicadores -->
+
+    <!--Inicio Fragment  indicador_alta -->
+    <string name="formAlta">Nuevo Indicador</string>
+    <!--Fin Fragment  indicador_alta -->
+
 </resources>

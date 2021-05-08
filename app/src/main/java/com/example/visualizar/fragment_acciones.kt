@@ -6,11 +6,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
+import com.google.android.material.snackbar.Snackbar
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+private const val ARG_PARAM1 = "id"
+private const val ARG_PARAM2 = "nombre de la variable"
+private const val ARG_PARAM3 = "73%"
+private const val ARG_PARAM4 = "2021/05/03 10:31:24"
+
 
 /**
  * A simple [Fragment] subclass.
@@ -23,16 +28,24 @@ class fragment_acciones : Fragment() {
     lateinit var btnEdit : Button
     lateinit var btnDelete : Button
     lateinit var btnUpdate : Button
+    lateinit var tvIndicatorName : TextView
+    lateinit var tvIndicatorValue: TextView
+    lateinit var tvLastUpdateDate : TextView
+
 
 
     private var param1: String? = null
     private var param2: String? = null
+    private var param3: String? = null
+    private var param4: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
+            param3 = it.getString(ARG_PARAM3)
+            param4 = it.getString(ARG_PARAM4)
         }
 
 
@@ -43,14 +56,35 @@ class fragment_acciones : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        v = inflater.inflate(R.layout.indicador_alta, container, false)
-        btnEdit = v.findViewById(R.id.buttonEditIndicator)
-        btnDelete = v.findViewById(R.id.buttonDeleteIndicator)
-        btnUpdate = v.findViewById(R.id.buttonUpdateValue)
+        v = inflater.inflate(R.layout.fragment_acciones, container, false)
+        btnEdit = v.findViewById(R.id.btnAccionesEditIndicator)
+        btnDelete = v.findViewById(R.id.btnAccionesDeleteIndicator)
+        btnUpdate = v.findViewById(R.id.btnAccionesUpdateValue)
+        tvIndicatorName = v.findViewById(R.id.tvAccionesIndicatorName)
+        tvIndicatorValue = v.findViewById(R.id.tvAccionesIndicatorValue)
+        tvLastUpdateDate = v.findViewById(R.id.tvAccionesLastUpdateDate)
         return v
     }
 
-    companion object {
+    override fun onStart() {
+        super.onStart()
+        tvIndicatorName.text = ARG_PARAM2
+        tvIndicatorValue.text = ARG_PARAM3
+        tvLastUpdateDate.text = ARG_PARAM4
+        btnEdit.setOnClickListener{
+            Snackbar.make(v, btnEdit.text, Snackbar.LENGTH_SHORT).show()
+        }
+        btnDelete.setOnClickListener{
+            Snackbar.make(v, btnDelete.text, Snackbar.LENGTH_SHORT).show()
+        }
+        btnUpdate.setOnClickListener{
+            Snackbar.make(v, btnUpdate.text, Snackbar.LENGTH_SHORT).show()
+        }
+
+
+    }
+
+    /*companion object {
         /**
          * Use this factory method to create a new instance of
          * this fragment using the provided parameters.
@@ -68,5 +102,5 @@ class fragment_acciones : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
-    }
+    }*/
 }

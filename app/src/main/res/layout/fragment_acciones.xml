@@ -10,7 +10,7 @@
     <!-- TODO: Update blank fragment layout -->
 
     <Button
-        android:id="@+id/buttonUpdateValue"
+        android:id="@+id/btnAccionesUpdateValue"
         android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginStart="70dp"
@@ -19,20 +19,21 @@
         android:layout_marginRight="70dp"
         android:text="@string/indicators_admin_btn_update_value"
         android:textAllCaps="false"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/ivAccionesInfo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewIndicatorValue" />
+        app:layout_constraintTop_toTopOf="@+id/guideline5" />
 
     <TextView
-        android:id="@+id/textViewActualValueTitle"
+        android:id="@+id/tvAccionesActualValueTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:fontFamily="@font/lato"
         android:text="@string/indicators_admin_actual_value"
         android:textAllCaps="true"
-        app:layout_constraintBottom_toTopOf="@id/buttonUpdateValue"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@id/btnAccionesUpdateValue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -40,71 +41,74 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/textViewTitle"
+        android:id="@+id/tvAccionesTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/lato_bold"
         android:text="@string/indicators_admin_title"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        app:layout_constraintBottom_toTopOf="@+id/textViewIndicatorName"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/tvAccionesIndicatorName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textViewIndicatorName"
+        android:id="@+id/tvAccionesIndicatorName"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginTop="10dp"
         android:fontFamily="@font/lato"
-        android:text="text"
         android:textAllCaps="true"
-        app:layout_constraintBottom_toTopOf="@+id/buttonEditIndicator"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/tvAccionesTitle" />
 
     <Button
-        android:id="@+id/buttonEditIndicator"
+        android:id="@+id/btnAccionesEditIndicator"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginRight="50dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginLeft="70dp"
+        android:layout_marginEnd="70dp"
+        android:layout_marginRight="70dp"
         android:fontFamily="@font/lato"
         android:text="@string/indicators_admin_btn_edit"
         android:textAllCaps="false"
-        app:layout_constraintBottom_toTopOf="@+id/buttonDeleteIndicator"
+        app:layout_constraintBottom_toTopOf="@+id/btnAccionesDeleteIndicator"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewIndicatorName" />
+        app:layout_constraintTop_toTopOf="@+id/guideline4" />
 
     <Button
-        android:id="@+id/buttonDeleteIndicator"
+        android:id="@+id/btnAccionesDeleteIndicator"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginRight="50dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginLeft="70dp"
+        android:layout_marginEnd="70dp"
+        android:layout_marginRight="70dp"
         android:text="@string/indicators_admin_btn_delete"
         android:textAllCaps="false"
         app:layout_constraintBottom_toTopOf="@+id/guideline6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonEditIndicator" />
+        app:layout_constraintTop_toBottomOf="@+id/btnAccionesEditIndicator" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="386dp"
         app:layout_constraintGuide_percent="0.5" />
 
     <TextView
-        android:id="@+id/textViewViewMore"
+        android:id="@+id/tvAccionesViewMore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="30dp"
@@ -114,40 +118,42 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonDeleteIndicator" />
+        app:layout_constraintTop_toBottomOf="@+id/btnAccionesDeleteIndicator" />
 
     <View
         android:id="@+id/divider"
         android:layout_width="0dp"
         android:layout_height="1dp"
-        android:layout_marginStart="70dp"
-        android:layout_marginLeft="70dp"
-        android:layout_marginEnd="70dp"
-        android:layout_marginRight="70dp"
+        android:layout_marginStart="90dp"
+        android:layout_marginLeft="90dp"
+        android:layout_marginEnd="90dp"
+        android:layout_marginRight="90dp"
         android:background="?android:attr/listDivider"
-        app:layout_constraintBottom_toTopOf="@+id/textViewViewMore"
+        app:layout_constraintBottom_toTopOf="@+id/tvAccionesViewMore"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonDeleteIndicator" />
+        app:layout_constraintTop_toBottomOf="@+id/btnAccionesDeleteIndicator" />
 
     <TextView
-        android:id="@+id/textViewIndicatorValue"
+        android:id="@+id/tvAccionesIndicatorValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/lato_bold"
-        android:text="77%"
         android:textAllCaps="true"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        app:layout_constraintBottom_toTopOf="@+id/buttonUpdateValue"
+        android:textSize="36sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline5"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewActualValueTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/tvAccionesActualValueTitle" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical" />
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="70dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline3"
@@ -157,37 +163,51 @@
         app:layout_constraintGuide_begin="120dp" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/ivAccionesInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@android:drawable/ic_dialog_info"
         android:tint="#3F51B5"
-        app:layout_constraintBottom_toBottomOf="@+id/textView2"
+        app:layout_constraintBottom_toBottomOf="@+id/tvAccionesLastUpdateDate"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toTopOf="@+id/textView" />
+        app:layout_constraintTop_toTopOf="@+id/tvAccionesLastUpdateLabel" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tvAccionesLastUpdateLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/indicators_admin_last_update"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.1"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/buttonUpdateValue" />
+        app:layout_constraintStart_toEndOf="@+id/ivAccionesInfo"
+        app:layout_constraintTop_toBottomOf="@+id/btnAccionesUpdateValue" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/tvAccionesLastUpdateDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="una fecha"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/buttonUpdateValue" />
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toBottomOf="@+id/tvAccionesLastUpdateLabel"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.25" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.75" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
