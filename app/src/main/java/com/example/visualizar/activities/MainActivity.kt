@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
 
 
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main_1)
+        setContentView(R.layout.home)
         search = findViewById(R.id.svIndicador)
 //        search.setOnQueryTextListener(this);
      }
