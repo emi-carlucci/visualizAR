@@ -13,6 +13,7 @@ class Home : Fragment() {
 
     lateinit var v : View
     lateinit var btnALTA : Button
+    lateinit var btnActualizarValor: Button
     lateinit var btnEditar : Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,6 +28,7 @@ class Home : Fragment() {
         // Inflate the layout for this fragment
         v = inflater.inflate(R.layout.fragment_home, container, false)
         btnALTA = v.findViewById(R.id.btnALTA)
+        btnActualizarValor = v.findViewById(R.id.buttonUpdateIndicador)
         btnEditar = v.findViewById(R.id.btnEditar)
         return v
     }
@@ -43,6 +45,12 @@ class Home : Fragment() {
             println("EDITAR INDICADOR....")
 
             val action = HomeDirections.actionHome2ToIndicadorEditar()
+            v.findNavController().navigate(action)
+        }
+
+        btnActualizarValor.setOnClickListener{
+            println("Actualizar Valor de Indicador....")
+            val action = HomeDirections.actionHome2ToActualizarValorFragment()
             v.findNavController().navigate(action)
         }
     }
