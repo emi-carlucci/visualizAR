@@ -12,18 +12,10 @@
         <action
             android:id="@+id/action_home2_to_indicador_ALTA"
             app:destination="@id/indicador_ALTA" />
-        <action
-            android:id="@+id/action_home2_to_fragment_acciones"
-            app:destination="@id/fragment_acciones" />
     </fragment>
     <fragment
         android:id="@+id/indicador_ALTA"
         android:name="com.example.visualizar.Indicador_ALTA"
         android:label="indicador_alta"
         tools:layout="@layout/indicador_alta" />
-    <fragment
-        android:id="@+id/fragment_acciones"
-        android:name="com.example.visualizar.fragment_acciones"
-        android:label="fragment_acciones"
-        tools:layout="@layout/fragment_acciones" />
 </navigation>
