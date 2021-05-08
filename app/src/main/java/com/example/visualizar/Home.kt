@@ -12,6 +12,7 @@ import com.google.android.material.snackbar.Snackbar
 class Home : Fragment() {
 
     lateinit var v : View
+    lateinit var btnALTA : Button
     lateinit var btnEditar : Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,12 +26,18 @@ class Home : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         v = inflater.inflate(R.layout.fragment_home, container, false)
+        btnALTA = v.findViewById(R.id.btnALTA)
         btnEditar = v.findViewById(R.id.btnEditar)
         return v
     }
 
     override fun onStart() {
         super.onStart()
+        btnALTA.setOnClickListener{
+            // lleva a FORMULARIO DE ALTA
+            println("ALTA de INDICADOR....")
+
+            val action = HomeDirections.actionHome2ToIndicadorALTA()
         btnEditar.setOnClickListener{
             // lleva a FORMULARIO DE EDICIOn
             println("EDITAR INDICADOR....")
