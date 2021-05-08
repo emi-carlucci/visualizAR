@@ -20,11 +20,11 @@
     <string name="indicators_admin_btn_update_value">Actualizar actual</string>
     <string name="indicators_admin_last_update">Última actualización:</string>
 
-
-
-
-
-
-
     <!--Fin Fragment administrador de indicadores -->
+
+    <!--Inicio Fragment  indicador_alta -->
+
+    <string name="formAlta">Nuevo Indicador</string>
+
+    <!--Fin Fragment  indicador_alta -->
 </resources>

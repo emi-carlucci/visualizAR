@@ -6,14 +6,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_span="20"
-    tools:context=".Indicador_ALTA">
+    tools:context=".IndicadorEditar">
 
     <TextView
         android:id="@+id/idformName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/lato"
-        android:text="@string/formAlta"
+        android:text="@string/formEditar"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/inputIndicadorTitulo"
@@ -29,28 +29,28 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/lato"
         android:text="Confirmar"
-        android:textSize="18sp"
         android:textAllCaps="false"
+        android:textSize="18sp"
         app:backgroundTint="#4CAF50"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.742"
+        app:layout_constraintHorizontal_bias="0.799"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.866" />
 
     <Button
-        android:id="@+id/btnLimpiar"
+        android:id="@+id/btnRestablecer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/lato"
-        android:text="Limpiar"
-        android:textSize="18sp"
+        android:text="Restablecer"
         android:textAllCaps="false"
+        android:textSize="18sp"
         app:backgroundTint="#F44336"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btnConfirmar"
-        app:layout_constraintHorizontal_bias="0.8"
+        app:layout_constraintHorizontal_bias="0.811"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.866" />
