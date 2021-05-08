@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'com.google.gms.google-services'
 }
 apply plugin: "androidx.navigation.safeargs"
 android {
@@ -11,6 +12,7 @@ android {
         applicationId "com.example.visualizar"
         minSdkVersion 16
         targetSdkVersion 30
+        multiDexEnabled true
         versionCode 1
         versionName "1.0"
 
@@ -45,11 +47,10 @@ dependencies {
     implementation "androidx.recyclerview:recyclerview:1.1.0"
     implementation "androidx.recyclerview:recyclerview-selection:1.1.0"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'com.google.firebase:firebase-firestore:21.4.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-
-//    implementation "androidx.navigation:navigation-fragment-ktx:2.3.0-beta01"
-//    implementation "androidx.navigation:navigation-ui-ktx:2.3.0-beta01"
+    implementation "androidx.multidex:multidex:2.0.1"
 }

@@ -4,8 +4,6 @@
     <color name="light_blue_500">#027FEC</color>
     <color name="light_blue_700">#2196F3</color>
     <color name="light_blue_900">#2196F3</color>
-    <color name="green_200">#00BCD4</color>
-    <color name="green_700">#077574</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 </resources>

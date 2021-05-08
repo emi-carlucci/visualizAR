@@ -3,7 +3,10 @@ package com.example.visualizar
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.*
+import android.widget.Button
+import android.widget.EditText
+import android.widget.ProgressBar
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 
@@ -33,7 +36,7 @@ class LoginActivity : AppCompatActivity() {
                     startActivity(loginIntent)
                 }
                 else {
-                    Toast.makeText(this, "Datos inválidos", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, "Usuario o Contraseña Incorrectos", Toast.LENGTH_LONG).show()
                 }
             }
         }
