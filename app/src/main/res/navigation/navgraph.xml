@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navgraph"
     app:startDestination="@id/home2">
-
     <fragment
         android:id="@+id/home2"
         android:name="com.example.visualizar.Home"
@@ -18,9 +17,5 @@
         android:id="@+id/indicador_ALTA"
         android:name="com.example.visualizar.Indicador_ALTA"
         android:label="indicador_alta"
-        tools:layout="@layout/indicador_alta" >
-        <action
-            android:id="@+id/action_indicador_ALTA_to_home2"
-            app:destination="@id/home2" />
-    </fragment>
+        tools:layout="@layout/indicador_alta" />
 </navigation>
