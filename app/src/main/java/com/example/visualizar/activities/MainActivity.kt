@@ -8,17 +8,9 @@ import com.example.visualizar.R
 
 class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
 
-     var search: SearchView? = null
-
-
-
      override fun onCreate(savedInstanceState: Bundle?) {
-
-
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.home)
-        search = findViewById(R.id.svIndicador)
-//        search.setOnQueryTextListener(this);
+        setContentView(R.layout.activity_main)
      }
 
      override fun onQueryTextSubmit(query: String?): Boolean {

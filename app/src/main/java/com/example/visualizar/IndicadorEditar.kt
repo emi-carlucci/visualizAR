@@ -60,9 +60,9 @@ class IndicadorEditar : Fragment() {
                 println("GRABANDO....")
                 Thread.sleep(1000)
                 println("vuelvo a HOME")
-                val action = Indicador_EditarDirections.action_indicador_Editar_to_home2()
+                // val action = Indicador_EditarDirections.action_indicador_Editar_to_home2()
 
-                v.findNavController().navigate(action)
+                // v.findNavController().navigate(action)
             }
             validarAction=true
         }

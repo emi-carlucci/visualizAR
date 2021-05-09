@@ -1,5 +1,7 @@
 package com.example.visualizar
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -7,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.navigation.findNavController
 import com.google.android.material.snackbar.Snackbar
 
 // TODO: Rename parameter arguments, choose names that match
@@ -72,13 +75,24 @@ class fragment_acciones : Fragment() {
         tvIndicatorValue.text = ARG_PARAM3
         tvLastUpdateDate.text = ARG_PARAM4
         btnEdit.setOnClickListener{
-            Snackbar.make(v, btnEdit.text, Snackbar.LENGTH_SHORT).show()
+            val action = fragment_accionesDirections.actionFragmentAccionesToIndicadorEditar()
+            v.findNavController().navigate(action)
         }
         btnDelete.setOnClickListener{
-            Snackbar.make(v, btnDelete.text, Snackbar.LENGTH_SHORT).show()
+            var builder = AlertDialog.Builder(activity)
+            builder.setTitle(getString(R.string.confirm_delete))
+            builder.setPositiveButton(getString(R.string.delete), DialogInterface.OnClickListener { dialog, id ->
+                dialog.cancel()
+            })
+            builder.setNegativeButton(getString(R.string.cancel), DialogInterface.OnClickListener { dialog, id ->
+                dialog.cancel()
+            })
+            var alert = builder.create()
+            alert.show()
         }
         btnUpdate.setOnClickListener{
-            Snackbar.make(v, btnUpdate.text, Snackbar.LENGTH_SHORT).show()
+            val action = fragment_accionesDirections.actionFragmentAccionesToActualizarValorFragment2()
+            v.findNavController().navigate(action)
         }
 
 
