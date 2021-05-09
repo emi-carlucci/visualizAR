@@ -8,7 +8,7 @@ import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.visualizar.R
+import edu.ort.visualizar.R
 
 
 class LoginActivity : AppCompatActivity() {

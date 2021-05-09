@@ -6,7 +6,7 @@
     app:startDestination="@id/home3">
     <fragment
         android:id="@+id/home3"
-        android:name="edu.ort.visualizar.Home"
+        android:name="edu.ort.visualizar.fragments.Home"
         android:label="home"
         tools:layout="@layout/home" >
         <action
@@ -18,12 +18,12 @@
     </fragment>
     <fragment
         android:id="@+id/indicador_ALTA"
-        android:name="edu.ort.visualizar.Indicador_ALTA"
+        android:name="edu.ort.visualizar.fragments.Indicador_ALTA"
         android:label="indicador_alta"
         tools:layout="@layout/indicador_alta" />
     <fragment
         android:id="@+id/fragment_acciones"
-        android:name="edu.ort.visualizar.fragment_acciones"
+        android:name="edu.ort.visualizar.fragments.fragment_acciones"
         android:label="fragment_acciones"
         tools:layout="@layout/fragment_acciones" >
         <action
@@ -35,12 +35,12 @@
     </fragment>
     <fragment
         android:id="@+id/indicadorEditar"
-        android:name="edu.ort.visualizar.IndicadorEditar"
+        android:name="edu.ort.visualizar.fragments.IndicadorEditar"
         android:label="indicador_editar"
         tools:layout="@layout/indicador_editar" />
     <fragment
         android:id="@+id/actualizarValorFragment2"
-        android:name="edu.ort.visualizar.ActualizarValorFragment"
+        android:name="edu.ort.visualizar.fragments.ActualizarValorFragment"
         android:label="fragment_actualizar_valor"
         tools:layout="@layout/fragment_actualizar_valor" />
 </navigation>

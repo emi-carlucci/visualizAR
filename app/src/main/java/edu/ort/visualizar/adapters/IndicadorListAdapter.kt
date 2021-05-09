@@ -3,19 +3,19 @@ package edu.ort.visualizar.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.visualizar.R
+import edu.ort.visualizar.R
 import edu.ort.visualizar.entities.Indicador
-import edu.ort.visualizar.holders.ContactoHolder
+import edu.ort.visualizar.holders.IndicadorHolder
 
 class IndicadorListAdapter(
     private var contactsList: MutableList<Indicador>/*,
     val onItemClick: (Int) -> Boolean*/
 
-) : RecyclerView.Adapter<ContactoHolder>() {
+) : RecyclerView.Adapter<IndicadorHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactoHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): IndicadorHolder {
         val view =  LayoutInflater.from(parent.context).inflate(R.layout.item_contacto,parent,false)
-        return (ContactoHolder(view))
+        return (IndicadorHolder(view))
     }
 
     companion object {
@@ -33,7 +33,7 @@ class IndicadorListAdapter(
         this.notifyDataSetChanged()
     }
 
-    override fun onBindViewHolder(holder: ContactoHolder, position: Int) {
+    override fun onBindViewHolder(holder: IndicadorHolder, position: Int) {
 
         holder.setName(contactsList[position].nombre)
 

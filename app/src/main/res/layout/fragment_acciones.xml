@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="edu.ort.visualizar.fragment_acciones">
+    tools:context="edu.ort.visualizar.fragments.fragment_acciones">
 
     <!-- TODO: Update blank fragment layout -->
 

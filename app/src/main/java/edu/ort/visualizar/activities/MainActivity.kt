@@ -3,7 +3,7 @@ package edu.ort.visualizar.activities
 import android.os.Bundle
 import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
-import com.example.visualizar.R
+import edu.ort.visualizar.R
 
 
 class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {

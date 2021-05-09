@@ -1,4 +1,4 @@
-package edu.ort.visualizar
+package edu.ort.visualizar.fragments
 
 import android.app.AlertDialog
 import android.content.DialogInterface
@@ -10,7 +10,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.navigation.findNavController
-import com.example.visualizar.R
+import edu.ort.visualizar.R
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -91,7 +91,8 @@ class fragment_acciones : Fragment() {
             alert.show()
         }
         btnUpdate.setOnClickListener{
-            val action = fragment_accionesDirections.actionFragmentAccionesToActualizarValorFragment2()
+            val action =
+                fragment_accionesDirections.actionFragmentAccionesToActualizarValorFragment2()
             v.findNavController().navigate(action)
         }
 

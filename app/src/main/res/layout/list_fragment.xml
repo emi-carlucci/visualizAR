@@ -5,7 +5,7 @@
     android:id="@+id/lay_mascotas_list"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="edu.ort.visualizar.listFragment" >
+    tools:context="edu.ort.visualizar.fragments.listFragment" >
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rec_contactos"
