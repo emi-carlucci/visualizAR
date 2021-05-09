@@ -4,9 +4,9 @@ import android.view.View
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.visualizar.R
+import edu.ort.visualizar.R
 
-class ContactoHolder (v: View) : RecyclerView.ViewHolder(v) {
+class IndicadorHolder (v: View) : RecyclerView.ViewHolder(v) {
 
     private var view: View
 
