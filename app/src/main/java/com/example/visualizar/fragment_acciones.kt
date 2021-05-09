@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.navigation.findNavController
 import com.google.android.material.snackbar.Snackbar
 
 // TODO: Rename parameter arguments, choose names that match
@@ -72,13 +73,15 @@ class fragment_acciones : Fragment() {
         tvIndicatorValue.text = ARG_PARAM3
         tvLastUpdateDate.text = ARG_PARAM4
         btnEdit.setOnClickListener{
-            Snackbar.make(v, btnEdit.text, Snackbar.LENGTH_SHORT).show()
+            val action = fragment_accionesDirections.actionFragmentAccionesToIndicadorEditar()
+            v.findNavController().navigate(action)
         }
         btnDelete.setOnClickListener{
             Snackbar.make(v, btnDelete.text, Snackbar.LENGTH_SHORT).show()
         }
         btnUpdate.setOnClickListener{
-            Snackbar.make(v, btnUpdate.text, Snackbar.LENGTH_SHORT).show()
+            val action = fragment_accionesDirections.actionFragmentAccionesToActualizarValorFragment2()
+            v.findNavController().navigate(action)
         }
 
 

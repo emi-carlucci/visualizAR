@@ -6,15 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.SearchView
 import androidx.navigation.findNavController
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 
 class Home : Fragment() {
 
     lateinit var v : View
-    lateinit var btnALTA : Button
-    lateinit var btnActualizarValor: Button
-    lateinit var btnEditar : Button
+    lateinit var btnAddIndicator : FloatingActionButton
+    lateinit var svIndicador : SearchView
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,32 +29,22 @@ class Home : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         v = inflater.inflate(R.layout.fragment_home, container, false)
-        btnALTA = v.findViewById(R.id.btnALTA)
-        btnActualizarValor = v.findViewById(R.id.buttonUpdateIndicador)
-        btnEditar = v.findViewById(R.id.btnEditar)
+        btnAddIndicator = v.findViewById(R.id.floatingActionButton)
+        svIndicador = v.findViewById(R.id.svIndicador)
         return v
     }
 
-//    override fun onStart() {
-//        super.onStart()
-//        btnALTA.setOnClickListener{
-//            // lleva a FORMULARIO DE ALTA
-//            println("ALTA de INDICADOR....")
-//        }
-//
-//            val action = HomeDirections.actionHome2ToIndicadorALTA()
-//        btnEditar.setOnClickListener{
-//            // lleva a FORMULARIO DE EDICIOn
-//            println("EDITAR INDICADOR....")
-//
-//            val action = HomeDirections.actionHome2ToIndicadorEditar()
-//            v.findNavController().navigate(action)
-//        }
-//
-//        btnActualizarValor.setOnClickListener{
-//            println("Actualizar Valor de Indicador....")
-//            val action = HomeDirections.actionHome2ToActualizarValorFragment()
-//            v.findNavController().navigate(action)
-//        }
-//    }
+   override fun onStart() {
+       super.onStart()
+       btnAddIndicator.setOnClickListener{
+           val action = HomeDirections.actionHome3ToIndicadorALTA()
+           v.findNavController().navigate(action)
+        }
+       svIndicador.setOnClickListener{
+           val action = HomeDirections.actionHome3ToFragmentAcciones()
+           v.findNavController().navigate(action)
+       }
+
+
+   }
 }
