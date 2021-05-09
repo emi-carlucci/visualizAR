@@ -1,4 +1,4 @@
-package com.example.visualizar.activities
+package edu.ort.visualizar.activities
 
 import android.content.Intent
 import android.os.Bundle

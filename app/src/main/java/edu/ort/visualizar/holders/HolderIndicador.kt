@@ -1,4 +1,4 @@
-package com.example.visualizar.holders
+package edu.ort.visualizar.holders
 
 import android.view.View
 import android.widget.TextView
@@ -6,7 +6,7 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.visualizar.R
 
-class ContactoHolder (v: View) : RecyclerView.ViewHolder(v) {
+class HolderIndicador (v: View) : RecyclerView.ViewHolder(v) {
 
     private var view: View
 

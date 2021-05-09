@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:784843055968:android:96cb1d70dc96e2eb963405",
         "android_client_info": {
-          "package_name": "com.example.visualizar"
+          "package_name": "edu.ort.visualizar"
         }
       },
       "oauth_client": [

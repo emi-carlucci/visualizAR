@@ -9,11 +9,11 @@
         android:roundIcon="@drawable/visualizar_logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.VisualizAR">
-        <activity android:name=".activities.MainActivity" />
-        <activity android:name=".activities.LoginActivity"
+        <activity android:name="edu.ort.visualizar.activities.MainActivity" />
+        <activity android:name="edu.ort.visualizar.activities.LoginActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".activities.SplashActivity"
+            android:name="edu.ort.visualizar.activities.SplashActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

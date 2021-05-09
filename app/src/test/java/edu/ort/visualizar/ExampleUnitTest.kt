@@ -1,4 +1,4 @@
-package com.example.visualizar
+package edu.ort.visualizar
 
 
 import org.junit.Test

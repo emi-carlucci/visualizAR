@@ -1,7 +1,4 @@
-package com.example.visualizar.entities
-
-import android.os.Parcel
-import android.os.Parcelable
+package edu.ort.visualizar.entities
 
 
 class Indicador(nombre: String?, edad: Int?, curso: String?) {
