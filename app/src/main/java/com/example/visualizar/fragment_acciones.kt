@@ -1,5 +1,7 @@
 package com.example.visualizar
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -77,7 +79,16 @@ class fragment_acciones : Fragment() {
             v.findNavController().navigate(action)
         }
         btnDelete.setOnClickListener{
-            Snackbar.make(v, btnDelete.text, Snackbar.LENGTH_SHORT).show()
+            var builder = AlertDialog.Builder(activity)
+            builder.setTitle(getString(R.string.confirm_delete))
+            builder.setPositiveButton(getString(R.string.delete), DialogInterface.OnClickListener { dialog, id ->
+                dialog.cancel()
+            })
+            builder.setNegativeButton(getString(R.string.cancel), DialogInterface.OnClickListener { dialog, id ->
+                dialog.cancel()
+            })
+            var alert = builder.create()
+            alert.show()
         }
         btnUpdate.setOnClickListener{
             val action = fragment_accionesDirections.actionFragmentAccionesToActualizarValorFragment2()

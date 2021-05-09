@@ -92,7 +92,7 @@
         android:layout_marginLeft="70dp"
         android:layout_marginEnd="70dp"
         android:layout_marginRight="70dp"
-        android:text="@string/indicators_admin_btn_delete"
+        android:text="@string/delete"
         android:textAllCaps="false"
         app:layout_constraintBottom_toTopOf="@+id/guideline6"
         app:layout_constraintEnd_toEndOf="parent"
