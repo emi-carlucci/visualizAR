@@ -33,25 +33,26 @@ class Home : Fragment() {
         return v
     }
 
-    override fun onStart() {
-        super.onStart()
-        btnALTA.setOnClickListener{
-            // lleva a FORMULARIO DE ALTA
-            println("ALTA de INDICADOR....")
-
-            val action = HomeDirections.actionHome2ToIndicadorALTA()
-        btnEditar.setOnClickListener{
-            // lleva a FORMULARIO DE EDICIOn
-            println("EDITAR INDICADOR....")
-
-            val action = HomeDirections.actionHome2ToIndicadorEditar()
-            v.findNavController().navigate(action)
-        }
-
-        btnActualizarValor.setOnClickListener{
-            println("Actualizar Valor de Indicador....")
-            val action = HomeDirections.actionHome2ToActualizarValorFragment()
-            v.findNavController().navigate(action)
-        }
-    }
+//    override fun onStart() {
+//        super.onStart()
+//        btnALTA.setOnClickListener{
+//            // lleva a FORMULARIO DE ALTA
+//            println("ALTA de INDICADOR....")
+//        }
+//
+//            val action = HomeDirections.actionHome2ToIndicadorALTA()
+//        btnEditar.setOnClickListener{
+//            // lleva a FORMULARIO DE EDICIOn
+//            println("EDITAR INDICADOR....")
+//
+//            val action = HomeDirections.actionHome2ToIndicadorEditar()
+//            v.findNavController().navigate(action)
+//        }
+//
+//        btnActualizarValor.setOnClickListener{
+//            println("Actualizar Valor de Indicador....")
+//            val action = HomeDirections.actionHome2ToActualizarValorFragment()
+//            v.findNavController().navigate(action)
+//        }
+//    }
 }

@@ -74,8 +74,8 @@ class Indicador_ALTA : Fragment() {
                 println("GRABANDO....")
                 Thread.sleep(1000)
                 println("vuelvo a HOME")
-                val action = Indicador_ALTADirections.actionIndicadorALTAToHome2()
-                v.findNavController().navigate(action)
+                // val action = Indicador_ALTADirections.actionIndicadorALTAToHome2()
+                // v.findNavController().navigate(action)
             }
             validarAction=true
         }

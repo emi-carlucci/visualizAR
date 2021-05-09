@@ -2,4 +2,45 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/navgraph" />
+    android:id="@+id/navgraph"
+    app:startDestination="@id/home3">
+    <fragment
+        android:id="@+id/home3"
+        android:name="com.example.visualizar.Home"
+        android:label="home"
+        tools:layout="@layout/home" >
+        <action
+            android:id="@+id/action_home3_to_indicador_ALTA"
+            app:destination="@id/indicador_ALTA" />
+        <action
+            android:id="@+id/action_home3_to_fragment_acciones"
+            app:destination="@id/fragment_acciones" />
+    </fragment>
+    <fragment
+        android:id="@+id/indicador_ALTA"
+        android:name="com.example.visualizar.Indicador_ALTA"
+        android:label="indicador_alta"
+        tools:layout="@layout/indicador_alta" />
+    <fragment
+        android:id="@+id/fragment_acciones"
+        android:name="com.example.visualizar.fragment_acciones"
+        android:label="fragment_acciones"
+        tools:layout="@layout/fragment_acciones" >
+        <action
+            android:id="@+id/action_fragment_acciones_to_actualizarValorFragment2"
+            app:destination="@id/actualizarValorFragment2" />
+        <action
+            android:id="@+id/action_fragment_acciones_to_indicadorEditar"
+            app:destination="@id/indicadorEditar" />
+    </fragment>
+    <fragment
+        android:id="@+id/indicadorEditar"
+        android:name="com.example.visualizar.IndicadorEditar"
+        android:label="indicador_editar"
+        tools:layout="@layout/indicador_editar" />
+    <fragment
+        android:id="@+id/actualizarValorFragment2"
+        android:name="com.example.visualizar.ActualizarValorFragment"
+        android:label="fragment_actualizar_valor"
+        tools:layout="@layout/fragment_actualizar_valor" />
+</navigation>

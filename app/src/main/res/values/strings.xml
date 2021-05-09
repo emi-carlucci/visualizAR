@@ -39,4 +39,6 @@
     <string name="formAlta">Nuevo Indicador</string>
     <!--Fin Fragment  indicador_alta -->
 
+    <string name="formEditar">Editar Indicador</string>
+
 </resources>
