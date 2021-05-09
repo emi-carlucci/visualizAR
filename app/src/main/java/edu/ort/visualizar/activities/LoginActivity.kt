@@ -1,4 +1,4 @@
-package com.example.visualizar.activities
+package edu.ort.visualizar.activities
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,7 +8,6 @@ import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.visualizar.Home
 import com.example.visualizar.R
 
 

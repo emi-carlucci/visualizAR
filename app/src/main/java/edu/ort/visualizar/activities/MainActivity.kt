@@ -1,4 +1,4 @@
-package com.example.visualizar.activities
+package edu.ort.visualizar.activities
 
 import android.os.Bundle
 import android.widget.SearchView

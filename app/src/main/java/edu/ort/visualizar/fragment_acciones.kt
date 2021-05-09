@@ -1,4 +1,4 @@
-package com.example.visualizar
+package edu.ort.visualizar
 
 import android.app.AlertDialog
 import android.content.DialogInterface
@@ -10,7 +10,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.navigation.findNavController
-import com.google.android.material.snackbar.Snackbar
+import com.example.visualizar.R
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER

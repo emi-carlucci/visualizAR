@@ -1,11 +1,11 @@
-package com.example.visualizar.adapters
+package edu.ort.visualizar.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.visualizar.R
-import com.example.visualizar.entities.Indicador
-import com.example.visualizar.holders.ContactoHolder
+import edu.ort.visualizar.entities.Indicador
+import edu.ort.visualizar.holders.ContactoHolder
 
 class IndicadorListAdapter(
     private var contactsList: MutableList<Indicador>/*,

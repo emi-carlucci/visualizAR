@@ -1,15 +1,14 @@
-package com.example.visualizar
+package edu.ort.visualizar
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.SearchView
 import androidx.navigation.findNavController
+import com.example.visualizar.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
 
 class Home : Fragment() {
 
