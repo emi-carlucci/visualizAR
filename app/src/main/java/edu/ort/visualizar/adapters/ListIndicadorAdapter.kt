@@ -7,14 +7,14 @@ import edu.ort.visualizar.R
 import edu.ort.visualizar.entities.Indicador
 import edu.ort.visualizar.holders.IndicadorHolder
 
-class IndicadorListAdapter(
+class ListIndicadorAdapter(
     private var contactsList: MutableList<Indicador>/*,
     val onItemClick: (Int) -> Boolean*/
 
 ) : RecyclerView.Adapter<IndicadorHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): IndicadorHolder {
-        val view =  LayoutInflater.from(parent.context).inflate(R.layout.item_contacto,parent,false)
+        val view =  LayoutInflater.from(parent.context).inflate(R.layout.fragment_indicador_item_list,parent,false)
         return (IndicadorHolder(view))
     }
 

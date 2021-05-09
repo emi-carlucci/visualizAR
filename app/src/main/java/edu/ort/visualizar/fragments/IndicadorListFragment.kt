@@ -11,9 +11,9 @@ import edu.ort.visualizar.R
 import com.google.android.material.snackbar.Snackbar
 
 import edu.ort.visualizar.entities.Indicador
-import edu.ort.visualizar.adapters.IndicadorListAdapter
+import edu.ort.visualizar.adapters.ListIndicadorAdapter
 
-class listFragment : Fragment() {
+class IndicadorListFragment : Fragment() {
 
     lateinit var v: View
 
@@ -23,17 +23,17 @@ class listFragment : Fragment() {
 
     private lateinit var linearLayoutManager: LinearLayoutManager
 
-    private lateinit var indicadorListAdapter: IndicadorListAdapter
+    private lateinit var listIndicadorAdapter: ListIndicadorAdapter
 
     companion object {
-        fun newInstance() = listFragment()
+        fun newInstance() = IndicadorListFragment()
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        v =  inflater.inflate(R.layout.list_fragment, container, false)
+        v =  inflater.inflate(R.layout.fragment_indicador_list, container, false)
         recContactos = v.findViewById(R.id.rec_contactos)
         return v
     }
@@ -60,14 +60,14 @@ class listFragment : Fragment() {
         recContactos.layoutManager = linearLayoutManager
 
 
-        indicadorListAdapter = IndicadorListAdapter(indicadors);
+        listIndicadorAdapter = ListIndicadorAdapter(indicadors);
 
         /*
         contactoListAdapter = ContactoListAdapter(contactos) { x ->
             onItemClick(x)
         }*/
 
-        recContactos.adapter = indicadorListAdapter
+        recContactos.adapter = listIndicadorAdapter
 
     }
 

@@ -35,7 +35,7 @@ class ActualizarValorFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_actualizar_valor, container, false)
+        return inflater.inflate(R.layout.fragment_actualizar_valor_indicador, container, false)
     }
 
 }

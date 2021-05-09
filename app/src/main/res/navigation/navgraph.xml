@@ -3,44 +3,51 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navgraph"
-    app:startDestination="@id/home3">
+    app:startDestination="@id/homeFragment">
     <fragment
-        android:id="@+id/home3"
-        android:name="edu.ort.visualizar.fragments.Home"
-        android:label="home"
-        tools:layout="@layout/home" >
+        android:id="@+id/homeFragment"
+        android:name="edu.ort.visualizar.fragments.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
         <action
-            android:id="@+id/action_home3_to_indicador_ALTA"
-            app:destination="@id/indicador_ALTA" />
+            android:id="@+id/action_homeFragment_to_altaIndicadorFragment"
+            app:destination="@id/altaIndicadorFragment" />
         <action
-            android:id="@+id/action_home3_to_fragment_acciones"
-            app:destination="@id/fragment_acciones" />
+            android:id="@+id/action_homeFragment_to_accionesIndicadorFragment"
+            app:destination="@id/accionesIndicadorFragment" />
     </fragment>
     <fragment
-        android:id="@+id/indicador_ALTA"
-        android:name="edu.ort.visualizar.fragments.Indicador_ALTA"
-        android:label="indicador_alta"
-        tools:layout="@layout/indicador_alta" />
-    <fragment
-        android:id="@+id/fragment_acciones"
-        android:name="edu.ort.visualizar.fragments.fragment_acciones"
-        android:label="fragment_acciones"
-        tools:layout="@layout/fragment_acciones" >
+        android:id="@+id/altaIndicadorFragment"
+        android:name="edu.ort.visualizar.fragments.AltaIndicadorFragment"
+        android:label="fragment_alta_indicador"
+        tools:layout="@layout/fragment_alta_indicador" >
         <action
-            android:id="@+id/action_fragment_acciones_to_actualizarValorFragment2"
-            app:destination="@id/actualizarValorFragment2" />
-        <action
-            android:id="@+id/action_fragment_acciones_to_indicadorEditar"
-            app:destination="@id/indicadorEditar" />
+            android:id="@+id/action_altaIndicadorFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
     <fragment
-        android:id="@+id/indicadorEditar"
-        android:name="edu.ort.visualizar.fragments.IndicadorEditar"
-        android:label="indicador_editar"
-        tools:layout="@layout/indicador_editar" />
+        android:id="@+id/accionesIndicadorFragment"
+        android:name="edu.ort.visualizar.fragments.AccionesIndicadorFragment"
+        android:label="fragment_acciones_indicador"
+        tools:layout="@layout/fragment_acciones_indicador" >
+        <action
+            android:id="@+id/action_accionesIndicadorFragment_to_editarIndicadorFragment"
+            app:destination="@id/editarIndicadorFragment" />
+        <action
+            android:id="@+id/action_accionesIndicadorFragment_to_actualizarValorFragment"
+            app:destination="@id/actualizarValorFragment" />
+        <action
+            android:id="@+id/action_accionesIndicadorFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
     <fragment
-        android:id="@+id/actualizarValorFragment2"
+        android:id="@+id/editarIndicadorFragment"
+        android:name="edu.ort.visualizar.fragments.EditarIndicadorFragment"
+        android:label="fragment_editar_indicador"
+        tools:layout="@layout/fragment_editar_indicador" />
+    <fragment
+        android:id="@+id/actualizarValorFragment"
         android:name="edu.ort.visualizar.fragments.ActualizarValorFragment"
-        android:label="fragment_actualizar_valor"
-        tools:layout="@layout/fragment_actualizar_valor" />
+        android:label="fragment_actualizar_valor_indicador"
+        tools:layout="@layout/fragment_actualizar_valor_indicador" />
 </navigation>

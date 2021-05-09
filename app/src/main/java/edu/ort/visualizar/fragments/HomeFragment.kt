@@ -10,7 +10,7 @@ import androidx.navigation.findNavController
 import edu.ort.visualizar.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
-class Home : Fragment() {
+class HomeFragment : Fragment() {
 
     lateinit var v : View
     lateinit var btnAddIndicator : FloatingActionButton
@@ -36,11 +36,11 @@ class Home : Fragment() {
    override fun onStart() {
        super.onStart()
        btnAddIndicator.setOnClickListener{
-           val action = HomeDirections.actionHome3ToIndicadorALTA()
+           val action = HomeFragmentDirections.actionHomeFragmentToAltaIndicadorFragment()
            v.findNavController().navigate(action)
         }
        svIndicador.setOnClickListener{
-           val action = HomeDirections.actionHome3ToFragmentAcciones()
+           val action = HomeFragmentDirections.actionHomeFragmentToAccionesIndicadorFragment()
            v.findNavController().navigate(action)
        }
 

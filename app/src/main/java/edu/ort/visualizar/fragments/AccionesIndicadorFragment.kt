@@ -25,7 +25,7 @@ private const val ARG_PARAM4 = "2021/05/03 10:31:24"
  * Use the [fragment_acciones.newInstance] factory method to
  * create an instance of this fragment.
  */
-class fragment_acciones : Fragment() {
+class AccionesIndicadorFragment : Fragment() {
     // TODO: Rename and change types of parameters
     lateinit var v : View
     lateinit var btnEdit : Button
@@ -59,7 +59,7 @@ class fragment_acciones : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        v = inflater.inflate(R.layout.fragment_acciones, container, false)
+        v = inflater.inflate(R.layout.fragment_acciones_indicador, container, false)
         btnEdit = v.findViewById(R.id.btnAccionesEditIndicator)
         btnDelete = v.findViewById(R.id.btnAccionesDeleteIndicator)
         btnUpdate = v.findViewById(R.id.btnAccionesUpdateValue)
@@ -75,7 +75,7 @@ class fragment_acciones : Fragment() {
         tvIndicatorValue.text = ARG_PARAM3
         tvLastUpdateDate.text = ARG_PARAM4
         btnEdit.setOnClickListener{
-            val action = fragment_accionesDirections.actionFragmentAccionesToIndicadorEditar()
+            val action = AccionesIndicadorFragmentDirections.actionAccionesIndicadorFragmentToEditarIndicadorFragment()
             v.findNavController().navigate(action)
         }
         btnDelete.setOnClickListener{
@@ -92,7 +92,7 @@ class fragment_acciones : Fragment() {
         }
         btnUpdate.setOnClickListener{
             val action =
-                fragment_accionesDirections.actionFragmentAccionesToActualizarValorFragment2()
+                AccionesIndicadorFragmentDirections.actionAccionesIndicadorFragmentToActualizarValorFragment()
             v.findNavController().navigate(action)
         }
 
