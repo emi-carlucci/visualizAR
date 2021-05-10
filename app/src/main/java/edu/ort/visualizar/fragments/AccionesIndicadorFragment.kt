@@ -36,7 +36,6 @@ class AccionesIndicadorFragment : Fragment() {
     lateinit var tvLastUpdateDate : TextView
 
 
-
     private var param1: String? = null
     private var param2: String? = null
     private var param3: String? = null
@@ -71,7 +70,7 @@ class AccionesIndicadorFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        tvIndicatorName.text = ARG_PARAM2
+        tvIndicatorName.text = AccionesIndicadorFragmentArgs.fromBundle(requireArguments()).indicadorId.toString()
         tvIndicatorValue.text = ARG_PARAM3
         tvLastUpdateDate.text = ARG_PARAM4
         btnEdit.setOnClickListener{
@@ -98,6 +97,8 @@ class AccionesIndicadorFragment : Fragment() {
 
 
     }
+
+
 
     /*companion object {
         /**

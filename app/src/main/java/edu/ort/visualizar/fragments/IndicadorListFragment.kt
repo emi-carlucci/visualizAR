@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -31,7 +30,8 @@ class IndicadorListFragment : Fragment() {
         val position = viewHolder.adapterPosition
         val thisItem: Indicador = indicadors[position]
         Snackbar.make(v, thisItem.nombre, Snackbar.LENGTH_SHORT).show()
-        val action = HomeFragmentDirections.actionHomeFragmentToAccionesIndicadorFragment()
+        val action = HomeFragmentDirections.actionHomeFragmentToAccionesIndicadorFragment(position)
+
         v.findNavController().navigate(action)
     }
 
