@@ -29,7 +29,7 @@ class LoginActivity : AppCompatActivity() {
             passwordTxt = findViewById<View>(R.id.password_txt) as EditText
             val userName = userNameTxt!!.text.toString()
             val password = passwordTxt!!.text.toString()
-            if (isUserFormValid(userName, password)) {
+            /**if (isUserFormValid(userName, password)) {
                 if (userName == "prueba" && password == "Prueba"){
                     val loginIntent = Intent(this, MainActivity::class.java).apply {
                         putExtra("loginIntentData", "Login OK")
@@ -39,7 +39,13 @@ class LoginActivity : AppCompatActivity() {
                 else {
                     Toast.makeText(this, "Usuario o Contraseña Incorrectos", Toast.LENGTH_LONG).show()
                 }
+            }*/
+
+            val loginIntent = Intent(this, MainActivity::class.java).apply {
+                putExtra("loginIntentData", "Login OK")
             }
+            startActivity(loginIntent)
+
         }
     }
 

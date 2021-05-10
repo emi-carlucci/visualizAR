@@ -12,9 +12,6 @@
         <action
             android:id="@+id/action_homeFragment_to_altaIndicadorFragment"
             app:destination="@id/altaIndicadorFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_accionesIndicadorFragment"
-            app:destination="@id/accionesIndicadorFragment" />
     </fragment>
     <fragment
         android:id="@+id/altaIndicadorFragment"
@@ -50,4 +47,13 @@
         android:name="edu.ort.visualizar.fragments.ActualizarValorFragment"
         android:label="fragment_actualizar_valor_indicador"
         tools:layout="@layout/fragment_actualizar_valor_indicador" />
+    <fragment
+        android:id="@+id/indicadorListFragment"
+        android:name="edu.ort.visualizar.fragments.IndicadorListFragment"
+        android:label="fragment_indicador_list"
+        tools:layout="@layout/fragment_indicador_list" >
+        <action
+            android:id="@+id/action_indicadorListFragment_to_accionesIndicadorFragment"
+            app:destination="@id/accionesIndicadorFragment" />
+    </fragment>
 </navigation>
