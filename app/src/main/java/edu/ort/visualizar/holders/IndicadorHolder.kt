@@ -12,6 +12,11 @@ class IndicadorHolder (v: View) : RecyclerView.ViewHolder(v) {
 
     init {
         this.view = v
+        this.view.tag = this
+    }
+
+    fun setListener (mOnItemClickListener : View.OnClickListener){
+        this.view.setOnClickListener(mOnItemClickListener)
     }
 
     fun setName(name: String) {
@@ -22,6 +27,7 @@ class IndicadorHolder (v: View) : RecyclerView.ViewHolder(v) {
     fun getCardLayout (): CardView {
         return view.findViewById(R.id.card_package_item)
     }
+
 
 //
 //        fun getImageView () : ImageView {
