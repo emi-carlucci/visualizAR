@@ -8,16 +8,13 @@ import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.isGone
-import androidx.core.view.isVisible
 import com.google.firebase.firestore.FirebaseFirestore
 import edu.ort.visualizar.R
 import edu.ort.visualizar.models.UserModel
-
+import edu.ort.visualizar.models.USERS_COLLECTION_NAME
 
 class LoginActivity : AppCompatActivity() {
 
-    private val USERS_COLLECTION_NAME = "users"
     private var signInBtn: Button? = null
     private var userNameTxt: EditText? = null
     private var passwordTxt: EditText? = null
@@ -30,7 +27,6 @@ class LoginActivity : AppCompatActivity() {
 
         signInBtn = findViewById<View>(R.id.signin_btn) as Button
         progressBar = findViewById<View>(R.id.progress_bar_main) as ProgressBar
-        progressBar!!.visibility = View.INVISIBLE
 
         signInBtn!!.setOnClickListener {
             userNameTxt = findViewById<View>(R.id.user_name_txt) as EditText
@@ -39,16 +35,16 @@ class LoginActivity : AppCompatActivity() {
             val password = passwordTxt!!.text.toString()
 
             if (isUserFormValid(userName, password)) {
-                progressBar!!.isVisible = true;
-                signInBtn!!.isGone = true
+                progressBar!!.visibility = View.VISIBLE
+                signInBtn!!.visibility = View.GONE
                 var db = FirebaseFirestore.getInstance()
                 var users = db.collection(USERS_COLLECTION_NAME)
                 var task = users.get()
 
                 while (!task.isComplete) {}
 
-                progressBar!!.isVisible = false
-                signInBtn!!.isGone = false
+                progressBar!!.visibility = View.INVISIBLE
+                signInBtn!!.visibility = View.VISIBLE
 
                 if (task.isSuccessful) {
                     var queryDocumentSnapshots = task.getResult()
@@ -68,11 +64,11 @@ class LoginActivity : AppCompatActivity() {
                                 startActivity(loginIntent)
                             }
                             else {
-                                Toast.makeText(this, "Usuario o Contraseña Incorrectos", Toast.LENGTH_LONG).show()
+                                Toast.makeText(this, "Usuario y/o Contraseña Incorrectos", Toast.LENGTH_LONG).show()
                             }
                         }
                         else {
-                            Toast.makeText(this, "Usuario Inexistente", Toast.LENGTH_LONG).show()
+                            Toast.makeText(this, "Usuario y/o Contraseña Incorrectos", Toast.LENGTH_LONG).show()
                         }
                     }
                     else {
@@ -102,4 +98,5 @@ class LoginActivity : AppCompatActivity() {
         }
         return isValid
     }
+
 }
