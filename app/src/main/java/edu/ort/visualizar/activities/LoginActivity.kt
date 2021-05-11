@@ -58,8 +58,11 @@ class LoginActivity : AppCompatActivity() {
         private var password: String? = null
 
         override fun onPreExecute() {
+            userNameTxt?.isEnabled = false
+            passwordTxt?.isEnabled = false
             progressBar?.visibility = View.VISIBLE
             signInBtn?.visibility = View.GONE
+
         }
 
         override fun doInBackground(vararg params: String?): UserModel? {
@@ -87,14 +90,17 @@ class LoginActivity : AppCompatActivity() {
         override fun onPostExecute(user: UserModel?) {
             progressBar?.visibility = View.INVISIBLE
             signInBtn?.visibility = View.VISIBLE
+            userNameTxt?.isEnabled = true
+            passwordTxt?.isEnabled = true
             if (user == null) {
                 Toast.makeText(this@LoginActivity, "Usuario y/o Contraseña Incorrectos", Toast.LENGTH_LONG).show()
             } else {
                 var data: ByteArray = Base64.decode(user.password, Base64.DEFAULT)
                 var decodedPassword =  String(data, charset("UTF-8"))
                 if (password == decodedPassword) {
-                    val loginIntent = Intent(this@LoginActivity, MainActivity::class.java).apply {}
+                    val loginIntent = Intent(this@LoginActivity, MainActivity::class.java)
                     startActivity(loginIntent)
+                    finish()
                 } else {
                     Toast.makeText(this@LoginActivity, "Usuario y/o Contraseña Incorrectos", Toast.LENGTH_LONG).show()
                 }
