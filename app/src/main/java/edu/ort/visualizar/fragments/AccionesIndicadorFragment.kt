@@ -35,7 +35,6 @@ class AccionesIndicadorFragment : Fragment() {
     lateinit var tvIndicatorValue: TextView
     lateinit var tvLastUpdateDate : TextView
 
-
     private var param1: String? = null
     private var param2: String? = null
     private var param3: String? = null
@@ -70,11 +69,12 @@ class AccionesIndicadorFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        tvIndicatorName.text = AccionesIndicadorFragmentArgs.fromBundle(requireArguments()).indicadorId.toString()
+        var indicadorId = AccionesIndicadorFragmentArgs.fromBundle(requireArguments()).indicadorId
+        tvIndicatorName.text = indicadorId.toString()
         tvIndicatorValue.text = ARG_PARAM3
         tvLastUpdateDate.text = ARG_PARAM4
         btnEdit.setOnClickListener{
-            val action = AccionesIndicadorFragmentDirections.actionAccionesIndicadorFragmentToEditarIndicadorFragment()
+            val action = AccionesIndicadorFragmentDirections.actionAccionesIndicadorFragmentToEditarIndicadorFragment(indicadorId)
             v.findNavController().navigate(action)
         }
         btnDelete.setOnClickListener{
@@ -91,7 +91,7 @@ class AccionesIndicadorFragment : Fragment() {
         }
         btnUpdate.setOnClickListener{
             val action =
-                AccionesIndicadorFragmentDirections.actionAccionesIndicadorFragmentToActualizarValorFragment()
+                AccionesIndicadorFragmentDirections.actionAccionesIndicadorFragmentToActualizarValorFragment(indicadorId)
             v.findNavController().navigate(action)
         }
 

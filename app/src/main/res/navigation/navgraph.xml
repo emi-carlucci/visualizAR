@@ -48,10 +48,20 @@
         android:id="@+id/editarIndicadorFragment"
         android:name="edu.ort.visualizar.fragments.EditarIndicadorFragment"
         android:label="fragment_editar_indicador"
-        tools:layout="@layout/fragment_editar_indicador" />
+        tools:layout="@layout/fragment_editar_indicador" >
+        <argument
+            android:name="indicadorId"
+            app:argType="integer"
+            android:defaultValue="-1" />
+    </fragment>
     <fragment
         android:id="@+id/actualizarValorFragment"
         android:name="edu.ort.visualizar.fragments.ActualizarValorFragment"
         android:label="fragment_actualizar_valor_indicador"
-        tools:layout="@layout/fragment_actualizar_valor_indicador" />
+        tools:layout="@layout/fragment_actualizar_valor_indicador" >
+        <argument
+            android:name="indicadorId"
+            app:argType="integer"
+            android:defaultValue="-1" />
+    </fragment>
 </navigation>
