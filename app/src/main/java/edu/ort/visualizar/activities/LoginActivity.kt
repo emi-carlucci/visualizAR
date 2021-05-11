@@ -1,20 +1,26 @@
 package edu.ort.visualizar.activities
 
 import android.content.Intent
+import android.os.AsyncTask
 import android.os.Bundle
+import android.util.Base64
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 import edu.ort.visualizar.R
-import edu.ort.visualizar.models.UserModel
 import edu.ort.visualizar.models.USERS_COLLECTION_NAME
+import edu.ort.visualizar.models.UserModel
+
 
 class LoginActivity : AppCompatActivity() {
 
+    private var db: FirebaseFirestore? = null
+    private var users: CollectionReference? = null
     private var signInBtn: Button? = null
     private var userNameTxt: EditText? = null
     private var passwordTxt: EditText? = null
@@ -25,58 +31,72 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        db = FirebaseFirestore.getInstance()
+        users = db!!.collection(USERS_COLLECTION_NAME)
         signInBtn = findViewById<View>(R.id.signin_btn) as Button
         progressBar = findViewById<View>(R.id.progress_bar_main) as ProgressBar
+
+        progressBar!!.visibility = View.INVISIBLE
+        signInBtn!!.visibility = View.VISIBLE
 
         signInBtn!!.setOnClickListener {
             userNameTxt = findViewById<View>(R.id.user_name_txt) as EditText
             passwordTxt = findViewById<View>(R.id.password_txt) as EditText
             val userName = userNameTxt!!.text.toString()
             val password = passwordTxt!!.text.toString()
-
             if (isUserFormValid(userName, password)) {
-                progressBar!!.visibility = View.VISIBLE
-                signInBtn!!.visibility = View.GONE
-                var db = FirebaseFirestore.getInstance()
-                var users = db.collection(USERS_COLLECTION_NAME)
-                var task = users.get()
+                val signInAsyncTask = LoginProcess()
+                val params = arrayOf(userName, password)
+                signInAsyncTask.execute(*params)
+            }
+        }
+    }
 
-                while (!task.isComplete) {}
+    inner class LoginProcess: AsyncTask<String?, Void?, UserModel?>() {
 
-                progressBar!!.visibility = View.INVISIBLE
-                signInBtn!!.visibility = View.VISIBLE
+        private var userName: String? = null
+        private var password: String? = null
 
-                if (task.isSuccessful) {
-                    var queryDocumentSnapshots = task.getResult()
-                    if (queryDocumentSnapshots != null && !queryDocumentSnapshots.isEmpty) {
-                        var foundUser : UserModel? = null
-                        var userList = queryDocumentSnapshots.documents
-                        for (doc in userList) {
-                            val user = doc.toObject(UserModel::class.java)
-                            if (user != null && user.username == userName){
-                                foundUser = user
-                                break
-                            }
+        override fun onPreExecute() {
+            progressBar?.visibility = View.VISIBLE
+            signInBtn?.visibility = View.GONE
+        }
+
+        override fun doInBackground(vararg params: String?): UserModel? {
+            var user: UserModel? = null
+            userName = params[0]
+            password = params[1]
+            var task = users?.get()
+            if (task != null) { while (!task.isComplete) {} }
+            if (task != null && task.isSuccessful) {
+                var queryDocumentSnapshots = task.result
+                if (queryDocumentSnapshots != null && !queryDocumentSnapshots.isEmpty) {
+                    var userList = queryDocumentSnapshots.documents
+                    for (doc in userList) {
+                        val getUser = doc.toObject(UserModel::class.java)
+                        if (getUser != null && getUser.username == userName) {
+                            user = getUser
+                            break
                         }
-                        if (foundUser != null){
-                            if (foundUser.password == password){
-                                val loginIntent = Intent(this, MainActivity::class.java).apply {}
-                                startActivity(loginIntent)
-                            }
-                            else {
-                                Toast.makeText(this, "Usuario y/o Contraseña Incorrectos", Toast.LENGTH_LONG).show()
-                            }
-                        }
-                        else {
-                            Toast.makeText(this, "Usuario y/o Contraseña Incorrectos", Toast.LENGTH_LONG).show()
-                        }
-                    }
-                    else {
-                        Toast.makeText(this, "Ocurrió un problema. Por favor, intentá nuevamente", Toast.LENGTH_LONG).show()
                     }
                 }
-                else {
-                    Toast.makeText(this, "Ocurrió un problema. Por favor, intentá nuevamente", Toast.LENGTH_LONG).show()
+            }
+            return user
+        }
+
+        override fun onPostExecute(user: UserModel?) {
+            progressBar?.visibility = View.INVISIBLE
+            signInBtn?.visibility = View.VISIBLE
+            if (user == null) {
+                Toast.makeText(this@LoginActivity, "Usuario y/o Contraseña Incorrectos", Toast.LENGTH_LONG).show()
+            } else {
+                var data: ByteArray = Base64.decode(user.password, Base64.DEFAULT)
+                var decodedPassword =  String(data, charset("UTF-8"))
+                if (password == decodedPassword) {
+                    val loginIntent = Intent(this@LoginActivity, MainActivity::class.java).apply {}
+                    startActivity(loginIntent)
+                } else {
+                    Toast.makeText(this@LoginActivity, "Usuario y/o Contraseña Incorrectos", Toast.LENGTH_LONG).show()
                 }
             }
         }
