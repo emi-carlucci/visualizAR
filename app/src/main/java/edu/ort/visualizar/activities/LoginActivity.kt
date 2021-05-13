@@ -10,17 +10,14 @@ import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.google.firebase.firestore.CollectionReference
-import com.google.firebase.firestore.FirebaseFirestore
 import edu.ort.visualizar.R
-import edu.ort.visualizar.models.USERS_COLLECTION_NAME
 import edu.ort.visualizar.models.UserModel
+import edu.ort.visualizar.utils.DBUtils
 
 
 class LoginActivity : AppCompatActivity() {
 
-    private var db: FirebaseFirestore? = null
-    private var users: CollectionReference? = null
+    private var dbUtils: DBUtils? = null
     private var signInBtn: Button? = null
     private var userNameTxt: EditText? = null
     private var passwordTxt: EditText? = null
@@ -30,9 +27,8 @@ class LoginActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+        dbUtils = DBUtils()
 
-        db = FirebaseFirestore.getInstance()
-        users = db!!.collection(USERS_COLLECTION_NAME)
         signInBtn = findViewById<View>(R.id.signin_btn) as Button
         progressBar = findViewById<View>(R.id.progress_bar_main) as ProgressBar
 
@@ -66,25 +62,9 @@ class LoginActivity : AppCompatActivity() {
         }
 
         override fun doInBackground(vararg params: String?): UserModel? {
-            var user: UserModel? = null
             userName = params[0]
             password = params[1]
-            var task = users?.get()
-            if (task != null) { while (!task.isComplete) {} }
-            if (task != null && task.isSuccessful) {
-                var queryDocumentSnapshots = task.result
-                if (queryDocumentSnapshots != null && !queryDocumentSnapshots.isEmpty) {
-                    var userList = queryDocumentSnapshots.documents
-                    for (doc in userList) {
-                        val getUser = doc.toObject(UserModel::class.java)
-                        if (getUser != null && getUser.username == userName) {
-                            user = getUser
-                            break
-                        }
-                    }
-                }
-            }
-            return user
+            return dbUtils?.getUser(userName)
         }
 
         override fun onPostExecute(user: UserModel?) {
