@@ -32,11 +32,11 @@ class IndicadorListContainerFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         //TODO: Api Call para obtener los indicadores.
-        /**
+
         for (i in 1..10) {
         indicadors.add(Indicador("Indicador Nº $i",26, Indicador.Constants.cursoA))
         }
-         */
+
     }
 
     override fun onCreateView(
