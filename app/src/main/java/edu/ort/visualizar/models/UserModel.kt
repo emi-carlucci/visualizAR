@@ -3,8 +3,6 @@ package edu.ort.visualizar.models
 import com.google.firebase.firestore.Exclude
 import com.google.firebase.firestore.IgnoreExtraProperties
 
-val USERS_COLLECTION_NAME = "users"
-
 @IgnoreExtraProperties
 data class UserModel(
         var username: String? = "",
