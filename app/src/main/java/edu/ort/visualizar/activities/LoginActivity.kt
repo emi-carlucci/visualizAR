@@ -13,7 +13,6 @@ import androidx.appcompat.app.AppCompatActivity
 import edu.ort.visualizar.R
 import edu.ort.visualizar.models.UserModel
 import edu.ort.visualizar.utils.DBUtils
-import edu.ort.visualizar.utils.OCBUtils
 
 
 class LoginActivity : AppCompatActivity() {
@@ -28,17 +27,6 @@ class LoginActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-
-
-
-        var ocb = OCBUtils()
-        //var resp = ocb.getKpiList()
-        //var resp = ocb.getKpi("kpi-2016-Ciudad-containers-faults")
-        //var resp = ocb.updateKpiValue("kpi-2016-Ciudad-containers-faults", "26.7")
-        var resp = ocb.deleteKpi("kpi-2016-Ciudad-containers-faults")
-        print(resp)
-
-
 
         dbUtils = DBUtils()
         signInBtn = findViewById<View>(R.id.signin_btn) as Button
