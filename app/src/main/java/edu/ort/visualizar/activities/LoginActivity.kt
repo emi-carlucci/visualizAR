@@ -27,8 +27,8 @@ class LoginActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-        dbUtils = DBUtils()
 
+        dbUtils = DBUtils()
         signInBtn = findViewById<View>(R.id.signin_btn) as Button
         progressBar = findViewById<View>(R.id.progress_bar_main) as ProgressBar
 
