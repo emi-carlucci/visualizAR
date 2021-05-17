@@ -33,12 +33,13 @@ class OCBUtils {
         client.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
                 e.printStackTrace()
+                responseString = null
                 countDownLatch.countDown()
             }
             override fun onResponse(call: Call, response: Response) {
                 response.use {
                     if (!response.isSuccessful) {
-                        throw IOException("Unexpected OCB response code ${response.code()}")
+                        responseString = null
                     }
                     responseString = response.body()?.string()
                 }
@@ -49,14 +50,13 @@ class OCBUtils {
         return responseString
     }
 
-    private fun buildKpiBody(id: String? = null, category: String? = null, calculationFrequency: String? = null, description: String? = null,
+    private fun buildKpiBody(onlyUpdate: Boolean, id: String? = null, category: String? = null, calculationFrequency: String? = null, description: String? = null,
                              currentStanding: String? = null, addressLocality: String? = null, addressCountry: String? = null,
                              calculationPeriodFrom: String? = null, calculationPeriodTo: String? = null, dateNextCalculation: String? = null,
                              calculationMethod: String? = null, provider: String? = null, organization: String? = null, kpiValue: String? = null,
                              name: String? = null, source: String? = null, process: String? = null, businessTarget: String? = null,
                              calculationFormula: String? = null, dateExpires: String? = null, updatedAt: String? = null, area: String? = null): KpiModel? {
-        val type = "KeyPerformanceIndicator"
-        var kpiBody: KpiModel? = null
+        var type: String? = null
         var categoryValue: Category? = null
         var calculationFrequencyValue: CalculationFrequency? = null
         var descriptionValue: Description? = null
@@ -76,6 +76,7 @@ class OCBUtils {
         var dateExpiresValue: DateExpires? = null
         var updatedAtValue: UpdatedAt? = null
         var areaValue: Area? = null
+        if (!onlyUpdate) type = "KeyPerformanceIndicator"
         if (calculationFrequency != null) calculationFrequencyValue = CalculationFrequency(calculationFrequency)
         if (description != null) descriptionValue = Description(description)
         if (currentStanding != null) currentStandingValue = CurrentStanding(currentStanding)
@@ -89,7 +90,6 @@ class OCBUtils {
         if (dateExpires != null) dateExpiresValue = DateExpires(dateExpires)
         if (updatedAt != null) updatedAtValue = UpdatedAt(updatedAt)
         if (area != null) areaValue = Area(area)
-        if (dateNextCalculation != null) dateNextCalculationValue = DateNextCalculation("DateTime", dateNextCalculation)
         if (provider != null) {
             val providerData = ProviderValue(provider)
             providerValue = Provider(providerData)
@@ -106,15 +106,21 @@ class OCBUtils {
             val calculationPeriodData = CalculationPeriodValue(calculationPeriodTo, calculationPeriodFrom)
             calculationPeriodValue = CalculationPeriod(calculationPeriodData)
         }
-        if (addressLocality != null && addressCountry != null) {
-            val addressData = AddressValue(addressLocality, addressCountry)
-            addressValue = Address("PostalAddress", addressData)
+        if (dateNextCalculation != null) {
+            var dateNextCalculationType: String? = null
+            if (!onlyUpdate) dateNextCalculationType = "DateTime"
+            dateNextCalculationValue = DateNextCalculation(dateNextCalculationType, dateNextCalculation)
         }
-        kpiBody = KpiModel(id, type, categoryValue, null, calculationFrequencyValue, descriptionValue, currentStandingValue,
+        if (addressLocality != null && addressCountry != null) {
+            var addressType: String? = null
+            val addressData = AddressValue(addressLocality, addressCountry)
+            if (!onlyUpdate) addressType = "PostalAddress"
+            addressValue = Address(addressType, addressData)
+        }
+        return KpiModel(id, type, categoryValue, null, calculationFrequencyValue, descriptionValue, currentStandingValue,
                 addressValue, calculationPeriodValue, dateNextCalculationValue, calculationMethodValue, providerValue, organizationValue,
                 kpiValueValue, nameValue, sourceValue, processValue, businessTargetValue, calculationFormulaValue, null,
                 dateExpiresValue, updatedAtValue, areaValue)
-        return kpiBody
     }
 
     fun getKpiList(): List<KpiModel>? {
@@ -163,7 +169,7 @@ class OCBUtils {
                   source: String? = null, process: String? = null, businessTarget: String? = null, calculationFormula: String? = null,
                   dateExpires: String? = null, updatedAt: String? = null, area: String? = null): Boolean? {
         var result = false
-        val createKpiModel = buildKpiBody(id, category, calculationFrequency, description, currentStanding, addressLocality,
+        val createKpiModel = buildKpiBody(false, id, category, calculationFrequency, description, currentStanding, addressLocality,
                 addressCountry, calculationPeriodFrom, calculationPeriodTo, dateNextCalculation, calculationMethod, provider,
                 organization, kpiValue, name, source, process, businessTarget, calculationFormula, dateExpires, updatedAt, area)
         val response = makeRequest(url, postMethod, createKpiModel)
@@ -174,17 +180,16 @@ class OCBUtils {
     fun updateKpi(id: String, category: String? = null, calculationFrequency: String? = null, description: String? = null,
                   currentStanding: String? = null, addressLocality: String? = null, addressCountry: String? = null,
                   calculationPeriodFrom: String? = null, calculationPeriodTo: String? = null, dateNextCalculation: String? = null,
-                  calculationMethod: String? = null, provider: String? = null, organization: String? = null, kpiValue: String? = null,
+                  calculationMethod: String? = null, provider: String? = null, organization: String? = null,
                   name: String? = null, source: String? = null, process: String? = null, businessTarget: String? = null,
                   calculationFormula: String? = null, dateExpires: String? = null, updatedAt: String? = null, area: String? = null): Boolean? {
         var result = false
         val updateKpiUrl = "$url/$id/attrs"
-        val updateKpiModel = buildKpiBody(null, category, calculationFrequency, description, currentStanding,
+        val updateKpiModel = buildKpiBody(true, null, category, calculationFrequency, description, currentStanding,
                 addressLocality, addressCountry, calculationPeriodFrom, calculationPeriodTo, dateNextCalculation, calculationMethod,
-                provider, organization, kpiValue, name, source, process, businessTarget, calculationFormula, dateExpires, updatedAt, area)
+                provider, organization, null, name, source, process, businessTarget, calculationFormula, dateExpires, updatedAt, area)
         val response = makeRequest(updateKpiUrl, patchMethod, updateKpiModel)
         if (response != null && response == "") result = true
         return result
     }
-
 }
