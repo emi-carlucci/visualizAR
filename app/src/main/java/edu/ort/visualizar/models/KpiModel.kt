@@ -1,21 +1,29 @@
 package edu.ort.visualizar.models
 
 data class KpiModel (
-        var id: String?,
-        var type: String?,
-        var category: Category?,
-        var dateModified: DateModified?,
-        var calculationFrequency: CalculationFrequency?,
-        var descritpion: Description?,
-        var currentStanding: CurrentStanding?,
-        var address: Address?,
-        var calculationPeriod: CalculationPeriod?,
-        var dateNextCalculation: DateNextCalculation?,
-        var calculationMethod: CalculationMethod?,
-        var provider: Provider?,
-        var organization: Organization?,
-        var kpiValue: KpiValue?,
-        var name: Name?
+        var id: String? = null,
+        var type: String? = null,
+        var category: Category? = null,
+        var dateModified: DateModified? = null,
+        var calculationFrequency: CalculationFrequency? = null,
+        var description: Description? = null,
+        var currentStanding: CurrentStanding? = null,
+        var address: Address? = null,
+        var calculationPeriod: CalculationPeriod? = null,
+        var dateNextCalculation: DateNextCalculation? = null,
+        var calculationMethod: CalculationMethod? = null,
+        var provider: Provider? = null,
+        var organization: Organization? = null,
+        var kpiValue: KpiValue? = null,
+        var name: Name? = null,
+        var source: Source? = null,
+        var process: Process? = null,
+        var businessTarget: BusinessTarget? = null,
+        var calculationFormula: CalculationFormula? = null,
+        var dateCreated: DateCreated? = null,
+        var dateExpires: DateExpires? = null,
+        var updatedAt: UpdatedAt? = null,
+        var area: Area? = null
 )
 
 data class Category (
@@ -90,6 +98,49 @@ data class KpiValue (
 data class Name (
         var value: String?
 )
+
+data class Source (
+        var value: String?
+)
+
+data class Process (
+        var value: String?
+)
+
+data class BusinessTarget (
+        var value: String?
+)
+
+data class CalculationFormula (
+        var value: String?
+)
+
+data class DateCreated (
+        var value: String?
+)
+
+data class DateExpires (
+        var value: String?
+)
+
+data class UpdatedAt (
+        var value: String?
+)
+
+data class Area (
+        var value: String?
+)
+
+
+
+
+
+
+
+
+
+
+
 
 
 
