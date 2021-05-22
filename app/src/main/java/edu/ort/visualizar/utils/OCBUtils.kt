@@ -125,7 +125,8 @@ class OCBUtils {
 
     fun getKpiList(): List<KpiModel>? {
         var kpiList: List<KpiModel>? = null
-        val response = makeRequest(url, getMethod)
+        val getKpiListUrl = "$url?options=dateModified,dateCreated"
+        val response = makeRequest(getKpiListUrl, getMethod)
         if (response != null ){
             val listKpiType = object : TypeToken<List<KpiModel>>() {}.type
             kpiList = Gson().fromJson(response, listKpiType)
@@ -135,7 +136,7 @@ class OCBUtils {
 
     fun getKpi(id: String): KpiModel? {
         var kpi: KpiModel? = null
-        val getKpiUrl = "$url/$id"
+        val getKpiUrl = "$url/$id?options=dateModified,dateCreated"
         val response = makeRequest(getKpiUrl, getMethod)
         if (response != null ){
             val kpiType = object : TypeToken<KpiModel>() {}.type
