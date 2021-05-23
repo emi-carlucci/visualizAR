@@ -38,6 +38,22 @@
 
     <!--Inicio Fragment  indicador_alta -->
     <string name="formAlta">Nuevo Indicador</string>
+    <string name="ID">ID</string>
+    <string name="checkResult"></string>
+    <string name="checkID">ID exist ?</string>
+    <string name="titulo">Título</string>
+    <string name="descripcion">Descripción</string>
+    <string name="calculationFormula">Fórmula : For informative purposes, the formula used for calculating the indicator.</string>
+    <string name="txtcalculationFrequency">Frecuencia :</string>
+    <string name="txtCategory">Categoria :</string>
+    <string name="txtOpcionales">Generar campos opcionales</string>
+    <string name="calculatedBy">calculatedBy : The organization in charge of calculating the KPI.</string>
+    <string name="source">source : A sequence of characters giving the source of the entity data.</string>
+    <string name="businessTarget">businessTarget : For informative purposes, the business target to which this KPI is related to.</string>
+    <string name="dateNextCalculation">dateNextCalculation : Date on which a new calculation of the KPI should be available.</string>
+    <string name="address">address : Civic address of the area to which the KPI refers to.</string>
+    <string name="area">area : For organizational purposes, it allows to add extra textual geographical information such as district, burough, or any other hint which can help to identify the KPI coverage.</string>
+
     <!--Fin Fragment  indicador_alta -->
 
     <string name="formEditar">Editar Indicador</string>
