@@ -129,7 +129,11 @@ class OCBUtils {
         val response = makeRequest(getKpiListUrl, getMethod)
         if (response != null ){
             val listKpiType = object : TypeToken<List<KpiModel>>() {}.type
-            kpiList = Gson().fromJson(response, listKpiType)
+            try {
+                kpiList = Gson().fromJson(response, listKpiType)
+            } catch (ex: Exception){
+                print(ex.message)
+            }
         }
         return kpiList
     }
@@ -140,7 +144,11 @@ class OCBUtils {
         val response = makeRequest(getKpiUrl, getMethod)
         if (response != null ){
             val kpiType = object : TypeToken<KpiModel>() {}.type
-            kpi = Gson().fromJson(response, kpiType)
+            try {
+                kpi = Gson().fromJson(response, kpiType)
+            } catch (ex: Exception){
+                print(ex.message)
+            }
         }
         return kpi
     }
