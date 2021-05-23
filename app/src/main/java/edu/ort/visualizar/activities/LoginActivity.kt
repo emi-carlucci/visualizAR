@@ -11,6 +11,7 @@ import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import edu.ort.visualizar.R
+import edu.ort.visualizar.activities.MainActivity.Companion.ocbUtils
 import edu.ort.visualizar.models.UserModel
 import edu.ort.visualizar.utils.DBUtils
 
@@ -27,6 +28,8 @@ class LoginActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        var data = ocbUtils.getKpi("id-data")
 
         dbUtils = DBUtils()
         signInBtn = findViewById<View>(R.id.signin_btn) as Button

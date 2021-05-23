@@ -7,34 +7,19 @@ import androidx.recyclerview.widget.RecyclerView
 import edu.ort.visualizar.R
 import edu.ort.visualizar.entities.Indicador
 import edu.ort.visualizar.holders.IndicadorHolder
+import edu.ort.visualizar.models.KpiModel
 
-class ListIndicadorAdapter(
-        private var contactsList: MutableList<Indicador>,
-        /*,
-    val onItemClick: (Int) -> Boolean*/
-        private  var mOnItemClickListener: View.OnClickListener
-
-
-) : RecyclerView.Adapter<IndicadorHolder>() {
+class ListIndicadorAdapter(private var contactsList: List<KpiModel>,
+                           private  var mOnItemClickListener: View.OnClickListener)
+    : RecyclerView.Adapter<IndicadorHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): IndicadorHolder {
         val view =  LayoutInflater.from(parent.context).inflate(R.layout.fragment_indicador_item_list, parent, false)
         return (IndicadorHolder(view))
     }
 
-    companion object {
-
-        private val TAG = "ContactoListAdapter"
-    }
-
     override fun getItemCount(): Int {
-
         return contactsList.size
-    }
-
-    fun setData(newData: ArrayList<Indicador>) {
-        this.contactsList = newData
-        this.notifyDataSetChanged()
     }
 
     //TODO: Step 2 of 4: Assign itemClickListener to your local View.OnClickListener variable
@@ -43,10 +28,7 @@ class ListIndicadorAdapter(
     }
 
     override fun onBindViewHolder(holder: IndicadorHolder, position: Int) {
-
-        holder.setName(contactsList[position].nombre)
+        holder.setName(contactsList[position].name?.value.toString())
         holder.setListener(mOnItemClickListener)
-
-
     }
 }
