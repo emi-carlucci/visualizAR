@@ -28,10 +28,17 @@ class AltaIndicadorFragment : Fragment() {
     lateinit var spCat : Spinner
     lateinit var txtCat : String
     lateinit var inputCheck1 : CheckBox
+    lateinit var calculationMethod : String
     lateinit var inputCheck2 : CheckBox
+    lateinit var source : String
     lateinit var inputCheck3 : CheckBox
+    lateinit var businessTarget : String
     lateinit var inputCheck4 : CheckBox
+    lateinit var dateNextCalculation : String
     lateinit var inputCheck5 : CheckBox
+    lateinit var address : String
+    lateinit var inputCheck6 : CheckBox
+    lateinit var area : String
     lateinit var btnConfirm : Button
     lateinit var btnLimpiar : Button
 
@@ -64,6 +71,7 @@ class AltaIndicadorFragment : Fragment() {
         inputCheck3 = v.findViewById(R.id.checkBox3)
         inputCheck4 = v.findViewById(R.id.checkBox4)
         inputCheck5 = v.findViewById(R.id.checkBox5)
+        inputCheck6 = v.findViewById(R.id.checkBox6)
         btnConfirm = v.findViewById(R.id.btnAltaConfirmar)
         btnLimpiar = v.findViewById(R.id.btnAltaLimpiar)
 
@@ -102,31 +110,16 @@ class AltaIndicadorFragment : Fragment() {
         })
 
         btnCheckID.setOnClickListener {
-            if(inputID.text.toString().equals("")){
-                Snackbar.make(v, "Ingrese el ID.", Snackbar.LENGTH_SHORT).show()
-//                validarAction = false
-            }
-            if(validarAction){
-                var ocb = OCBUtils()
-                var indicador : KpiModel? = ocb.getKpi(inputID.text.toString())
-                if(indicador==null){
-                    txtCheckResult.setText("DISPONIBLE")
-                }else{
-                    txtCheckResult.setText("NO DISPONIBLE")
-                }
-            }
+            validarID(inputID)
         }
 
         btnConfirm.setOnClickListener{
             if(inputID.text.toString().equals("")){
                 Snackbar.make(v, "Ingrese el ID.", Snackbar.LENGTH_SHORT).show()
                 validarAction = false
+            }else{
+                validarAction = validarID(inputID)
             }
-            //else{
-            // TODO
-            // Chequear que este ID no exista.
-            // Si existe validarAction = false
-            //}
             if(inputTitulo.text.toString().equals("")) {
                 Snackbar.make(v, "Ingrese el título.", Snackbar.LENGTH_SHORT).show()
                 validarAction = false
@@ -138,7 +131,7 @@ class AltaIndicadorFragment : Fragment() {
             if(validarAction){
                 // Aca se persiste en la BD
                 println("GRABANDO....")
-                println(inputID.text)
+                println(inputID.text.toString())
                 println(inputTitulo.text)
                 println(inputDescripcion.text)
                 println(inputFormula.text)
@@ -146,35 +139,57 @@ class AltaIndicadorFragment : Fragment() {
                 println(txtCat)
                 if(inputCheck1.isChecked) {
                     println(inputCheck1.text)
+                    calculationMethod ="_calculationMethod_"
                 }
                 if(inputCheck2.isChecked) {
                     println(inputCheck2.text)
+                    source = "_source_"
                 }
                 if(inputCheck3.isChecked) {
                     println(inputCheck3.text)
+                    businessTarget = "_businessTarget_"
                 }
                 if(inputCheck4.isChecked) {
                     println(inputCheck4.text)
+                    dateNextCalculation ="_dateNextCalculation_"
                 }
                 if(inputCheck5.isChecked) {
                     println(inputCheck5.text)
+                    address = "_address_"
                 }
-//                var ocb = OCBUtils()
-                Thread.sleep(5000)
+                if(inputCheck6.isChecked) {
+                    println(inputCheck6.text)
+                    area = "_area_"
+                }
+                var ocb = OCBUtils()
+                ocb.createKpi(inputID.text.toString(), txtCat, txtFrec, inputDescripcion.text.toString(),null, address,null,null,null,
+                                dateNextCalculation, calculationMethod,null,"Ciudades Futuras","", inputTitulo.text.toString(), source ,null, businessTarget,
+                        inputFormula.text.toString(),null,null,area)
+
+                Thread.sleep(500)
                 println("vuelvo a HOME")
+
                 // val action = Indicador_ALTADirections.actionIndicadorALTAToHome2()
                 // v.findNavController().navigate(action)
             }
             validarAction=true
         }
         btnLimpiar.setOnClickListener {
+            inputID.setText("")
+            txtCheckResult.setText("")
             inputTitulo.setText("")
             inputDescripcion.setText("")
             inputFormula.setText("")
-            //inputFrec.setText("")
+            inputCheck1.setChecked(false)
+            inputCheck2.setChecked(false)
+            inputCheck3.setChecked(false)
+            inputCheck4.setChecked(false)
+            inputCheck5.setChecked(false)
+            inputCheck6.setChecked(false)
             validarAction=true
         }
     }
+
     fun populateSpinner (spinner: Spinner, list : List<String>, context : Context)
     {
         //   val aa = ArrayAdapter( context!!, android.R.layout.simple_spinner_item, list)
@@ -184,5 +199,26 @@ class AltaIndicadorFragment : Fragment() {
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         // Set Adapter to Spinner
         spinner.setAdapter(aa)
+    }
+
+    fun validarID(id : TextView) : Boolean {
+        var result: Boolean = false
+        if(id.text.toString().equals("")){
+            Snackbar.make(v, "Ingrese el ID.", Snackbar.LENGTH_SHORT).show()
+            result = false
+        }else{
+            var ocb = OCBUtils()
+            var indicador : KpiModel? = ocb.getKpi(inputID.text.toString())
+            if(indicador==null){
+                txtCheckResult.setText("DISPONIBLE")
+                Snackbar.make(v, "ID disponible", Snackbar.LENGTH_SHORT).show()
+                result = true
+            }else{
+                txtCheckResult.setText("NO DISPONIBLE")
+                Snackbar.make(v, "ID existente", Snackbar.LENGTH_SHORT).show()
+                result = false
+            }
+        }
+        return result
     }
 }
