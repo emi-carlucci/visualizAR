@@ -15,8 +15,8 @@ class HomeFragment : Fragment() {
     lateinit var homeView : View
     lateinit var btnAddIndicator : FloatingActionButton
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onResume() {
+        super.onResume()
         val ft: FragmentTransaction = parentFragmentManager.beginTransaction()
         ft.replace(R.id.indicador_list_fragment_container, IndicadorListContainerFragment())
         ft.commit()
