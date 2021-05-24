@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.core.view.get
+import androidx.navigation.findNavController
 import edu.ort.visualizar.R
 
 import com.google.android.material.snackbar.Snackbar
@@ -134,6 +135,7 @@ class AltaIndicadorFragment : Fragment() {
             }
             if(validarAction){
                 // Aca se persiste en la BD
+                println("")
                 println("GRABANDO....")
                 println(inputID.text.toString())
                 println(inputTitulo.text)
@@ -181,10 +183,10 @@ class AltaIndicadorFragment : Fragment() {
 
                 //TODO
 
-                println("vuelvo a HOME")
+                //println("vuelvo a HOME")
 
-                // val action = Indicador_ALTADirections.actionIndicadorALTAToHome2()
-                // v.findNavController().navigate(action)
+                 val action = AltaIndicadorFragmentDirections.actionAltaIndicadorFragmentToHomeFragment()
+                 v.findNavController().navigate(action)
 
             }
             validarAction=true
