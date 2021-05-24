@@ -15,6 +15,7 @@ import edu.ort.visualizar.R
 import edu.ort.visualizar.models.*
 import edu.ort.visualizar.utils.OCBUtils
 
+
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "id"
@@ -38,7 +39,6 @@ class AccionesIndicadorFragment : Fragment() {
     lateinit var tvIndicatorValue: TextView
     lateinit var tvLastUpdateDate : TextView
 
-
     private var param1: String? = null
     private var param2: String? = null
     private var param3: String? = null
@@ -61,8 +61,6 @@ class AccionesIndicadorFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-
-
         v = inflater.inflate(R.layout.fragment_acciones_indicador, container, false)
         btnEdit = v.findViewById(R.id.btnAccionesEditIndicator)
         btnDelete = v.findViewById(R.id.btnAccionesDeleteIndicator)
@@ -75,6 +73,7 @@ class AccionesIndicadorFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
+
         var ocb = OCBUtils()
         var indicador : KpiModel? = ocb.getKpi("kpi-2016-Ciudad-containers-faults")
         if (indicador !== null) {
@@ -113,8 +112,8 @@ class AccionesIndicadorFragment : Fragment() {
                         AccionesIndicadorFragmentDirections.actionAccionesIndicadorFragmentToActualizarValorFragment(indicador)
                 v.findNavController().navigate(action)
             }
-        }
 
+        }
 
 
     }

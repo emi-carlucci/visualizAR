@@ -1,5 +1,8 @@
 package edu.ort.visualizar.models
+
 import java.io.Serializable
+
+
 data class KpiModel (
         var id: String? = null,
         var type: String? = null,
