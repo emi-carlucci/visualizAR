@@ -10,14 +10,14 @@
         android:id="@+id/indicador_list_fragment_container"
         android:layout_width="0dp"
 
-        android:layout_height="400dp"
-        android:layout_marginTop="25dp"
+        android:layout_height="315dp"
+        android:layout_marginTop="20dp"
         android:layout_marginBottom="25dp"
         app:layout_constraintBottom_toTopOf="@+id/floatingActionButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/svIndicador"></FrameLayout>
+        app:layout_constraintTop_toBottomOf="@+id/button"></FrameLayout>
 
     <TextView
         android:id="@+id/textIndicadorTitle"
@@ -31,21 +31,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <SearchView
-        android:id="@+id/svIndicador"
-        android:layout_width="299dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="20dp"
-        android:background="#0003A9F4"
-
-        android:gravity="center"
-        android:iconifiedByDefault="false"
-        android:queryHint="Buscar Indicador por ID"
-        app:iconifiedByDefault="false"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textIndicadorTitle" />
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -63,5 +48,36 @@
         app:rippleColor="#FFF5F5"
         app:srcCompat="@android:drawable/ic_input_add"
         app:tint="@color/white" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textIndicadorTitle">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/searchInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:hint="Buscar Indicador por ID" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Buscar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
