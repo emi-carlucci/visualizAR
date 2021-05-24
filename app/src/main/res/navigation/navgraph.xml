@@ -63,5 +63,8 @@
             android:name="indicador"
             app:argType="edu.ort.visualizar.models.KpiModel"
             app:nullable="true" />
+        <action
+            android:id="@+id/action_actualizarValorFragment_to_accionesIndicadorFragment2"
+            app:destination="@id/accionesIndicadorFragment" />
     </fragment>
 </navigation>
