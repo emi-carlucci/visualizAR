@@ -34,7 +34,7 @@
                 android:layout_marginRight="68dp"
                 android:fontFamily="@font/lato_bold"
                 android:text="Name"
-                tools:textSize="20sp" />
+                tools:textSize="18sp" />
 
             <TextView
                 android:id="@+id/kpiValue"
@@ -46,7 +46,7 @@
                 android:fontFamily="@font/lato"
                 android:gravity="end|center_vertical"
                 android:text="Value"
-                android:textSize="16sp" />
+                android:textSize="12sp" />
 
         </LinearLayout>
 
@@ -63,7 +63,8 @@
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="16dp"
                 android:gravity="top"
-                android:text="Date" />
+                android:text="Date"
+                android:textSize="12sp" />
 
         </LinearLayout>
 
