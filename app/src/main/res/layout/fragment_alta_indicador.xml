@@ -61,7 +61,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
                 android:fontFamily="@font/lato"
-                android:text="@string/checkResult"
+                android:text=""
                 app:flow_horizontalAlign="center"
                 app:flow_verticalAlign="center"
                 app:layout_constraintBottom_toTopOf="@+id/btnAltaCheckID"

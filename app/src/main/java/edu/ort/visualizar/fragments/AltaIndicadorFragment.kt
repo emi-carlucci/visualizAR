@@ -128,6 +128,10 @@ class AltaIndicadorFragment : Fragment() {
                 Snackbar.make(v, "Ingrese la descripción.", Snackbar.LENGTH_SHORT).show()
                 validarAction = false
             }
+            if(inputFormula.text.toString().equals("")){
+                Snackbar.make(v, "Ingrese la fórmula.", Snackbar.LENGTH_SHORT).show()
+                validarAction = false
+            }
             if(validarAction){
                 // Aca se persiste en la BD
                 println("GRABANDO....")
@@ -137,40 +141,51 @@ class AltaIndicadorFragment : Fragment() {
                 println(inputFormula.text)
                 println(txtFrec)
                 println(txtCat)
+
+                calculationMethod =""
+                source = ""
+                businessTarget = ""
+                dateNextCalculation =""
+                address = ""
+                area = ""
+
                 if(inputCheck1.isChecked) {
                     println(inputCheck1.text)
-                    calculationMethod ="_calculationMethod_"
+                    calculationMethod ="calculationMethod"
                 }
                 if(inputCheck2.isChecked) {
                     println(inputCheck2.text)
-                    source = "_source_"
+                    source = "source"
                 }
                 if(inputCheck3.isChecked) {
                     println(inputCheck3.text)
-                    businessTarget = "_businessTarget_"
+                    businessTarget = "businessTarget"
                 }
                 if(inputCheck4.isChecked) {
                     println(inputCheck4.text)
-                    dateNextCalculation ="_dateNextCalculation_"
+                    dateNextCalculation ="dateNextCalculation"
                 }
                 if(inputCheck5.isChecked) {
                     println(inputCheck5.text)
-                    address = "_address_"
+                    address = "address"
                 }
                 if(inputCheck6.isChecked) {
                     println(inputCheck6.text)
-                    area = "_area_"
+                    area = "area"
                 }
-                var ocb = OCBUtils()
-                ocb.createKpi(inputID.text.toString(), txtCat, txtFrec, inputDescripcion.text.toString(),null, address,null,null,null,
-                                dateNextCalculation, calculationMethod,null,"Ciudades Futuras","", inputTitulo.text.toString(), source ,null, businessTarget,
-                        inputFormula.text.toString(),null,null,area)
 
-                Thread.sleep(500)
+                var ocb = OCBUtils()
+
+                ocb.createKpi(inputID.text.toString(),txtCat,txtFrec,inputDescripcion.text.toString(),null,null,address!!,null,null,null,
+                calculationMethod!!,null,"Ciudades Futuras","kpiValue",inputTitulo.text.toString(),source!!,null,businessTarget!!,inputFormula.text.toString()!!,null,null, area!!)
+
+                //TODO
+
                 println("vuelvo a HOME")
 
                 // val action = Indicador_ALTADirections.actionIndicadorALTAToHome2()
                 // v.findNavController().navigate(action)
+
             }
             validarAction=true
         }
