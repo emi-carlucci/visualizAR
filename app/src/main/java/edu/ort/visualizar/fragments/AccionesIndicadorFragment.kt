@@ -77,20 +77,11 @@ class AccionesIndicadorFragment : Fragment() {
         super.onStart()
         var ocb = OCBUtils()
         var indicador : KpiModel? = ocb.getKpi("kpi-2016-Ciudad-containers-faults")
-        //TODO chequear que no esté nulo
-        if (indicador != null) {
-            var nombreKpi : Name? = indicador.name
-            if (nombreKpi != null) {
-                tvIndicatorName.text = nombreKpi.value.toString()
-            }
-            var valorKpi : KpiValue? = indicador.kpiValue
-            if (valorKpi != null) {
-                tvIndicatorValue.text = valorKpi.value.toString()
-            }
-            var dateModifiedKpi: DateModified? = indicador.dateModified
-            if (dateModifiedKpi != null) {
-                tvLastUpdateDate.text = dateModifiedKpi.value.toString()
-            }
+        if (indicador !== null) {
+            tvIndicatorName.text = indicador!!.name!!.value.toString()
+            tvIndicatorValue.text = indicador!!.kpiValue!!.value.toString()
+            tvLastUpdateDate.text = indicador!!.dateModified!!.value.toString()
+
             btnEdit.setOnClickListener{
                 val action = AccionesIndicadorFragmentDirections.actionAccionesIndicadorFragmentToEditarIndicadorFragment(indicador)
                 v.findNavController().navigate(action)
