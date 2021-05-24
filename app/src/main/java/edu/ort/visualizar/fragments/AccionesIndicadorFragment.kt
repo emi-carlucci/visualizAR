@@ -11,8 +11,6 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.navigation.findNavController
 import edu.ort.visualizar.R
-import edu.ort.visualizar.models.KpiModel
-import edu.ort.visualizar.utils.OCBUtils
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -37,7 +35,6 @@ class AccionesIndicadorFragment : Fragment() {
     lateinit var tvIndicatorValue: TextView
     lateinit var tvLastUpdateDate : TextView
 
-
     private var param1: String? = null
     private var param2: String? = null
     private var param3: String? = null
@@ -60,8 +57,6 @@ class AccionesIndicadorFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-
-
         v = inflater.inflate(R.layout.fragment_acciones_indicador, container, false)
         btnEdit = v.findViewById(R.id.btnAccionesEditIndicator)
         btnDelete = v.findViewById(R.id.btnAccionesDeleteIndicator)
@@ -74,37 +69,31 @@ class AccionesIndicadorFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        var ocb = OCBUtils()
-        var indicador : KpiModel? = ocb.getKpi("kpi-2016-Ciudad-containers-faults")
-        //TODO chequear que no esté nulo
         var indicadorId = AccionesIndicadorFragmentArgs.fromBundle(requireArguments()).indicadorId
-        if (indicador != null) {
-            tvIndicatorName.text = indicador.name.toString()
-            tvIndicatorValue.text = indicador.kpiValue.toString()
-            tvLastUpdateDate.text = ARG_PARAM4 //TODO preguntar a los expertos
-            btnEdit.setOnClickListener{
-                val action = AccionesIndicadorFragmentDirections.actionAccionesIndicadorFragmentToEditarIndicadorFragment(indicador)
-                v.findNavController().navigate(action)
-            }
-            btnDelete.setOnClickListener{
-                var builder = AlertDialog.Builder(activity)
-                builder.setTitle(getString(R.string.confirm_delete))
-                builder.setPositiveButton(getString(R.string.delete), DialogInterface.OnClickListener { dialog, id ->
-                    dialog.cancel()
-                })
-                builder.setNegativeButton(getString(R.string.cancel), DialogInterface.OnClickListener { dialog, id ->
-                    dialog.cancel()
-                })
-                var alert = builder.create()
-                alert.show()
-            }
-            btnUpdate.setOnClickListener{
-                val action =
-                        AccionesIndicadorFragmentDirections.actionAccionesIndicadorFragmentToActualizarValorFragment(indicador)
-                v.findNavController().navigate(action)
-            }
+        tvIndicatorName.text = indicadorId.name?.value.toString()
+        tvIndicatorValue.text = indicadorId.kpiValue?.value.toString()
+        tvLastUpdateDate.text = indicadorId.dateModified?.value.toString()
+        btnEdit.setOnClickListener{
+            val action = AccionesIndicadorFragmentDirections.actionAccionesIndicadorFragmentToEditarIndicadorFragment(indicadorId)
+            v.findNavController().navigate(action)
         }
-
+        btnDelete.setOnClickListener{
+            var builder = AlertDialog.Builder(activity)
+            builder.setTitle(getString(R.string.confirm_delete))
+            builder.setPositiveButton(getString(R.string.delete), DialogInterface.OnClickListener { dialog, id ->
+                dialog.cancel()
+            })
+            builder.setNegativeButton(getString(R.string.cancel), DialogInterface.OnClickListener { dialog, id ->
+                dialog.cancel()
+            })
+            var alert = builder.create()
+            alert.show()
+        }
+        btnUpdate.setOnClickListener{
+            val action =
+                AccionesIndicadorFragmentDirections.actionAccionesIndicadorFragmentToActualizarValorFragment(indicadorId)
+            v.findNavController().navigate(action)
+        }
 
 
     }
