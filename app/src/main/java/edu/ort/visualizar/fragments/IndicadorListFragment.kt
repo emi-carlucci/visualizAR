@@ -29,7 +29,6 @@ class IndicadorListFragment : Fragment() {
         val viewHolder = view.tag as RecyclerView.ViewHolder
         val position = viewHolder.adapterPosition
         val thisItem: Indicador = indicadors[position]
-        Snackbar.make(v, thisItem.nombre, Snackbar.LENGTH_SHORT).show()
         val action = HomeFragmentDirections.actionHomeFragmentToAccionesIndicadorFragment(position)
 
         v.findNavController().navigate(action)

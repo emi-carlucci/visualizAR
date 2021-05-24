@@ -10,8 +10,9 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.navigation.findNavController
+import com.google.android.material.snackbar.Snackbar
 import edu.ort.visualizar.R
-import edu.ort.visualizar.models.KpiModel
+import edu.ort.visualizar.models.*
 import edu.ort.visualizar.utils.OCBUtils
 
 // TODO: Rename parameter arguments, choose names that match
@@ -77,11 +78,19 @@ class AccionesIndicadorFragment : Fragment() {
         var ocb = OCBUtils()
         var indicador : KpiModel? = ocb.getKpi("kpi-2016-Ciudad-containers-faults")
         //TODO chequear que no esté nulo
-        var indicadorId = AccionesIndicadorFragmentArgs.fromBundle(requireArguments()).indicadorId
         if (indicador != null) {
-            tvIndicatorName.text = indicador.name.toString()
-            tvIndicatorValue.text = indicador.kpiValue.toString()
-            tvLastUpdateDate.text = ARG_PARAM4 //TODO preguntar a los expertos
+            var nombreKpi : Name? = indicador.name
+            if (nombreKpi != null) {
+                tvIndicatorName.text = nombreKpi.value.toString()
+            }
+            var valorKpi : KpiValue? = indicador.kpiValue
+            if (valorKpi != null) {
+                tvIndicatorValue.text = valorKpi.value.toString()
+            }
+            var dateModifiedKpi: DateModified? = indicador.dateModified
+            if (dateModifiedKpi != null) {
+                tvLastUpdateDate.text = dateModifiedKpi.value.toString()
+            }
             btnEdit.setOnClickListener{
                 val action = AccionesIndicadorFragmentDirections.actionAccionesIndicadorFragmentToEditarIndicadorFragment(indicador)
                 v.findNavController().navigate(action)
@@ -90,7 +99,17 @@ class AccionesIndicadorFragment : Fragment() {
                 var builder = AlertDialog.Builder(activity)
                 builder.setTitle(getString(R.string.confirm_delete))
                 builder.setPositiveButton(getString(R.string.delete), DialogInterface.OnClickListener { dialog, id ->
+                    var deleteOk : Boolean? = false //ocb.deleteKpi(indicador.id.toString())
                     dialog.cancel()
+                    if (deleteOk != null && deleteOk){
+                        val action =
+                                AccionesIndicadorFragmentDirections.actionAccionesIndicadorFragmentToHomeFragment()
+                        v.findNavController().navigate(action)
+                    } else {
+                        val snackbar = Snackbar.make(v, getString(R.string.error_delete), Snackbar.LENGTH_SHORT)
+                        snackbar.show()
+                    }
+
                 })
                 builder.setNegativeButton(getString(R.string.cancel), DialogInterface.OnClickListener { dialog, id ->
                     dialog.cancel()
