@@ -27,7 +27,7 @@ private const val ARG_PARAM2 = "param2"
  */
 class ActualizarValorFragment : Fragment() {
     // TODO: Rename and change types of parameters
-    private var indicador: KpiModel? = null
+    lateinit var indicador: KpiModel
     lateinit var v : View
     lateinit var btnActualizarValor : Button
     lateinit var textViewUpdateIndicadorValorActualValue : TextView
@@ -37,7 +37,7 @@ class ActualizarValorFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        indicador = ActualizarValorFragmentArgs.fromBundle(requireArguments()).indicador
+        indicador = ActualizarValorFragmentArgs.fromBundle(requireArguments()).indicador!!
 
 
     }
@@ -77,7 +77,7 @@ class ActualizarValorFragment : Fragment() {
     }
 
     private fun redirectToHome(){
-        val action = ActualizarValorFragmentDirections.actionActualizarValorFragmentToAccionesIndicadorFragment2()
+        val action = ActualizarValorFragmentDirections.actionActualizarValorFragmentToAccionesIndicadorFragment2(indicador)
         v.findNavController().navigate(action)
     }
 

@@ -40,7 +40,7 @@
             android:id="@+id/action_accionesIndicadorFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
         <argument
-            android:name="indicadorId"
+            android:name="indicador"
             app:argType="edu.ort.visualizar.models.KpiModel" />
     </fragment>
     <fragment

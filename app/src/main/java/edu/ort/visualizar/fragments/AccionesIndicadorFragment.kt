@@ -13,6 +13,7 @@ import androidx.navigation.findNavController
 import com.google.android.material.snackbar.Snackbar
 import edu.ort.visualizar.R
 import edu.ort.visualizar.models.*
+import edu.ort.visualizar.utils.DateUtils
 import edu.ort.visualizar.utils.OCBUtils
 
 
@@ -73,13 +74,13 @@ class AccionesIndicadorFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-
         var ocb = OCBUtils()
         var indicador : KpiModel? = ocb.getKpi("kpi-2016-Ciudad-containers-faults")
         if (indicador !== null) {
+            var parsedDate = DateUtils().parseDate(indicador.dateModified?.value.toString())
             tvIndicatorName.text = indicador!!.name!!.value.toString()
             tvIndicatorValue.text = indicador!!.kpiValue!!.value.toString()
-            tvLastUpdateDate.text = indicador!!.dateModified!!.value.toString()
+            tvLastUpdateDate.text = parsedDate
 
             btnEdit.setOnClickListener{
                 val action = AccionesIndicadorFragmentDirections.actionAccionesIndicadorFragmentToEditarIndicadorFragment(indicador)
