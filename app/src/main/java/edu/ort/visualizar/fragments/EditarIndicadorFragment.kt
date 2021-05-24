@@ -11,6 +11,7 @@ import android.widget.TextView
 import edu.ort.visualizar.R
 
 import com.google.android.material.snackbar.Snackbar
+import edu.ort.visualizar.models.KpiModel
 
 class EditarIndicadorFragment : Fragment() {
 
@@ -24,9 +25,11 @@ class EditarIndicadorFragment : Fragment() {
     lateinit var spinner : Spinner
     var validarAction : Boolean = true
 
+    private var indicador: KpiModel? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        indicador = EditarIndicadorFragmentArgs.fromBundle(requireArguments()).indicador
     }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

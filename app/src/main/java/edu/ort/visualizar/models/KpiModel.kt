@@ -1,5 +1,5 @@
 package edu.ort.visualizar.models
-
+import java.io.Serializable
 data class KpiModel (
         var id: String? = null,
         var type: String? = null,
@@ -24,7 +24,7 @@ data class KpiModel (
         var dateExpires: DateExpires? = null,
         var updatedAt: UpdatedAt? = null,
         var area: Area? = null
-)
+): Serializable
 
 data class Category (
         var value: List<String>?
