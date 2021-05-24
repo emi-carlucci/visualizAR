@@ -10,14 +10,14 @@
         android:id="@+id/indicador_list_fragment_container"
         android:layout_width="0dp"
 
-        android:layout_height="315dp"
-        android:layout_marginTop="20dp"
+        android:layout_height="300dp"
+        android:layout_marginTop="35dp"
         android:layout_marginBottom="25dp"
         app:layout_constraintBottom_toTopOf="@+id/floatingActionButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button"></FrameLayout>
+        app:layout_constraintTop_toBottomOf="@+id/searchButton"></FrameLayout>
 
     <TextView
         android:id="@+id/textIndicadorTitle"
@@ -71,11 +71,23 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/searchButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:text="Buscar"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
+
+    <Button
+        android:id="@+id/resetButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Limpiar"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />

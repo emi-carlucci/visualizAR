@@ -25,7 +25,7 @@ class ListIndicatorAdapter(kpiData: List<KpiModel>)
     override fun onBindViewHolder(viewHolder: IndicatorHolder, i: Int) {
         var parsedDate = DateUtils().parseDate(kpiList[i].dateModified?.value.toString())
         viewHolder.setKpiModel(kpiList[i])
-        viewHolder.itemName.text = kpiList[i].name?.value.toString()
+        viewHolder.itemName.text = kpiList[i].id.toString()
         viewHolder.itemValue.text = kpiList[i].kpiValue?.value.toString()
         viewHolder.itemDate.text = "Última Modificación: $parsedDate"
     }
