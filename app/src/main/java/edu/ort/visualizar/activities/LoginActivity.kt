@@ -5,13 +5,9 @@ import android.os.AsyncTask
 import android.os.Bundle
 import android.util.Base64
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ProgressBar
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import edu.ort.visualizar.R
-import edu.ort.visualizar.activities.MainActivity.Companion.ocbUtils
 import edu.ort.visualizar.models.UserModel
 import edu.ort.visualizar.utils.DBUtils
 
@@ -22,6 +18,7 @@ class LoginActivity : AppCompatActivity() {
     private var signInBtn: Button? = null
     private var userNameTxt: EditText? = null
     private var passwordTxt: EditText? = null
+    private var errorTxt: TextView? = null
     private var progressBar: ProgressBar? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,9 +28,11 @@ class LoginActivity : AppCompatActivity() {
 
         dbUtils = DBUtils()
         signInBtn = findViewById<View>(R.id.signin_btn) as Button
+        errorTxt = findViewById<View>(R.id.loginError) as TextView
         progressBar = findViewById<View>(R.id.progress_bar_main) as ProgressBar
 
         progressBar!!.visibility = View.INVISIBLE
+        errorTxt!!.visibility = View.INVISIBLE
         signInBtn!!.visibility = View.VISIBLE
 
         signInBtn!!.setOnClickListener {
@@ -58,6 +57,7 @@ class LoginActivity : AppCompatActivity() {
             userNameTxt?.isEnabled = false
             passwordTxt?.isEnabled = false
             progressBar?.visibility = View.VISIBLE
+            errorTxt!!.visibility = View.INVISIBLE
             signInBtn?.visibility = View.GONE
 
         }
@@ -74,7 +74,7 @@ class LoginActivity : AppCompatActivity() {
             userNameTxt?.isEnabled = true
             passwordTxt?.isEnabled = true
             if (user == null) {
-                Toast.makeText(this@LoginActivity, "Usuario y/o Contraseña Incorrectos", Toast.LENGTH_LONG).show()
+                errorTxt!!.visibility = View.VISIBLE
             } else {
                 var data: ByteArray = Base64.decode(user.password, Base64.DEFAULT)
                 var decodedPassword =  String(data, charset("UTF-8"))
@@ -83,7 +83,7 @@ class LoginActivity : AppCompatActivity() {
                     startActivity(loginIntent)
                     finish()
                 } else {
-                    Toast.makeText(this@LoginActivity, "Usuario y/o Contraseña Incorrectos", Toast.LENGTH_LONG).show()
+                    errorTxt!!.visibility = View.VISIBLE
                 }
             }
         }

@@ -70,9 +70,9 @@ class AccionesIndicadorFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         var indicadorId = AccionesIndicadorFragmentArgs.fromBundle(requireArguments()).indicadorId
-        tvIndicatorName.text = indicadorId.toString()
-        tvIndicatorValue.text = ARG_PARAM3
-        tvLastUpdateDate.text = ARG_PARAM4
+        tvIndicatorName.text = indicadorId.name?.value.toString()
+        tvIndicatorValue.text = indicadorId.kpiValue?.value.toString()
+        tvLastUpdateDate.text = indicadorId.dateModified?.value.toString()
         btnEdit.setOnClickListener{
             val action = AccionesIndicadorFragmentDirections.actionAccionesIndicadorFragmentToEditarIndicadorFragment(indicadorId)
             v.findNavController().navigate(action)

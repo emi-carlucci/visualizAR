@@ -8,51 +8,40 @@
 
     <FrameLayout
         android:id="@+id/indicador_list_fragment_container"
-        android:layout_width="412dp"
-        android:layout_height="415dp"
-        android:layout_marginTop="189dp"
-        android:layout_marginBottom="128dp"
+        android:layout_width="0dp"
 
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/floatingActionButton"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-    </FrameLayout>
+        app:layout_constraintTop_toBottomOf="@+id/svIndicador"></FrameLayout>
 
     <TextView
         android:id="@+id/textIndicadorTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="174dp"
-        android:layout_marginLeft="174dp"
-        android:layout_marginEnd="163dp"
-        android:layout_marginRight="163dp"
-        android:layout_marginBottom="108dp"
+        android:layout_marginTop="25dp"
         android:fontFamily="@font/lato_bold"
         android:text="Indicadores"
         android:textColor="#000000"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/fragment"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.615"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <SearchView
         android:id="@+id/svIndicador"
         android:layout_width="299dp"
-        android:layout_height="41dp"
-        android:layout_marginStart="56dp"
-        android:layout_marginLeft="56dp"
-        android:layout_marginTop="31dp"
-        android:layout_marginEnd="56dp"
-        android:layout_marginRight="56dp"
-        android:layout_marginBottom="37dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
         android:background="#0003A9F4"
-        android:iconifiedByDefault="false"
 
-        android:queryHint="Buscar Indicador"
+        android:gravity="center"
+        android:iconifiedByDefault="false"
+        android:queryHint="Buscar Indicador por ID"
         app:iconifiedByDefault="false"
-        app:layout_constraintBottom_toTopOf="@+id/fragment"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textIndicadorTitle" />
@@ -62,19 +51,16 @@
         android:id="@+id/floatingActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="178dp"
-        android:layout_marginLeft="178dp"
-        android:layout_marginEnd="178dp"
-        android:layout_marginRight="178dp"
-        android:layout_marginBottom="65dp"
+        android:layout_marginBottom="20dp"
         android:background="@null"
         android:clickable="true"
         app:backgroundTint="#2196F3"
-        app:tint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:rippleColor="#FFF5F5"
-        app:srcCompat="@android:drawable/ic_input_add" />
+        app:srcCompat="@android:drawable/ic_input_add"
+        app:tint="@color/white" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
