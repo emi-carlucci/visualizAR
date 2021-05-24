@@ -2,126 +2,316 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/frameLayout"
+    android:id="@+id/main_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_span="20"
+    app:layout_constraintTop_toTopOf="@+id/inputAltaTitulo"
     tools:context="edu.ort.visualizar.fragments.AltaIndicadorFragment">
 
-    <TextView
-        android:id="@+id/idformName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/lato"
-        android:text="@string/formAlta"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/inputIndicadorTitulo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.852" />
-
-    <Button
-        android:id="@+id/btnConfirmar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/lato"
-        android:text="Confirmar"
-        android:textSize="18sp"
-        android:textAllCaps="false"
-        app:backgroundTint="#4CAF50"
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
+        android:layout_width="413dp"
+        android:layout_height="584dp"
+        android:fillViewport="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.742"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.866" />
+        app:layout_constraintVertical_bias="0.496">
 
-    <Button
-        android:id="@+id/btnLimpiar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/lato"
-        android:text="Limpiar"
-        android:textSize="18sp"
-        android:textAllCaps="false"
-        app:backgroundTint="#F44336"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnConfirmar"
-        app:layout_constraintHorizontal_bias="0.8"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.866" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/inputIndicadorTitulo"
-        android:layout_width="275dp"
-        android:layout_height="52dp"
-        android:ems="10"
-        android:fontFamily="@font/lato"
-        android:hint="Título"
-        android:inputType="text"
-        android:textSize="14sp"
-        android:typeface="normal"
-        app:layout_constraintBottom_toTopOf="@+id/inputIndicadorDescripcion"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.507"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.863" />
+            <TextView
+                android:id="@+id/txtAltaIndicador"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="32dp"
+                android:fontFamily="@font/lato"
+                android:text="@string/formAlta"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:flow_horizontalAlign="center"
+                app:flow_verticalAlign="center"
+                app:layout_constraintBottom_toTopOf="@+id/inputAltaID"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.616" />
 
-    <EditText
-        android:id="@+id/inputIndicadorDescripcion"
-        android:layout_width="275dp"
-        android:layout_height="170dp"
-        android:ems="10"
-        android:fontFamily="@font/lato"
-        android:gravity="start|top"
-        android:hint="Descripcion"
-        android:inputType="textMultiLine"
-        android:textSize="14sp"
-        android:typeface="normal"
-        app:layout_constraintBottom_toTopOf="@+id/inputFormula"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.507"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.89" />
+            <EditText
+                android:id="@+id/inputAltaID"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:layout_marginBottom="4dp"
+                android:ems="10"
+                android:fontFamily="@font/lato"
+                android:hint="@string/ID"
+                android:inputType="textPersonName"
+                app:layout_constraintBottom_toTopOf="@id/textCheckResult"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.504"
+                app:layout_constraintStart_toStartOf="parent" />
 
-    <EditText
-        android:id="@+id/inputFormula"
-        android:layout_width="275dp"
-        android:layout_height="52dp"
-        android:ems="10"
-        android:fontFamily="@font/lato"
-        android:hint="Formula"
-        android:inputType="textPersonName"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textSize="14sp"
-        android:typeface="normal"
-        app:layout_constraintBottom_toTopOf="@+id/inputFrecuencia"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.919" />
+            <TextView
+                android:id="@+id/textCheckResult"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:fontFamily="@font/lato"
+                android:text=""
+                app:flow_horizontalAlign="center"
+                app:flow_verticalAlign="center"
+                app:layout_constraintBottom_toTopOf="@+id/btnAltaCheckID"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
-    <EditText
-        android:id="@+id/inputFrecuencia"
-        android:layout_width="275dp"
-        android:layout_height="52dp"
-        android:ems="10"
-        android:fontFamily="@font/lato"
-        android:hint="Frecuencia"
-        android:inputType="textPersonName"
-        android:textSize="14sp"
-        android:typeface="normal"
-        app:layout_constraintBottom_toTopOf="@+id/btnConfirmar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.507"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.892" />
+            <Button
+                android:id="@+id/btnAltaCheckID"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:text="@string/checkID"
+                app:flow_horizontalAlign="center"
+                app:flow_verticalAlign="center"
+                app:layout_constraintBottom_toTopOf="@id/inputAltaTitulo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <EditText
+                android:id="@+id/inputAltaTitulo"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:layout_marginBottom="20dp"
+                android:ems="10"
+                android:fontFamily="@font/lato"
+                android:hint="@string/titulo"
+                android:inputType="text"
+                android:textSize="14sp"
+                android:typeface="normal"
+                app:layout_constraintBottom_toTopOf="@+id/inputAltaDescripcion"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <EditText
+                android:id="@+id/inputAltaDescripcion"
+                android:layout_width="300dp"
+                android:layout_height="142dp"
+                android:layout_marginBottom="20dp"
+                android:fontFamily="@font/lato"
+                android:gravity="start|top"
+                android:hint="Descripción"
+                android:inputType="textMultiLine"
+                android:textSize="14sp"
+                android:typeface="normal"
+                app:layout_constraintBottom_toTopOf="@+id/inputAltaFormula"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <EditText
+                android:id="@+id/inputAltaFormula"
+                android:layout_width="300dp"
+                android:layout_height="92dp"
+                android:layout_marginBottom="20dp"
+                android:ems="10"
+                android:fontFamily="@font/lato"
+                android:hint="@string/calculationFormula"
+                android:inputType="textMultiLine"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textSize="14sp"
+                android:typeface="normal"
+                app:layout_constraintBottom_toTopOf="@+id/txtFrecuencia"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/txtFrecuencia"
+                android:layout_width="295dp"
+                android:layout_height="39dp"
+                android:layout_marginBottom="20dp"
+                android:fontFamily="@font/lato"
+                android:text="@string/txtcalculationFrequency"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toTopOf="@+id/txtCategoria"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <Spinner
+                android:id="@+id/spAltaFrecuencia"
+                android:layout_width="200dp"
+                android:layout_height="42dp"
+                android:layout_marginStart="64dp"
+                android:layout_marginLeft="64dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/lato"
+                android:outlineAmbientShadowColor="@color/light_blue_500"
+                android:scrollbarSize="10dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textSize="18sp"
+                android:typeface="normal"
+                app:layout_constraintEnd_toEndOf="@+id/txtFrecuencia"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@+id/txtFrecuencia"
+                app:layout_constraintTop_toBottomOf="@+id/inputAltaFormula" />
+
+            <TextView
+                android:id="@+id/txtCategoria"
+                android:layout_width="295dp"
+                android:layout_height="39dp"
+                android:layout_marginBottom="32dp"
+                android:fontFamily="@font/lato"
+                android:text="@string/txtCategory"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toTopOf="@+id/txtAltaOpcionales"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <Spinner
+                android:id="@+id/spAltaCategoria"
+                android:layout_width="200dp"
+                android:layout_height="42dp"
+                android:layout_marginStart="64dp"
+                android:layout_marginLeft="64dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/lato"
+                android:scrollbarSize="10dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textSize="18sp"
+                android:typeface="normal"
+                app:layout_constraintEnd_toEndOf="@+id/txtCategoria"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@+id/txtCategoria"
+                app:layout_constraintTop_toBottomOf="@+id/txtFrecuencia" />
+
+            <TextView
+                android:id="@+id/txtAltaOpcionales"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="32dp"
+                android:fontFamily="@font/lato"
+                android:text="@string/txtOpcionales"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/checkBox1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <CheckBox
+                android:id="@+id/checkBox1"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:checked="false"
+                android:fontFamily="@font/lato"
+                android:text="@string/Altacheck1_text"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textSize="14sp"
+                android:typeface="normal"
+                app:layout_constraintBottom_toTopOf="@+id/checkBox2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <CheckBox
+                android:id="@+id/checkBox2"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:fontFamily="@font/lato"
+                android:text="@string/Altacheck2_text"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textSize="14sp"
+                android:typeface="normal"
+                app:layout_constraintBottom_toTopOf="@+id/checkBox3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <CheckBox
+                android:id="@+id/checkBox3"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:fontFamily="@font/lato"
+                android:text="@string/Altacheck3_text"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textSize="14sp"
+                android:typeface="normal"
+                app:layout_constraintBottom_toTopOf="@+id/checkBox4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <CheckBox
+                android:id="@+id/checkBox4"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:fontFamily="@font/lato"
+                android:text="@string/Altacheck4_text"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textSize="14sp"
+                android:typeface="normal"
+                app:layout_constraintBottom_toTopOf="@+id/checkBox5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <CheckBox
+                android:id="@+id/checkBox5"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:fontFamily="@font/lato"
+                android:text="@string/Altacheck5_text"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textSize="14sp"
+                android:typeface="normal"
+                app:layout_constraintBottom_toTopOf="@id/checkBox6"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <CheckBox
+                android:id="@+id/checkBox6"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:text="@string/Altacheck6_text"
+                app:layout_constraintBottom_toTopOf="@+id/btnAltaLimpiar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <Button
+                android:id="@+id/btnAltaLimpiar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:fontFamily="@font/lato"
+                android:text="Limpiar"
+                android:textAllCaps="false"
+                android:textSize="18sp"
+                app:backgroundTint="#F44336"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btnAltaConfirmar"
+                app:layout_constraintHorizontal_bias="0.445"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <Button
+                android:id="@+id/btnAltaConfirmar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="64dp"
+                android:layout_marginRight="64dp"
+                android:layout_marginBottom="24dp"
+                android:fontFamily="@font/lato"
+                android:text="Confirmar"
+                android:textAllCaps="false"
+                android:textSize="18sp"
+                app:backgroundTint="#4CAF50"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
