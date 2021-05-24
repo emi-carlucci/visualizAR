@@ -21,7 +21,31 @@ class IndicadorListFragment(kpiList: List<KpiModel>) : Fragment() {
     private var adapter: RecyclerView.Adapter<IndicatorHolder>? = null
     var indicators : List<KpiModel> = kpiList
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    var indicadors : MutableList<Indicador> = ArrayList<Indicador>()
+
+    private lateinit var linearLayoutManager: LinearLayoutManager
+    private lateinit var listIndicadorAdapter: ListIndicadorAdapter
+
+    private val onItemClickListener = View.OnClickListener { view -> //TODO: Step 4 of 4: Finally call getTag() on the view.
+        // This viewHolder will have all required values.
+        val viewHolder = view.tag as RecyclerView.ViewHolder
+        val position = viewHolder.adapterPosition
+        val thisItem: Indicador = indicadors[position]
+        val action = HomeFragmentDirections.actionHomeFragmentToAccionesIndicadorFragment(position)
+
+        v.findNavController().navigate(action)
+    }
+
+
+    companion object {
+        fun newInstance() = IndicadorListFragment()
+    }
+
+    override fun onCreateView(
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
+    ): View? {
+
         v =  inflater.inflate(R.layout.fragment_indicador_list, container, false)
         recycleIndicadorItemList = v.findViewById(R.id.recycleIndicadorItemList)
         return v

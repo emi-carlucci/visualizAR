@@ -25,6 +25,8 @@
     <string name="indicators_admin_btn_update_value">Actualizar actual</string>
     <string name="indicators_admin_last_update">Última actualización:</string>
     <string name="confirm_delete">Estás por borrar un indicador</string>
+    <string name="error_delete">Error</string>
+
 
     <!--Fin Fragment administrador de indicadores -->
 
