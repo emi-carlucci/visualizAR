@@ -25,6 +25,8 @@
     <string name="indicators_admin_btn_update_value">Actualizar actual</string>
     <string name="indicators_admin_last_update">Última actualización:</string>
     <string name="confirm_delete">Estás por borrar un indicador</string>
+    <string name="error_delete">Error</string>
+
 
     <!--Fin Fragment administrador de indicadores -->
 
@@ -38,12 +40,30 @@
 
     <!--Inicio Fragment  indicador_alta -->
     <string name="formAlta">Nuevo Indicador</string>
-    <!--Fin Fragment  indicador_alta -->
+    <string name="ID">ID</string>
 
+    <string name="checkID">ID exist ?</string>
+    <string name="titulo">Título</string>
+    <string name="descripcion">Descripción</string>
+    <string name="calculationFormula">Fórmula : For informative purposes, the formula used for calculating the indicator.</string>
+    <string name="txtcalculationFrequency">Frecuencia :</string>
+    <string name="txtCategory">Categoria :</string>
+    <string name="txtOpcionales">Generar campos opcionales</string>
+
+    <string name="Altacheck1_text">calculationMethod : The calculation method used.</string>
+
+    <string name="Altacheck2_text">source : A sequence of characters giving the source of the entity data.</string>
+
+    <string name="Altacheck3_text">businessTarget : For informative purposes, the business target to which this KPI is related to.</string>
+
+    <string name="Altacheck4_text">dateNextCalculation : Date on which a new calculation of the KPI should be available.</string>
+
+    <string name="Altacheck5_text">address : Civic address of the area to which the KPI refers to.</string>
+
+    <string name="Altacheck6_text">area : For organizational purposes, it allows to add extra textual geographical information such as district, burough, or any other hint which can help to identify the KPI coverage.</string>
+    <!--Fin Fragment  indicador_alta -->
     <string name="formEditar">Editar Indicador</string>
     <string name="delete">Eliminar</string>
-
     <string name="cancel">Cancelar</string>
-
 
 </resources>

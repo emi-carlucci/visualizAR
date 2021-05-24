@@ -10,7 +10,12 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.navigation.findNavController
+import com.google.android.material.snackbar.Snackbar
 import edu.ort.visualizar.R
+import edu.ort.visualizar.models.*
+import edu.ort.visualizar.utils.DateUtils
+import edu.ort.visualizar.utils.OCBUtils
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -34,8 +39,6 @@ class AccionesIndicadorFragment : Fragment() {
     lateinit var tvIndicatorName : TextView
     lateinit var tvIndicatorValue: TextView
     lateinit var tvLastUpdateDate : TextView
-
-
 
     private var param1: String? = null
     private var param2: String? = null
@@ -71,33 +74,52 @@ class AccionesIndicadorFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        tvIndicatorName.text = ARG_PARAM2
-        tvIndicatorValue.text = ARG_PARAM3
-        tvLastUpdateDate.text = ARG_PARAM4
-        btnEdit.setOnClickListener{
-            val action = AccionesIndicadorFragmentDirections.actionAccionesIndicadorFragmentToEditarIndicadorFragment()
-            v.findNavController().navigate(action)
-        }
-        btnDelete.setOnClickListener{
-            var builder = AlertDialog.Builder(activity)
-            builder.setTitle(getString(R.string.confirm_delete))
-            builder.setPositiveButton(getString(R.string.delete), DialogInterface.OnClickListener { dialog, id ->
-                dialog.cancel()
-            })
-            builder.setNegativeButton(getString(R.string.cancel), DialogInterface.OnClickListener { dialog, id ->
-                dialog.cancel()
-            })
-            var alert = builder.create()
-            alert.show()
-        }
-        btnUpdate.setOnClickListener{
-            val action =
-                AccionesIndicadorFragmentDirections.actionAccionesIndicadorFragmentToActualizarValorFragment()
-            v.findNavController().navigate(action)
+        var ocb = OCBUtils()
+        var indicador : KpiModel? = ocb.getKpi("kpi-2016-Ciudad-containers-faults")
+        if (indicador !== null) {
+            var parsedDate = DateUtils().parseDate(indicador.dateModified?.value.toString())
+            tvIndicatorName.text = indicador!!.name!!.value.toString()
+            tvIndicatorValue.text = indicador!!.kpiValue!!.value.toString()
+            tvLastUpdateDate.text = parsedDate
+
+            btnEdit.setOnClickListener{
+                val action = AccionesIndicadorFragmentDirections.actionAccionesIndicadorFragmentToEditarIndicadorFragment(indicador)
+                v.findNavController().navigate(action)
+            }
+            btnDelete.setOnClickListener{
+                var builder = AlertDialog.Builder(activity)
+                builder.setTitle(getString(R.string.confirm_delete))
+                builder.setPositiveButton(getString(R.string.delete), DialogInterface.OnClickListener { dialog, id ->
+                    var deleteOk : Boolean? = false //ocb.deleteKpi(indicador.id.toString())
+                    dialog.cancel()
+                    if (deleteOk != null && deleteOk){
+                        val action =
+                                AccionesIndicadorFragmentDirections.actionAccionesIndicadorFragmentToHomeFragment()
+                        v.findNavController().navigate(action)
+                    } else {
+                        val snackbar = Snackbar.make(v, getString(R.string.error_delete), Snackbar.LENGTH_SHORT)
+                        snackbar.show()
+                    }
+
+                })
+                builder.setNegativeButton(getString(R.string.cancel), DialogInterface.OnClickListener { dialog, id ->
+                    dialog.cancel()
+                })
+                var alert = builder.create()
+                alert.show()
+            }
+            btnUpdate.setOnClickListener{
+                val action =
+                        AccionesIndicadorFragmentDirections.actionAccionesIndicadorFragmentToActualizarValorFragment(indicador)
+                v.findNavController().navigate(action)
+            }
+
         }
 
 
     }
+
+
 
     /*companion object {
         /**

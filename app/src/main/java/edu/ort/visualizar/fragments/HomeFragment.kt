@@ -1,49 +1,64 @@
 package edu.ort.visualizar.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.SearchView
+import android.widget.Button
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.findNavController
-import edu.ort.visualizar.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.textfield.TextInputEditText
+import edu.ort.visualizar.R
 
 class HomeFragment : Fragment() {
 
-    lateinit var v : View
+    lateinit var homeView : View
     lateinit var btnAddIndicator : FloatingActionButton
-    lateinit var svIndicador : SearchView
+    lateinit var searchInput : TextInputEditText
+    lateinit var searchButton : Button
+    lateinit var resetButton : Button
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
+    override fun onResume() {
+        super.onResume()
+        searchButton.visibility = View.VISIBLE
+        resetButton.visibility = View.GONE
+        val ft: FragmentTransaction = parentFragmentManager.beginTransaction()
+        ft.replace(R.id.indicador_list_fragment_container, IndicadorListContainerFragment())
+        ft.commit()
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        v = inflater.inflate(R.layout.fragment_home, container, false)
-        btnAddIndicator = v.findViewById(R.id.floatingActionButton)
-        svIndicador = v.findViewById(R.id.svIndicador)
-        return v
-    }
-
-   override fun onStart() {
-       super.onStart()
-       btnAddIndicator.setOnClickListener{
-           val action = HomeFragmentDirections.actionHomeFragmentToAltaIndicadorFragment()
-           v.findNavController().navigate(action)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        homeView = inflater.inflate(R.layout.fragment_home, container, false)
+        btnAddIndicator = homeView.findViewById(R.id.floatingActionButton)
+        searchInput = homeView.findViewById(R.id.searchInput)
+        searchButton = homeView.findViewById(R.id.searchButton)
+        resetButton = homeView.findViewById(R.id.resetButton)
+        btnAddIndicator.setOnClickListener{
+            val action = HomeFragmentDirections.actionHomeFragmentToAltaIndicadorFragment()
+            homeView.findNavController().navigate(action)
         }
-       svIndicador.setOnClickListener{
-           val action = HomeFragmentDirections.actionHomeFragmentToAccionesIndicadorFragment()
-           v.findNavController().navigate(action)
-       }
-
-
-   }
+        searchButton.setOnClickListener{
+            var kpiIdData = searchInput.text.toString()
+            if (kpiIdData != ""){
+                searchButton.visibility = View.GONE
+                resetButton.visibility = View.VISIBLE
+                val ft: FragmentTransaction = parentFragmentManager.beginTransaction()
+                ft.replace(R.id.indicador_list_fragment_container, IndicadorSearchListContainerFragment(kpiIdData))
+                ft.commit()
+            } else {
+                Toast.makeText(activity,"Ingresá un valor válido",Toast.LENGTH_SHORT).show()
+            }
+        }
+        resetButton.setOnClickListener{
+            searchButton.visibility = View.VISIBLE
+            resetButton.visibility = View.GONE
+            val ft: FragmentTransaction = parentFragmentManager.beginTransaction()
+            ft.replace(R.id.indicador_list_fragment_container, IndicadorListContainerFragment())
+            ft.commit()
+        }
+        return homeView
+    }
 }

@@ -32,7 +32,7 @@ class EditarIndicadorFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        indicador = EditarIndicadorFragmentArgs.fromBundle(requireArguments()).indicador
     }
 
     override fun onCreateView(
@@ -51,7 +51,6 @@ class EditarIndicadorFragment : Fragment() {
     }
 
     override fun onStart() {
-        super.onStart()
 
         super.onStart()
         var ocb = OCBUtils()
@@ -86,9 +85,6 @@ class EditarIndicadorFragment : Fragment() {
                 Snackbar.make(v, "Ingrese la descripción.", Snackbar.LENGTH_SHORT).show()
                 validarAction = false
             }
-            //formula
-            //Frequency
-
             if(validarAction){
                 // Aca se persiste en la BD
                 println("GRABANDO....")
@@ -102,7 +98,9 @@ class EditarIndicadorFragment : Fragment() {
 
                 Thread.sleep(500)
                 println("vuelvo a HOME")
+                // val action = Indicador_EditarDirections.action_indicador_Editar_to_home2()
 
+                // v.findNavController().navigate(action)
             }
             validarAction=true
         }
@@ -127,5 +125,4 @@ class EditarIndicadorFragment : Fragment() {
             }
         }
     }
-
 }
