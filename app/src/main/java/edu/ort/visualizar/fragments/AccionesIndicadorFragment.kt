@@ -39,6 +39,7 @@ class AccionesIndicadorFragment : Fragment() {
     lateinit var tvIndicatorName : TextView
     lateinit var tvIndicatorValue: TextView
     lateinit var tvLastUpdateDate : TextView
+    lateinit var indicador: KpiModel
 
     private var param1: String? = null
     private var param2: String? = null
@@ -62,6 +63,7 @@ class AccionesIndicadorFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        indicador = AccionesIndicadorFragmentArgs.fromBundle(requireArguments()).indicador!!
         v = inflater.inflate(R.layout.fragment_acciones_indicador, container, false)
         btnEdit = v.findViewById(R.id.btnAccionesEditIndicator)
         btnDelete = v.findViewById(R.id.btnAccionesDeleteIndicator)
@@ -74,8 +76,8 @@ class AccionesIndicadorFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        var ocb = OCBUtils()
-        var indicador : KpiModel? = ocb.getKpi("kpi-2016-Ciudad-containers-faults")
+        //var ocb = OCBUtils()
+        //var indicador : KpiModel? = ocb.getKpi("kpi-2016-Ciudad-containers-faults")
         if (indicador !== null) {
             var parsedDate = DateUtils().parseDate(indicador.dateModified?.value.toString())
             tvIndicatorName.text = indicador!!.name!!.value.toString()

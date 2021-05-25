@@ -8,14 +8,16 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Spinner
 import android.widget.TextView
+import androidx.navigation.findNavController
 import edu.ort.visualizar.R
 
 import com.google.android.material.snackbar.Snackbar
+import edu.ort.visualizar.activities.MainActivity.Companion.ocbUtils
 import edu.ort.visualizar.models.*
 import edu.ort.visualizar.utils.OCBUtils
 
 class EditarIndicadorFragment : Fragment() {
-
+    lateinit var indicador: KpiModel
     lateinit var v : View
     lateinit var btnConfirm : Button
     lateinit var btnRestablecer : Button
@@ -28,11 +30,10 @@ class EditarIndicadorFragment : Fragment() {
     var listaCat = listOf("quantitative", "qualitative", "leading", "lagging", "input", "process", "output", "practical", "directional", "actionable", "financial")
     var validarAction : Boolean = true
 
-    private var indicador: KpiModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        indicador = EditarIndicadorFragmentArgs.fromBundle(requireArguments()).indicador
+        indicador = EditarIndicadorFragmentArgs.fromBundle(requireArguments()).indicador!!
     }
 
     override fun onCreateView(
@@ -53,8 +54,7 @@ class EditarIndicadorFragment : Fragment() {
     override fun onStart() {
 
         super.onStart()
-        var ocb = OCBUtils()
-        var indicador : KpiModel? = ocb.getKpi("kpi-2016-Ciudad-containers-faults")
+
         //TODO chequear que no esté nulo
         if (indicador != null) {
             var nombreKpi : Name? = indicador.name
@@ -91,16 +91,14 @@ class EditarIndicadorFragment : Fragment() {
                 println(inputTitulo.text)
                 println(inputDescripcion.text)
 
-                var ocb = OCBUtils()
-                /*ocb.updateKpi(indicador.id.toString(), txtCat, txtFrec, inputDescripcion.text.toString(),null, address,null,null,null,
+                /*ocbUtils.updateKpi(indicador.id.toString(), txtCat, txtFrec, inputDescripcion.text.toString(),null, address,null,null,null,
                         dateNextCalculation, calculationMethod,null,"Ciudades Futuras","", inputTitulo.text.toString(), source ,null, businessTarget,
                         inputFormula.text.toString(),null,null)*/
 
                 Thread.sleep(500)
-                println("vuelvo a HOME")
-                // val action = Indicador_EditarDirections.action_indicador_Editar_to_home2()
-
-                // v.findNavController().navigate(action)
+                println("vuelvo a acciones")
+                val action = EditarIndicadorFragmentDirections.actionEditarIndicadorFragmentToAccionesIndicadorFragment(indicador)
+                v.findNavController().navigate(action)
             }
             validarAction=true
         }
