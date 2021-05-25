@@ -61,6 +61,9 @@
     <string name="Altacheck5_text">address : Civic address of the area to which the KPI refers to.</string>
 
     <string name="Altacheck6_text">area : For organizational purposes, it allows to add extra textual geographical information such as district, burough, or any other hint which can help to identify the KPI coverage.</string>
+
+
+
     <!--Fin Fragment  indicador_alta -->
     <string name="formEditar">Editar Indicador</string>
     <string name="delete">Eliminar</string>

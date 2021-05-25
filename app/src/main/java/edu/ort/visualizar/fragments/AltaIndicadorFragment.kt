@@ -1,13 +1,13 @@
 package edu.ort.visualizar.fragments
 
 import android.content.Context
+import android.icu.util.Calendar
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.core.view.get
 import androidx.navigation.findNavController
 import edu.ort.visualizar.R
 
@@ -24,27 +24,28 @@ class AltaIndicadorFragment : Fragment() {
     lateinit var inputTitulo : TextView
     lateinit var inputDescripcion : TextView
     lateinit var inputFormula : TextView
-    lateinit var spFrec : Spinner
-    lateinit var txtFrec : String
-    lateinit var spCat : Spinner
-    lateinit var txtCat : String
+    lateinit var spFrecuencia : Spinner
+    lateinit var txtFrecuencia : String
+    lateinit var spCategoria : Spinner
+    lateinit var txtCategoria : String
     lateinit var inputCheck1 : CheckBox
-    lateinit var calculationMethod : String
+    var calculationMethod : String? = null
     lateinit var inputCheck2 : CheckBox
-    lateinit var source : String
+    var source : String? = null
     lateinit var inputCheck3 : CheckBox
-    lateinit var businessTarget : String
+    var businessTarget : String? = null
     lateinit var inputCheck4 : CheckBox
-    lateinit var dateNextCalculation : String
+    var dateNextCalculation : String? = null
     lateinit var inputCheck5 : CheckBox
-    lateinit var address : String
+    var address : String? = null
     lateinit var inputCheck6 : CheckBox
-    lateinit var area : String
+    var area : String? = null
     lateinit var btnConfirm : Button
     lateinit var btnLimpiar : Button
 
-    var listaFrec = listOf("hourly", "daily", "weekly", "monthly", "yearly", "quarterly", "bimonthly", "biweekly")
-    var listaCat = listOf("quantitative", "qualitative", "leading", "lagging", "input", "process", "output", "practical", "directional", "actionable", "financial")
+    var listaFrecuencia = listOf("hourly", "daily", "weekly", "monthly", "yearly", "quarterly", "bimonthly", "biweekly")
+    var listaCategoria = listOf("quantitative", "qualitative", "leading", "lagging", "input", "process", "output", "practical", "directional", "actionable", "financial")
+
     var validarAction : Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,10 +64,10 @@ class AltaIndicadorFragment : Fragment() {
         inputTitulo = v.findViewById(R.id.inputAltaTitulo)
         inputDescripcion = v.findViewById(R.id.inputAltaDescripcion)
         inputFormula = v.findViewById(R.id.inputAltaFormula)
-        spFrec = v.findViewById(R.id.spAltaFrecuencia)
-        txtFrec = ""
-        spCat = v.findViewById(R.id.spAltaCategoria)
-        txtCat = ""
+        spFrecuencia = v.findViewById(R.id.spAltaFrecuencia)
+        txtFrecuencia = ""
+        spCategoria = v.findViewById(R.id.spAltaCategoria)
+        txtCategoria = ""
         inputCheck1 = v.findViewById(R.id.checkBox1)
         inputCheck2 = v.findViewById(R.id.checkBox2)
         inputCheck3 = v.findViewById(R.id.checkBox3)
@@ -82,16 +83,16 @@ class AltaIndicadorFragment : Fragment() {
     override fun onStart() {
         super.onStart()
 
-        populateSpinner(spFrec,listaFrec,requireContext())
-        populateSpinner(spCat,listaCat,requireContext())
+        populateSpinner(spFrecuencia,listaFrecuencia,requireContext())
+        populateSpinner(spCategoria,listaCategoria,requireContext())
 
-        spFrec.setSelection(0, false) // evita la primer falsa entrada si existe validación
-        spCat.setSelection(0, false) // evita la primer falsa entrada si existe validación
+        spFrecuencia.setSelection(0, false) // evita la primer falsa entrada si existe validación
+        spCategoria.setSelection(0, false) // evita la primer falsa entrada si existe validación
 
-        spFrec.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+        spFrecuencia.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-                Snackbar.make(v, listaFrec[position], Snackbar.LENGTH_SHORT).show()
-                txtFrec = listaFrec[position]
+                Snackbar.make(v, listaFrecuencia[position], Snackbar.LENGTH_SHORT).show()
+                txtFrecuencia = listaFrecuencia[position]
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
@@ -99,10 +100,10 @@ class AltaIndicadorFragment : Fragment() {
             }
         })
 
-        spCat.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+        spCategoria.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-                Snackbar.make(v, listaCat[position], Snackbar.LENGTH_SHORT).show()
-                txtCat = listaCat[position]
+                Snackbar.make(v, listaCategoria[position], Snackbar.LENGTH_SHORT).show()
+                txtCategoria = listaCategoria[position]
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
@@ -134,57 +135,58 @@ class AltaIndicadorFragment : Fragment() {
                 validarAction = false
             }
             if(validarAction){
-                // Aca se persiste en la BD
+                var anio = Calendar.getInstance().get(Calendar.YEAR)
+                var mes = Calendar.getInstance().get(Calendar.MONTH)
+                var dia = Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
+                var hora = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
+                println(hora.toString())
+
+                var calculationPeriodFrom : String = anio.toString()+"-"+mes.toString()+"-"+dia.toString()
+                var calculationPeriodTo : String = anio.toString()+"-"+mes.toString()+"-"+dia.toString()
+
+                        // Aca se persiste en la BD
                 println("")
                 println("GRABANDO....")
                 println(inputID.text.toString())
                 println(inputTitulo.text)
                 println(inputDescripcion.text)
                 println(inputFormula.text)
-                println(txtFrec)
-                println(txtCat)
-
-                calculationMethod =""
-                source = ""
-                businessTarget = ""
-                dateNextCalculation =""
-                address = ""
-                area = ""
+                println(txtFrecuencia)
+                println(txtCategoria)
+                println(calculationPeriodFrom)
+                println(calculationPeriodTo)
 
                 if(inputCheck1.isChecked) {
                     println(inputCheck1.text)
-                    calculationMethod ="calculationMethod"
+                    calculationMethod =""
                 }
                 if(inputCheck2.isChecked) {
                     println(inputCheck2.text)
-                    source = "source"
+                    source = ""
                 }
                 if(inputCheck3.isChecked) {
                     println(inputCheck3.text)
-                    businessTarget = "businessTarget"
+                    businessTarget = ""
                 }
                 if(inputCheck4.isChecked) {
                     println(inputCheck4.text)
-                    dateNextCalculation ="dateNextCalculation"
+                    dateNextCalculation = anio.toString()+"-"+mes.toString()+"-"+dia.toString()
                 }
                 if(inputCheck5.isChecked) {
                     println(inputCheck5.text)
-                    address = "address"
+                    address = ""
                 }
                 if(inputCheck6.isChecked) {
                     println(inputCheck6.text)
-                    area = "area"
+                    area = ""
                 }
 
                 var ocb = OCBUtils()
 
-                ocb.createKpi(inputID.text.toString(),txtCat,txtFrec,inputDescripcion.text.toString(),null,null,address!!,null,null,null,
-                calculationMethod!!,null,"Ciudades Futuras","kpiValue",inputTitulo.text.toString(),source!!,null,businessTarget!!,inputFormula.text.toString()!!,null,null, area!!)
+                ocb.createKpi(inputID.text.toString(),txtCategoria,txtFrecuencia,inputDescripcion.text.toString(),null,null,address!!,calculationPeriodFrom,calculationPeriodTo,dateNextCalculation,
+                        calculationMethod!!,null,"Ciudades Futuras","",inputTitulo.text.toString(),source!!,null,businessTarget!!,inputFormula.text.toString()!!,null,null, area!!)
 
-                //TODO
-
-                //println("vuelvo a HOME")
-
+                // vuelvo a HOME
                  val action = AltaIndicadorFragmentDirections.actionAltaIndicadorFragmentToHomeFragment()
                  v.findNavController().navigate(action)
 
