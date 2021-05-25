@@ -15,6 +15,7 @@ import edu.ort.visualizar.R
 import edu.ort.visualizar.models.*
 import edu.ort.visualizar.utils.DateUtils
 import edu.ort.visualizar.utils.OCBUtils
+import org.w3c.dom.Text
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -39,20 +40,14 @@ class AccionesIndicadorFragment : Fragment() {
     lateinit var tvIndicatorName : TextView
     lateinit var tvIndicatorValue: TextView
     lateinit var tvLastUpdateDate : TextView
+    lateinit var tvViewMore : TextView
     lateinit var indicador: KpiModel
 
-    private var param1: String? = null
-    private var param2: String? = null
-    private var param3: String? = null
-    private var param4: String? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-            param3 = it.getString(ARG_PARAM3)
-            param4 = it.getString(ARG_PARAM4)
         }
 
 
@@ -71,6 +66,7 @@ class AccionesIndicadorFragment : Fragment() {
         tvIndicatorName = v.findViewById(R.id.tvAccionesIndicatorName)
         tvIndicatorValue = v.findViewById(R.id.tvAccionesIndicatorValue)
         tvLastUpdateDate = v.findViewById(R.id.tvAccionesLastUpdateDate)
+        tvViewMore = v.findViewById(R.id.tvAccionesViewMore)
         return v
     }
 
@@ -113,6 +109,11 @@ class AccionesIndicadorFragment : Fragment() {
             btnUpdate.setOnClickListener{
                 val action =
                         AccionesIndicadorFragmentDirections.actionAccionesIndicadorFragmentToActualizarValorFragment(indicador)
+                v.findNavController().navigate(action)
+            }
+
+            tvViewMore.setOnClickListener{
+                val action = AccionesIndicadorFragmentDirections.actionAccionesIndicadorFragmentToVerMasIndicadorFragment(indicador)
                 v.findNavController().navigate(action)
             }
 
