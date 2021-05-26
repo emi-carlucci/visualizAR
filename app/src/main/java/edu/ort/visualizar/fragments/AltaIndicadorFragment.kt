@@ -60,7 +60,7 @@ class AltaIndicadorFragment : Fragment() {
         v = inflater.inflate(R.layout.fragment_alta_indicador, container, false)
         inputID  = v.findViewById(R.id.inputAltaID)
         txtCheckResult = v.findViewById(R.id.textCheckResult)
-        btnCheckID = v.findViewById(R.id.btnAltaCheckID)
+        btnCheckID = v.findViewById(R.id.btnAltaCargarKpi)
         inputTitulo = v.findViewById(R.id.inputAltaTitulo)
         inputDescripcion = v.findViewById(R.id.inputAltaDescripcion)
         inputFormula = v.findViewById(R.id.inputAltaFormula)
@@ -75,7 +75,7 @@ class AltaIndicadorFragment : Fragment() {
         inputCheck5 = v.findViewById(R.id.checkBox5)
         inputCheck6 = v.findViewById(R.id.checkBox6)
         btnConfirm = v.findViewById(R.id.btnAltaConfirmar)
-        btnLimpiar = v.findViewById(R.id.btnAltaLimpiar)
+        btnLimpiar = v.findViewById(R.id.btnAltaRestaurar)
 
         return v
     }

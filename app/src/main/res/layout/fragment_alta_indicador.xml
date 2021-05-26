@@ -24,7 +24,7 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/txtAltaIndicador"
+                android:id="@+id/txtEditarIndicador"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
@@ -64,12 +64,12 @@
                 android:text=""
                 app:flow_horizontalAlign="center"
                 app:flow_verticalAlign="center"
-                app:layout_constraintBottom_toTopOf="@+id/btnAltaCheckID"
+                app:layout_constraintBottom_toTopOf="@+id/btnAltaCargarKpi"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <Button
-                android:id="@+id/btnAltaCheckID"
+                android:id="@+id/btnAltaCargarKpi"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
@@ -276,12 +276,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 android:text="@string/Altacheck6_text"
-                app:layout_constraintBottom_toTopOf="@+id/btnAltaLimpiar"
+                app:layout_constraintBottom_toTopOf="@+id/btnAltaRestaurar"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <Button
-                android:id="@+id/btnAltaLimpiar"
+                android:id="@+id/btnAltaRestaurar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"

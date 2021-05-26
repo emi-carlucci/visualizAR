@@ -38,8 +38,6 @@ class ActualizarValorFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         indicador = ActualizarValorFragmentArgs.fromBundle(requireArguments()).indicador!!
-
-
     }
 
     override fun onCreateView(

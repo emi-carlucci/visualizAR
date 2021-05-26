@@ -58,8 +58,8 @@ class AccionesIndicadorFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         v = inflater.inflate(R.layout.fragment_acciones_indicador, container, false)
@@ -75,7 +75,8 @@ class AccionesIndicadorFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         var ocb = OCBUtils()
-        var indicador : KpiModel? = ocb.getKpi("kpi-2016-Ciudad-containers-faults")
+        var indicador = AccionesIndicadorFragmentArgs.fromBundle(requireArguments()).indicador!!
+
         if (indicador !== null) {
             var parsedDate = DateUtils().parseDate(indicador.dateModified?.value.toString())
             tvIndicatorName.text = indicador!!.name!!.value.toString()

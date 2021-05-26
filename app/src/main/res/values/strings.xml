@@ -43,11 +43,13 @@
     <string name="ID">ID</string>
 
     <string name="checkID">ID exist ?</string>
+    <string name="organization">Organización</string>
     <string name="titulo">Título</string>
     <string name="descripcion">Descripción</string>
     <string name="calculationFormula">Fórmula : For informative purposes, the formula used for calculating the indicator.</string>
     <string name="txtcalculationFrequency">Frecuencia :</string>
     <string name="txtCategory">Categoria :</string>
+    <string name="txtCalculationMethod">Método :</string>
     <string name="txtOpcionales">Generar campos opcionales</string>
 
     <string name="Altacheck1_text">calculationMethod : The calculation method used.</string>
