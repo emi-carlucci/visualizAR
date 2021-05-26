@@ -35,50 +35,26 @@
                 android:textStyle="bold"
                 app:flow_horizontalAlign="center"
                 app:flow_verticalAlign="center"
-                app:layout_constraintBottom_toTopOf="@+id/inputAltaID"
+                app:layout_constraintBottom_toTopOf="@+id/txtAltaID"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.616" />
 
-            <EditText
-                android:id="@+id/inputAltaID"
+            <TextView
+                android:id="@+id/txtAltaID"
                 android:layout_width="300dp"
                 android:layout_height="50dp"
                 android:layout_marginBottom="4dp"
                 android:ems="10"
                 android:fontFamily="@font/lato"
                 android:hint="@string/ID"
-                android:inputType="textPersonName"
-                app:layout_constraintBottom_toTopOf="@id/textCheckResult"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.504"
-                app:layout_constraintStart_toStartOf="parent" />
 
-            <TextView
-                android:id="@+id/textCheckResult"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:fontFamily="@font/lato"
-                android:text=""
-                app:flow_horizontalAlign="center"
-                app:flow_verticalAlign="center"
-                app:layout_constraintBottom_toTopOf="@+id/btnAltaCargarKpi"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <Button
-                android:id="@+id/btnAltaCargarKpi"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:text="Load Kpi"
-                android:textAllCaps="false"
-                app:flow_horizontalAlign="center"
-                app:flow_verticalAlign="center"
+                android:textSize="18sp"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@id/inputAltaOrganization"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.504"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <EditText
@@ -330,7 +306,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
                 android:fontFamily="@font/lato"
-                android:text="Limpiar"
+                android:text="Restablecer"
                 android:textAllCaps="false"
                 android:textSize="18sp"
                 app:backgroundTint="#F44336"

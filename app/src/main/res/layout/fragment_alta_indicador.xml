@@ -35,14 +35,14 @@
                 android:textStyle="bold"
                 app:flow_horizontalAlign="center"
                 app:flow_verticalAlign="center"
-                app:layout_constraintBottom_toTopOf="@+id/inputAltaID"
+                app:layout_constraintBottom_toTopOf="@+id/txtAltaID"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.616" />
 
             <EditText
-                android:id="@+id/inputAltaID"
+                android:id="@+id/txtAltaID"
                 android:layout_width="300dp"
                 android:layout_height="50dp"
                 android:layout_marginBottom="4dp"

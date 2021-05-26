@@ -14,13 +14,12 @@ import edu.ort.visualizar.R
 import com.google.android.material.snackbar.Snackbar
 import edu.ort.visualizar.models.KpiModel
 import edu.ort.visualizar.utils.OCBUtils
+import org.w3c.dom.Text
 
 class EditarIndicadorFragment : Fragment() {
 
     lateinit var v : View
-    lateinit var inputID : TextView
-    lateinit var txtCheckResult : TextView
-    lateinit var btnCargarKpi : Button
+    lateinit var txtID : TextView
     lateinit var inputOrganization : TextView
     lateinit var inputTitulo : TextView
     lateinit var inputDescripcion : TextView
@@ -64,9 +63,7 @@ class EditarIndicadorFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         v = inflater.inflate(R.layout.fragment_editar_indicador, container, false)
-        inputID  = v.findViewById(R.id.inputAltaID)
-        txtCheckResult = v.findViewById(R.id.textCheckResult)
-        btnCargarKpi = v.findViewById(R.id.btnAltaCargarKpi)
+        txtID  = v.findViewById(R.id.txtAltaID)
         inputOrganization = v.findViewById(R.id.inputAltaOrganization)
         inputTitulo = v.findViewById(R.id.inputAltaTitulo)
         inputDescripcion = v.findViewById(R.id.inputAltaDescripcion)
@@ -127,8 +124,8 @@ class EditarIndicadorFragment : Fragment() {
             }
         })
 
-        btnCargarKpi.setOnClickListener {
-            traerKpi(inputID)
+        btnRestore.setOnClickListener {
+            cargarForm(indicador)
         }
 
         btnConfirm.setOnClickListener{
@@ -171,7 +168,7 @@ class EditarIndicadorFragment : Fragment() {
                 // Aca se persiste en la BD
                 println("")
                 println("GRABANDO....")
-                println(inputID.text.toString())
+                println(txtID.text.toString())
                 println(inputOrganization.text.toString())
                 println(inputTitulo.text)
                 println(inputDescripcion.text)
@@ -210,7 +207,7 @@ class EditarIndicadorFragment : Fragment() {
 
                 var ocb = OCBUtils()
 
-                ocb.updateKpi(inputID.text.toString(),txtCategoria,txtFrecuencia,inputDescripcion.text.toString(),null,null,address!!,calculationPeriodFrom,calculationPeriodTo,dateNextCalculation,
+                ocb.updateKpi(txtID.text.toString(),txtCategoria,txtFrecuencia,inputDescripcion.text.toString(),null,null,address!!,calculationPeriodFrom,calculationPeriodTo,dateNextCalculation,
                         txtCalculationMethod!!,null,inputOrganization.text.toString()!!,inputTitulo.text.toString(),source!!,null,businessTarget!!,inputFormula.text.toString()!!,null,updateAt,area!!)
 
                 // vuelvo a HOME
@@ -219,9 +216,6 @@ class EditarIndicadorFragment : Fragment() {
 
             }
             validarAction=true
-        }
-        btnRestore.setOnClickListener {
-            traerKpi(inputID)
         }
     }
 
@@ -236,29 +230,8 @@ class EditarIndicadorFragment : Fragment() {
         spinner.setAdapter(aa)
     }
 
-    fun traerKpi(id : TextView) : Boolean {
-        var result: Boolean = false
-        if(id.text.toString().equals("")){
-            Snackbar.make(v, "Ingrese el ID.", Snackbar.LENGTH_SHORT).show()
-            result = false
-        }else{
-            var ocb = OCBUtils()
-            var indicador : KpiModel? = ocb.getKpi(inputID.text.toString())
-            if(indicador==null){
-                txtCheckResult.setText("ID no encontrado")
-                Snackbar.make(v, "ID no encontrado", Snackbar.LENGTH_SHORT).show()
-                result = false
-            }else{
-                txtCheckResult.setText("Cargando datos....")
-                cargarForm(indicador)
-                result = true
-            }
-        }
-        return result
-    }
-
     fun cargarForm(indicador : KpiModel? ) {
-        inputID.setText(indicador!!.id?.toString())
+        txtID.setText(indicador!!.id?.toString())
         inputOrganization.setText(indicador!!.organization?.value?.name?.toString())
         inputTitulo.setText(indicador!!.name?.value?.toString())
         inputDescripcion.setText(indicador!!.description?.value?.toString())
