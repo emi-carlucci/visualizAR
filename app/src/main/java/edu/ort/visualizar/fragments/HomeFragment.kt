@@ -25,6 +25,7 @@ class HomeFragment : Fragment() {
         super.onResume()
         searchButton.visibility = View.VISIBLE
         resetButton.visibility = View.GONE
+        searchInput.text?.clear()
         val ft: FragmentTransaction = parentFragmentManager.beginTransaction()
         ft.replace(R.id.indicador_list_fragment_container, IndicadorListContainerFragment())
         ft.commit()
@@ -36,6 +37,7 @@ class HomeFragment : Fragment() {
         searchInput = homeView.findViewById(R.id.searchInput)
         searchButton = homeView.findViewById(R.id.searchButton)
         resetButton = homeView.findViewById(R.id.resetButton)
+        searchInput.text?.clear()
         btnAddIndicator.setOnClickListener{
             val action = HomeFragmentDirections.actionHomeFragmentToAltaIndicadorFragment()
             homeView.findNavController().navigate(action)
@@ -49,10 +51,11 @@ class HomeFragment : Fragment() {
                 ft.replace(R.id.indicador_list_fragment_container, IndicadorSearchListContainerFragment(kpiIdData))
                 ft.commit()
             } else {
-                Toast.makeText(activity,"Ingresá un valor válido",Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity,"Por favor, ingresá un ID",Toast.LENGTH_SHORT).show()
             }
         }
         resetButton.setOnClickListener{
+            searchInput.text?.clear()
             searchButton.visibility = View.VISIBLE
             resetButton.visibility = View.GONE
             val ft: FragmentTransaction = parentFragmentManager.beginTransaction()
