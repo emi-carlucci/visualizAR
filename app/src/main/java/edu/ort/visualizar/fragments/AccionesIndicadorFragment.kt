@@ -12,6 +12,7 @@ import android.widget.TextView
 import androidx.navigation.findNavController
 import com.google.android.material.snackbar.Snackbar
 import edu.ort.visualizar.R
+import edu.ort.visualizar.activities.MainActivity.Companion.ocbUtils
 import edu.ort.visualizar.models.*
 import edu.ort.visualizar.utils.DateUtils
 import edu.ort.visualizar.utils.OCBUtils
@@ -74,7 +75,6 @@ class AccionesIndicadorFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        var ocb = OCBUtils()
         var indicador = AccionesIndicadorFragmentArgs.fromBundle(requireArguments()).indicador!!
 
         if (indicador !== null) {
@@ -91,7 +91,7 @@ class AccionesIndicadorFragment : Fragment() {
                 var builder = AlertDialog.Builder(activity)
                 builder.setTitle(getString(R.string.confirm_delete))
                 builder.setPositiveButton(getString(R.string.delete), DialogInterface.OnClickListener { dialog, id ->
-                    var deleteOk : Boolean? = false //ocb.deleteKpi(indicador.id.toString())
+                    var deleteOk : Boolean? = ocbUtils.deleteKpi(indicador.id.toString())
                     dialog.cancel()
                     if (deleteOk != null && deleteOk){
                         val action =

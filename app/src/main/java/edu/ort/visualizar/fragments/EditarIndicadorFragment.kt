@@ -61,7 +61,7 @@ class EditarIndicadorFragment : Fragment() {
 
     var validarAction : Boolean = true
 
-    private var indicador: KpiModel? = null
+    lateinit var indicador: KpiModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -93,7 +93,7 @@ class EditarIndicadorFragment : Fragment() {
         btnRestore = v.findViewById(R.id.btnAltaRestaurar)
 
         // Cargo la data a los INPUTS
-        indicador = EditarIndicadorFragmentArgs.fromBundle(requireArguments()).indicador
+        indicador = EditarIndicadorFragmentArgs.fromBundle(requireArguments()).indicador!!
         cargarForm(indicador)
 
         if(inputCheck1.isChecked) {
@@ -237,8 +237,8 @@ class EditarIndicadorFragment : Fragment() {
                         txtCalculationMethod!!,null,inputOrganization.text.toString()!!,inputTitulo.text.toString(),txtSource!!,null,txtBusinessTarget!!,inputFormula.text.toString()!!,null,updateAt,txtArea!!)
 
                 // vuelvo a Acciones
-                //val action = EditarIndicadorFragmentDirections.actionEditarIndicadorFragmentToAccionesIndicadorFragment(KpiModel())
-                //v.findNavController().navigate(action)
+                val action = EditarIndicadorFragmentDirections.actionEditarIndicadorFragmentToAccionesIndicadorFragment(indicador)
+                v.findNavController().navigate(action)
 
             }
             validarAction=true
