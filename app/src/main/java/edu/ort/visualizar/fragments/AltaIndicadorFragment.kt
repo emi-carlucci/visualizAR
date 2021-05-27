@@ -37,8 +37,6 @@ class AltaIndicadorFragment : Fragment() {
     lateinit var inputCheck4 : CheckBox
     var dateNextCalculation : String? = null
     lateinit var inputCheck5 : CheckBox
-    var address : String? = null
-    lateinit var inputCheck6 : CheckBox
     var area : String? = null
     lateinit var btnConfirm : Button
     lateinit var btnLimpiar : Button
@@ -65,15 +63,14 @@ class AltaIndicadorFragment : Fragment() {
         inputDescripcion = v.findViewById(R.id.inputAltaDescripcion)
         inputFormula = v.findViewById(R.id.inputAltaFormula)
         spFrecuencia = v.findViewById(R.id.spAltaFrecuencia)
-        txtFrecuencia = ""
+        txtFrecuencia = listaFrecuencia[0]
         spCategoria = v.findViewById(R.id.spAltaCategoria)
-        txtCategoria = ""
+        txtCategoria = listaCategoria[0]
         inputCheck1 = v.findViewById(R.id.checkBox1)
         inputCheck2 = v.findViewById(R.id.checkBox2)
         inputCheck3 = v.findViewById(R.id.checkBox3)
         inputCheck4 = v.findViewById(R.id.checkBox4)
         inputCheck5 = v.findViewById(R.id.checkBox5)
-        inputCheck6 = v.findViewById(R.id.checkBox6)
         btnConfirm = v.findViewById(R.id.btnAltaConfirmar)
         btnLimpiar = v.findViewById(R.id.btnAltaRestaurar)
 
@@ -151,8 +148,8 @@ class AltaIndicadorFragment : Fragment() {
                 println(inputTitulo.text)
                 println(inputDescripcion.text)
                 println(inputFormula.text)
-                println(txtFrecuencia)
-                println(txtCategoria)
+                println("Frec : " + txtFrecuencia)
+                println("Cat : " + txtCategoria)
                 println(calculationPeriodFrom)
                 println(calculationPeriodTo)
 
@@ -174,16 +171,12 @@ class AltaIndicadorFragment : Fragment() {
                 }
                 if(inputCheck5.isChecked) {
                     println(inputCheck5.text)
-                    address = ""
-                }
-                if(inputCheck6.isChecked) {
-                    println(inputCheck6.text)
                     area = ""
                 }
 
                 var ocb = OCBUtils()
 
-                ocb.createKpi(inputID.text.toString(),txtCategoria,txtFrecuencia,inputDescripcion.text.toString(),null,null,address!!,calculationPeriodFrom,calculationPeriodTo,dateNextCalculation,
+                ocb.createKpi(inputID.text.toString(),txtCategoria,txtFrecuencia,inputDescripcion.text.toString(),null,null,null,calculationPeriodFrom,calculationPeriodTo,dateNextCalculation,
                         calculationMethod!!,null,"Ciudades Futuras","",inputTitulo.text.toString(),source!!,null,businessTarget!!,inputFormula.text.toString()!!,null,null, area!!)
 
                 // vuelvo a HOME
@@ -204,7 +197,6 @@ class AltaIndicadorFragment : Fragment() {
             inputCheck3.setChecked(false)
             inputCheck4.setChecked(false)
             inputCheck5.setChecked(false)
-            inputCheck6.setChecked(false)
             validarAction=true
         }
     }
