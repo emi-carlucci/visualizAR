@@ -60,7 +60,7 @@ class AltaIndicadorFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         v = inflater.inflate(R.layout.fragment_alta_indicador, container, false)
-        inputID  = v.findViewById(R.id.txtID)
+        inputID  = v.findViewById(R.id.showMeID)
         txtCheckResult = v.findViewById(R.id.textCheckResult)
         btnCheckID = v.findViewById(R.id.btnAltaCargarKpi)
         inputTitulo = v.findViewById(R.id.inputTitulo)

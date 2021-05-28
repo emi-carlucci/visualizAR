@@ -47,6 +47,7 @@
     <string name="titulo">Título</string>
     <string name="descripcion">Descripción</string>
     <string name="calculationFormula">Fórmula : For informative purposes, the formula used for calculating the indicator.</string>
+    <string name="EditFormula">Fórmula :</string>
     <string name="txtcalculationFrequency">Frecuencia :</string>
     <string name="txtCategory">Categoria :</string>
     <string name="txtCalculationMethod">Método :</string>

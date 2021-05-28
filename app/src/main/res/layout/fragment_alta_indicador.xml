@@ -35,14 +35,14 @@
                 android:textStyle="bold"
                 app:flow_horizontalAlign="center"
                 app:flow_verticalAlign="center"
-                app:layout_constraintBottom_toTopOf="@+id/txtID"
+                app:layout_constraintBottom_toTopOf="@+id/showMeID"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.616" />
 
             <EditText
-                android:id="@+id/txtID"
+                android:id="@+id/showMeID"
                 android:layout_width="300dp"
                 android:layout_height="50dp"
                 android:layout_marginBottom="4dp"
@@ -271,7 +271,20 @@
                 android:inputType="textMultiLine"
                 android:textSize="14sp"
                 android:typeface="normal"
-                app:layout_constraintBottom_toTopOf="@+id/btnConfirmar"
+                app:layout_constraintBottom_toTopOf="@id/cajaBotonera"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/cajaBotonera"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:layout_marginBottom="24dp"
+                android:ems="10"
+                android:fontFamily="@font/lato"
+                android:textSize="14sp"
+                android:typeface="normal"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
@@ -279,31 +292,27 @@
                 android:id="@+id/btnRestore"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
                 android:fontFamily="@font/lato"
                 android:text="Limpiar"
                 android:textAllCaps="false"
                 android:textSize="18sp"
                 app:backgroundTint="#F44336"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toBottomOf="@+id/cajaBotonera"
                 app:layout_constraintEnd_toStartOf="@+id/btnConfirmar"
-                app:layout_constraintHorizontal_bias="0.445"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/cajaBotonera" />
 
             <Button
                 android:id="@+id/btnConfirmar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="64dp"
-                android:layout_marginRight="64dp"
-                android:layout_marginBottom="24dp"
                 android:fontFamily="@font/lato"
                 android:text="Confirmar"
                 android:textAllCaps="false"
                 android:textSize="18sp"
                 app:backgroundTint="#4CAF50"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintBottom_toBottomOf="@+id/cajaBotonera"
+                app:layout_constraintEnd_toEndOf="@+id/cajaBotonera" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

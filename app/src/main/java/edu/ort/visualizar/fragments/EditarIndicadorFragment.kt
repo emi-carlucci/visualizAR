@@ -70,7 +70,7 @@ class EditarIndicadorFragment : Fragment() {
 
         // Inflate the layout for this fragment
         v = inflater.inflate(R.layout.fragment_editar_indicador, container, false)
-        txtID  = v.findViewById(R.id.txtID)
+        txtID  = v.findViewById(R.id.showMeID)
         inputOrganization = v.findViewById(R.id.inputOrganization)
         inputTitulo = v.findViewById(R.id.inputTitulo)
         inputDescripcion = v.findViewById(R.id.inputDescripcion)
