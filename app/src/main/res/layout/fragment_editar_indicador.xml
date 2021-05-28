@@ -5,7 +5,7 @@
     android:id="@+id/main_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_constraintTop_toTopOf="@+id/inputAltaTitulo"
+    app:layout_constraintTop_toTopOf="@+id/inputTitulo"
     tools:context="edu.ort.visualizar.fragments.AltaIndicadorFragment">
 
     <androidx.core.widget.NestedScrollView
@@ -35,14 +35,14 @@
                 android:textStyle="bold"
                 app:flow_horizontalAlign="center"
                 app:flow_verticalAlign="center"
-                app:layout_constraintBottom_toTopOf="@+id/txtAltaID"
+                app:layout_constraintBottom_toTopOf="@+id/txtID"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.616" />
 
             <TextView
-                android:id="@+id/txtAltaID"
+                android:id="@+id/txtID"
                 android:layout_width="300dp"
                 android:layout_height="50dp"
                 android:layout_marginBottom="4dp"
@@ -52,13 +52,13 @@
 
                 android:textSize="18sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@id/inputAltaOrganization"
+                app:layout_constraintBottom_toTopOf="@id/inputOrganization"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.504"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <EditText
-                android:id="@+id/inputAltaOrganization"
+                android:id="@+id/inputOrganization"
                 android:layout_width="300dp"
                 android:layout_height="50dp"
                 android:layout_marginBottom="20dp"
@@ -68,12 +68,12 @@
                 android:inputType="text"
                 android:textSize="14sp"
                 android:typeface="normal"
-                app:layout_constraintBottom_toTopOf="@id/inputAltaTitulo"
+                app:layout_constraintBottom_toTopOf="@id/inputTitulo"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <EditText
-                android:id="@+id/inputAltaTitulo"
+                android:id="@+id/inputTitulo"
                 android:layout_width="300dp"
                 android:layout_height="50dp"
                 android:layout_marginBottom="20dp"
@@ -83,12 +83,12 @@
                 android:inputType="text"
                 android:textSize="14sp"
                 android:typeface="normal"
-                app:layout_constraintBottom_toTopOf="@+id/inputAltaDescripcion"
+                app:layout_constraintBottom_toTopOf="@+id/inputDescripcion"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <EditText
-                android:id="@+id/inputAltaDescripcion"
+                android:id="@+id/inputDescripcion"
                 android:layout_width="300dp"
                 android:layout_height="142dp"
                 android:layout_marginBottom="20dp"
@@ -98,12 +98,12 @@
                 android:inputType="textMultiLine"
                 android:textSize="14sp"
                 android:typeface="normal"
-                app:layout_constraintBottom_toTopOf="@+id/inputAltaFormula"
+                app:layout_constraintBottom_toTopOf="@+id/inputFormula"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <EditText
-                android:id="@+id/inputAltaFormula"
+                android:id="@+id/inputFormula"
                 android:layout_width="300dp"
                 android:layout_height="92dp"
                 android:layout_marginBottom="20dp"
@@ -131,159 +131,148 @@
                 app:layout_constraintStart_toStartOf="parent" />
 
             <Spinner
-                android:id="@+id/spAltaFrecuencia"
+                android:id="@+id/spFrecuencia"
                 android:layout_width="200dp"
                 android:layout_height="42dp"
-                android:layout_marginStart="64dp"
-                android:layout_marginLeft="64dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginBottom="8dp"
                 android:fontFamily="@font/lato"
                 android:outlineAmbientShadowColor="@color/light_blue_500"
                 android:scrollbarSize="10dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textSize="18sp"
                 android:typeface="normal"
-                app:layout_constraintEnd_toEndOf="@+id/txtFrecuencia"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="@+id/txtFrecuencia"
-                app:layout_constraintTop_toBottomOf="@+id/inputAltaFormula" />
+                app:layout_constraintBottom_toBottomOf="@+id/txtFrecuencia"
+                app:layout_constraintEnd_toEndOf="@+id/txtFrecuencia" />
 
             <TextView
                 android:id="@+id/txtCategoria"
                 android:layout_width="295dp"
                 android:layout_height="39dp"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="32dp"
                 android:fontFamily="@font/lato"
                 android:text="@string/txtCategory"
                 android:textSize="18sp"
-                app:layout_constraintBottom_toTopOf="@id/txtAltaOpcionales"
+                app:layout_constraintBottom_toTopOf="@+id/txtMetodo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/txtMetodo"
+                android:layout_width="295dp"
+                android:layout_height="39dp"
+                android:layout_marginBottom="32dp"
+                android:fontFamily="@font/lato"
+                android:text="@string/txtCalculationMethod"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toTopOf="@+id/txtAltaOpcionales"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <Spinner
-                android:id="@+id/spAltaCategoria"
+                android:id="@+id/spCategoria"
                 android:layout_width="200dp"
                 android:layout_height="42dp"
-                android:layout_marginStart="64dp"
-                android:layout_marginLeft="64dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginBottom="8dp"
                 android:fontFamily="@font/lato"
                 android:scrollbarSize="10dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textSize="18sp"
                 android:typeface="normal"
-                app:layout_constraintEnd_toEndOf="@+id/txtCategoria"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="@+id/txtCategoria"
-                app:layout_constraintTop_toBottomOf="@+id/txtFrecuencia" />
+                app:layout_constraintBottom_toBottomOf="@+id/txtCategoria"
+                app:layout_constraintEnd_toEndOf="@+id/txtCategoria" />
+
+            <Spinner
+                android:id="@+id/spCalculationMethod"
+                android:layout_width="200dp"
+                android:layout_height="42dp"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/lato"
+                android:scrollbarSize="10dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textSize="18sp"
+                android:typeface="normal"
+                app:layout_constraintBottom_toBottomOf="@+id/txtMetodo"
+                app:layout_constraintEnd_toEndOf="@+id/txtMetodo" />
 
             <TextView
                 android:id="@+id/txtAltaOpcionales"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="32dp"
+                android:layout_marginBottom="20dp"
                 android:fontFamily="@font/lato"
                 android:text="@string/txtOpcionales"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/checkBox1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <CheckBox
-                android:id="@+id/checkBox1"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:checked="false"
-                android:fontFamily="@font/lato"
-                android:text="@string/Editcheck1_text"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textSize="14sp"
-                android:typeface="normal"
-                app:layout_constraintBottom_toTopOf="@+id/checkBox2"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <Spinner
-                android:id="@+id/spEditCalculationMethod"
-                android:layout_width="200dp"
-                android:layout_height="42dp"
-                android:layout_marginStart="64dp"
-                android:layout_marginLeft="64dp"
-                android:fontFamily="@font/lato"
-                android:scrollbarSize="10dp"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textSize="18sp"
-                android:typeface="normal"
-                app:layout_constraintEnd_toEndOf="@id/checkBox1"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="@id/checkBox1"
-                app:layout_constraintTop_toTopOf="@id/checkBox1" />
-
-            <CheckBox
-                android:id="@+id/checkBox2"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:fontFamily="@font/lato"
-                android:text="@string/Editcheck2_text"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textSize="14sp"
-                android:typeface="normal"
-                app:layout_constraintBottom_toTopOf="@+id/checkBox3"
+                app:layout_constraintBottom_toTopOf="@+id/txtSource"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <EditText
-                android:id="@+id/inputEditSource"
-                android:layout_width="200dp"
+                android:id="@+id/txtSource"
+                android:layout_width="300dp"
                 android:layout_height="50dp"
+                android:layout_marginBottom="20dp"
                 android:ems="10"
                 android:fontFamily="@font/lato"
-                android:inputType="text"
+                android:hint="@string/EditSource"
+                android:inputType="textMultiLine"
                 android:textSize="14sp"
                 android:typeface="normal"
-                app:layout_constraintBottom_toBottomOf="@+id/checkBox2"
-                app:layout_constraintEnd_toEndOf="@+id/checkBox2" />
-
-            <CheckBox
-                android:id="@+id/checkBox3"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:fontFamily="@font/lato"
-                android:text="@string/Editcheck3_text"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textSize="14sp"
-                android:typeface="normal"
-                app:layout_constraintBottom_toTopOf="@+id/checkBox4"
+                app:layout_constraintBottom_toTopOf="@+id/txtTarget"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <EditText
-                android:id="@+id/inputEditTarget"
+                android:id="@+id/inputSource"
                 android:layout_width="200dp"
                 android:layout_height="50dp"
                 android:ems="10"
                 android:fontFamily="@font/lato"
-                android:inputType="text"
+                android:inputType="textMultiLine"
                 android:textSize="14sp"
                 android:typeface="normal"
-                app:layout_constraintBottom_toBottomOf="@+id/checkBox3"
-                app:layout_constraintEnd_toEndOf="@id/checkBox3" />
+                app:layout_constraintEnd_toEndOf="@+id/txtSource"
+                app:layout_constraintTop_toTopOf="@+id/txtSource" />
 
-            <CheckBox
-                android:id="@+id/checkBox4"
+            <EditText
+                android:id="@+id/txtTarget"
                 android:layout_width="300dp"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:layout_marginBottom="20dp"
+                android:ems="10"
                 android:fontFamily="@font/lato"
-                android:text="@string/Editcheck4_text"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:hint="@string/EditTarget"
+                android:inputType="textMultiLine"
                 android:textSize="14sp"
                 android:typeface="normal"
-                app:layout_constraintBottom_toTopOf="@+id/checkBox5"
+                app:layout_constraintBottom_toTopOf="@+id/txtDateNextCalculation"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <EditText
+                android:id="@+id/inputTarget"
+                android:layout_width="200dp"
+                android:layout_height="50dp"
+                android:ems="10"
+                android:fontFamily="@font/lato"
+                android:inputType="textMultiLine"
+                android:textSize="14sp"
+                android:typeface="normal"
+                app:layout_constraintEnd_toEndOf="@+id/txtTarget"
+                app:layout_constraintTop_toTopOf="@+id/txtTarget" />
+
+            <EditText
+                android:id="@+id/txtDateNextCalculation"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:layout_marginBottom="20dp"
+                android:ems="10"
+                android:fontFamily="@font/lato"
+                android:hint="@string/EditDateNextCalc"
+                android:inputType="textMultiLine"
+                android:textSize="14sp"
+                android:typeface="normal"
+                app:layout_constraintBottom_toTopOf="@+id/txtArea"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
@@ -293,40 +282,41 @@
                 android:layout_height="50dp"
                 android:ems="10"
                 android:fontFamily="@font/lato"
-                android:inputType="text"
+                android:inputType="textMultiLine"
                 android:textSize="14sp"
                 android:typeface="normal"
-                app:layout_constraintBottom_toBottomOf="@id/checkBox4"
-                app:layout_constraintEnd_toEndOf="@id/checkBox4" />
+                app:layout_constraintBottom_toBottomOf="@+id/txtDateNextCalculation"
+                app:layout_constraintEnd_toEndOf="@+id/txtDateNextCalculation" />
 
-            <CheckBox
-                android:id="@+id/checkBox5"
+            <EditText
+                android:id="@+id/txtArea"
                 android:layout_width="300dp"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:layout_marginBottom="20dp"
+                android:ems="10"
                 android:fontFamily="@font/lato"
-                android:text="@string/Editcheck5_text"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:hint="@string/EditArea"
+                android:inputType="textMultiLine"
                 android:textSize="14sp"
                 android:typeface="normal"
-                app:layout_constraintBottom_toTopOf="@+id/btnAltaConfirmar"
+                app:layout_constraintBottom_toTopOf="@+id/btnConfirmar"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <EditText
-                android:id="@+id/inputEditArea"
+                android:id="@+id/inputArea"
                 android:layout_width="200dp"
                 android:layout_height="50dp"
                 android:ems="10"
                 android:fontFamily="@font/lato"
-                android:inputType="text"
+                android:inputType="textMultiLine"
                 android:textSize="14sp"
                 android:typeface="normal"
-                app:layout_constraintBottom_toBottomOf="@id/checkBox5"
-                app:layout_constraintEnd_toEndOf="@id/checkBox5" />
+                app:layout_constraintBottom_toBottomOf="@+id/txtArea"
+                app:layout_constraintEnd_toEndOf="@+id/txtArea" />
 
             <Button
-                android:id="@+id/btnAltaRestaurar"
+                android:id="@+id/btnRestore"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
@@ -336,14 +326,12 @@
                 android:textSize="18sp"
                 app:backgroundTint="#F44336"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/btnAltaConfirmar"
+                app:layout_constraintEnd_toStartOf="@+id/btnConfirmar"
                 app:layout_constraintHorizontal_bias="0.7"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/checkBox5"
-                app:layout_constraintVertical_bias="1.0" />
+                app:layout_constraintStart_toStartOf="parent" />
 
             <Button
-                android:id="@+id/btnAltaConfirmar"
+                android:id="@+id/btnConfirmar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="64dp"

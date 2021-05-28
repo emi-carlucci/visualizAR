@@ -12,12 +12,8 @@ import androidx.navigation.findNavController
 import edu.ort.visualizar.R
 
 import com.google.android.material.snackbar.Snackbar
-import edu.ort.visualizar.models.Address
-import edu.ort.visualizar.models.BusinessTarget
-import edu.ort.visualizar.models.DateNextCalculation
 import edu.ort.visualizar.models.KpiModel
 import edu.ort.visualizar.utils.OCBUtils
-import org.w3c.dom.Text
 
 class EditarIndicadorFragment : Fragment() {
 
@@ -74,54 +70,32 @@ class EditarIndicadorFragment : Fragment() {
 
         // Inflate the layout for this fragment
         v = inflater.inflate(R.layout.fragment_editar_indicador, container, false)
-        txtID  = v.findViewById(R.id.txtAltaID)
-        inputOrganization = v.findViewById(R.id.inputAltaOrganization)
-        inputTitulo = v.findViewById(R.id.inputAltaTitulo)
-        inputDescripcion = v.findViewById(R.id.inputAltaDescripcion)
-        inputFormula = v.findViewById(R.id.inputAltaFormula)
-        spFrecuencia = v.findViewById(R.id.spAltaFrecuencia)
-        txtFrecuencia = ""
-        spCategoria = v.findViewById(R.id.spAltaCategoria)
-        txtCategoria = ""
-
-        inputCheck1 = v.findViewById(R.id.checkBox1)
-        inputCheck2 = v.findViewById(R.id.checkBox2)
-        inputCheck3 = v.findViewById(R.id.checkBox3)
-        inputCheck4 = v.findViewById(R.id.checkBox4)
-        inputCheck5 = v.findViewById(R.id.checkBox5)
-        btnConfirm = v.findViewById(R.id.btnAltaConfirmar)
-        btnRestore = v.findViewById(R.id.btnAltaRestaurar)
-
+        txtID  = v.findViewById(R.id.txtID)
+        inputOrganization = v.findViewById(R.id.inputOrganization)
+        inputTitulo = v.findViewById(R.id.inputTitulo)
+        inputDescripcion = v.findViewById(R.id.inputDescripcion)
+        inputFormula = v.findViewById(R.id.inputFormula)
+        spFrecuencia = v.findViewById(R.id.spFrecuencia)
+        txtFrecuencia = listaFrecuencia[0]
+        spCategoria = v.findViewById(R.id.spCategoria)
+        txtCategoria = listaCategoria[0]
+        spCalculationMethod = v.findViewById(R.id.spCalculationMethod)
+        txtCalculationMethod = listaCalculationMethod[0]
+        inputSource = v.findViewById(R.id.inputSource)
+        inputBusinessTarget = v.findViewById(R.id.inputTarget)
+        inputDateNextCalculation = v.findViewById(R.id.inputDateNextCalculation)
+        inputArea = v.findViewById(R.id.inputArea)
+        btnConfirm = v.findViewById(R.id.btnConfirmar)
+        btnRestore = v.findViewById(R.id.btnRestore)
         // Cargo la data a los INPUTS
         indicador = EditarIndicadorFragmentArgs.fromBundle(requireArguments()).indicador!!
         cargarForm(indicador)
-
-        if(inputCheck1.isChecked) {
-            spCalculationMethod = v.findViewById(R.id.spEditCalculationMethod)
-        }
-        if(inputCheck2.isChecked) {
-            inputSource = v.findViewById(R.id.inputEditSource)
-            inputSource.setText(indicador!!.source?.value?.toString())
-        }
-        if(inputCheck3.isChecked) {
-            inputBusinessTarget = v.findViewById(R.id.inputEditTarget)
-            inputBusinessTarget.setText(indicador!!.businessTarget?.value?.toString())
-        }
-        if(inputCheck4.isChecked) {
-            inputDateNextCalculation = v.findViewById(R.id.inputDateNextCalculation)
-            inputDateNextCalculation.setText(indicador!!.dateNextCalculation?.value?.toString())
-        }
-        if(inputCheck5.isChecked) {
-            inputArea = v.findViewById(R.id.inputEditArea)
-            inputArea.setText(indicador!!.area?.value?.toString())
-        }
 
         return v
     }
 
     override fun onStart() {
         super.onStart()
-
         populateSpinner(spFrecuencia,listaFrecuencia,requireContext())
         populateSpinner(spCategoria,listaCategoria,requireContext())
         populateSpinner(spCalculationMethod,listaCalculationMethod,requireContext())
@@ -167,7 +141,6 @@ class EditarIndicadorFragment : Fragment() {
         }
 
         btnConfirm.setOnClickListener{
-
             if(inputOrganization.text.toString().equals("")) {
                 Snackbar.make(v, "Ingrese la organización.", Snackbar.LENGTH_SHORT).show()
                 validarAction = false
@@ -209,26 +182,15 @@ class EditarIndicadorFragment : Fragment() {
 
                 println("From : " + calculationPeriodFrom)
                 println("To : " +calculationPeriodTo)
-
-                if(inputCheck1.isChecked) {
-                    println("Metodo : " + txtCalculationMethod)
-                }
-                if(inputCheck2.isChecked) {
-                    txtSource = inputSource.text.toString()
-                }
+                println("Metodo : " + txtCalculationMethod)
+                txtSource = inputSource.text.toString()
                 println("Source : " + txtSource)
-                if(inputCheck3.isChecked) {
-                    txtBusinessTarget = inputBusinessTarget.text.toString()
-                }
+                txtBusinessTarget = inputBusinessTarget.text.toString()
                 println("Business : " + txtBusinessTarget)
-                if(inputCheck4.isChecked) {
-                    //dateNextCalculation = anio.toString()+"-"+mes.toString()+"-"+dia.toString()
-                    txtdateNextCalculation = inputDateNextCalculation.text.toString()
-                }
+                //dateNextCalculation = anio.toString()+"-"+mes.toString()+"-"+dia.toString()
+                txtdateNextCalculation = inputDateNextCalculation.text.toString()
                 println("Date NExt Calc : " + txtdateNextCalculation)
-                if(inputCheck5.isChecked) {
-                    txtArea = inputArea.text.toString()
-                }
+                txtArea = inputArea.text.toString()
                 println("Area : " + txtArea)
 
                 var ocb = OCBUtils()
@@ -266,17 +228,24 @@ class EditarIndicadorFragment : Fragment() {
         println("Cargo Frec : " + txtFrecuencia)
         txtCategoria = indicador!!.category?.value.toString()
         println("Cargo Cat : " + txtCategoria)
+        txtCalculationMethod = indicador!!.calculationMethod?.value.toString()
+        inputSource.setText(indicador!!.source?.value?.toString())
+        inputBusinessTarget.setText(indicador!!.businessTarget?.value?.toString())
+        inputDateNextCalculation.setText(indicador!!.dateNextCalculation?.value?.toString())
+        inputArea.setText(indicador!!.area?.value?.toString())
+        btnRestore = v.findViewById(R.id.btnRestore)
+
+        /*
         if(indicador.calculationMethod?.value == null){
             inputCheck1.setChecked(false)
         }else{
             inputCheck1.setChecked(true)
-        txtCalculationMethod = indicador!!.calculationMethod?.value.toString()
-        println("Cargo Metodo : " + txtCalculationMethod)
+            txtCalculationMethod = indicador!!.calculationMethod?.value.toString()
+            println("Cargo Metodo : " + txtCalculationMethod)
         }
         if(indicador.source?.value == null){
             inputCheck2.setChecked(false)
         }else{
-            inputCheck2.setChecked(true)
             //inputSource.setText(indicador.source?.value?.toString())
         }
         if(indicador.businessTarget?.value == null){
@@ -297,5 +266,6 @@ class EditarIndicadorFragment : Fragment() {
             inputCheck5.setChecked(true)
             //inputArea.setText(indicador.area?.value?.toString())
         }
+        */
     }
 }
