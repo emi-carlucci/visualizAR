@@ -1,13 +1,13 @@
 package edu.ort.visualizar.fragments
 
 import android.content.Context
+import android.icu.util.Calendar
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.core.view.get
 import androidx.navigation.findNavController
 import edu.ort.visualizar.R
 
@@ -19,37 +19,40 @@ class AltaIndicadorFragment : Fragment() {
 
     lateinit var v : View
     lateinit var inputID : TextView
+    lateinit var txtID : String
     lateinit var txtCheckResult : TextView
     lateinit var btnCheckID : Button
     lateinit var inputTitulo : TextView
+    lateinit var txtTitulo : String
     lateinit var inputDescripcion : TextView
+    lateinit var txtDescripcion : String
     lateinit var inputFormula : TextView
-    lateinit var spFrec : Spinner
-    lateinit var txtFrec : String
-    lateinit var spCat : Spinner
-    lateinit var txtCat : String
-    lateinit var inputCheck1 : CheckBox
-    lateinit var calculationMethod : String
-    lateinit var inputCheck2 : CheckBox
-    lateinit var source : String
-    lateinit var inputCheck3 : CheckBox
-    lateinit var businessTarget : String
-    lateinit var inputCheck4 : CheckBox
-    lateinit var dateNextCalculation : String
-    lateinit var inputCheck5 : CheckBox
-    lateinit var address : String
-    lateinit var inputCheck6 : CheckBox
-    lateinit var area : String
+    lateinit var txtFormula : String
+    lateinit var spFrecuencia : Spinner
+    lateinit var txtFrecuencia : String
+    lateinit var spCategoria : Spinner
+    lateinit var txtCategoria : String
+    lateinit var spCalculationMethod : Spinner
+    lateinit var txtCalculationMethod : String
+    lateinit var inputSource : TextView
+    lateinit var txtSource : String
+    lateinit var inputBusinessTarget : TextView
+    lateinit var txtBusinessTarget : String
+    lateinit var inputDateNextCalculation : TextView
+    lateinit var txtDateNextCalculation : String
+    lateinit var inputArea : TextView
+    lateinit var txtArea : String
     lateinit var btnConfirm : Button
     lateinit var btnLimpiar : Button
 
-    var listaFrec = listOf("hourly", "daily", "weekly", "monthly", "yearly", "quarterly", "bimonthly", "biweekly")
-    var listaCat = listOf("quantitative", "qualitative", "leading", "lagging", "input", "process", "output", "practical", "directional", "actionable", "financial")
+    var listaFrecuencia = listOf("hourly", "daily", "weekly", "monthly", "yearly", "quarterly", "bimonthly", "biweekly")
+    var listaCategoria = listOf("quantitative", "qualitative", "leading", "lagging", "input", "process", "output", "practical", "directional", "actionable", "financial")
+    var listaCalculationMethod = listOf("manual", "automatic", "semiautomatic")
+
     var validarAction : Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -57,24 +60,24 @@ class AltaIndicadorFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         v = inflater.inflate(R.layout.fragment_alta_indicador, container, false)
-        inputID  = v.findViewById(R.id.inputAltaID)
+        inputID  = v.findViewById(R.id.showMeID)
         txtCheckResult = v.findViewById(R.id.textCheckResult)
-        btnCheckID = v.findViewById(R.id.btnAltaCheckID)
-        inputTitulo = v.findViewById(R.id.inputAltaTitulo)
-        inputDescripcion = v.findViewById(R.id.inputAltaDescripcion)
-        inputFormula = v.findViewById(R.id.inputAltaFormula)
-        spFrec = v.findViewById(R.id.spAltaFrecuencia)
-        txtFrec = ""
-        spCat = v.findViewById(R.id.spAltaCategoria)
-        txtCat = ""
-        inputCheck1 = v.findViewById(R.id.checkBox1)
-        inputCheck2 = v.findViewById(R.id.checkBox2)
-        inputCheck3 = v.findViewById(R.id.checkBox3)
-        inputCheck4 = v.findViewById(R.id.checkBox4)
-        inputCheck5 = v.findViewById(R.id.checkBox5)
-        inputCheck6 = v.findViewById(R.id.checkBox6)
-        btnConfirm = v.findViewById(R.id.btnAltaConfirmar)
-        btnLimpiar = v.findViewById(R.id.btnAltaLimpiar)
+        btnCheckID = v.findViewById(R.id.btnAltaCargarKpi)
+        inputTitulo = v.findViewById(R.id.inputTitulo)
+        inputDescripcion = v.findViewById(R.id.inputDescripcion)
+        inputFormula = v.findViewById(R.id.inputFormula)
+        spFrecuencia = v.findViewById(R.id.spFrecuencia)
+        txtFrecuencia = listaFrecuencia[0]
+        spCategoria = v.findViewById(R.id.spCategoria)
+        txtCategoria = listaCategoria[0]
+        spCalculationMethod = v.findViewById(R.id.spCalculationMethod)
+        txtCalculationMethod = listaCalculationMethod[0]
+        inputSource = v.findViewById(R.id.txtSource)
+        inputBusinessTarget = v.findViewById(R.id.inputTarget)
+        inputDateNextCalculation = v.findViewById(R.id.inputDateNextCalculation)
+        inputArea = v.findViewById(R.id.inputArea)
+        btnConfirm = v.findViewById(R.id.btnConfirmar)
+        btnLimpiar = v.findViewById(R.id.btnRestore)
 
         return v
     }
@@ -82,16 +85,28 @@ class AltaIndicadorFragment : Fragment() {
     override fun onStart() {
         super.onStart()
 
-        populateSpinner(spFrec,listaFrec,requireContext())
-        populateSpinner(spCat,listaCat,requireContext())
+        populateSpinner(spFrecuencia,listaFrecuencia,requireContext())
+        populateSpinner(spCategoria,listaCategoria,requireContext())
+        populateSpinner(spCalculationMethod,listaCalculationMethod,requireContext())
 
-        spFrec.setSelection(0, false) // evita la primer falsa entrada si existe validación
-        spCat.setSelection(0, false) // evita la primer falsa entrada si existe validación
+        spFrecuencia.setSelection(0, false) // evita la primer falsa entrada si existe validación
+        spCategoria.setSelection(0, false) // evita la primer falsa entrada si existe validación
+        spCalculationMethod.setSelection(0, false) // evita la primer falsa entrada si existe validación
 
-        spFrec.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+        spFrecuencia.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-                Snackbar.make(v, listaFrec[position], Snackbar.LENGTH_SHORT).show()
-                txtFrec = listaFrec[position]
+                Snackbar.make(v, listaFrecuencia[position], Snackbar.LENGTH_SHORT).show()
+                txtFrecuencia = listaFrecuencia[position]
+            }
+            override fun onNothingSelected(parent: AdapterView<*>) {
+                Snackbar.make(v, "No hay nada seleccionado", Snackbar.LENGTH_SHORT).show()
+            }
+        })
+
+        spCategoria.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+                Snackbar.make(v, listaCategoria[position], Snackbar.LENGTH_SHORT).show()
+                txtCategoria = listaCategoria[position]
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
@@ -99,14 +114,14 @@ class AltaIndicadorFragment : Fragment() {
             }
         })
 
-        spCat.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+        spCalculationMethod.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-                Snackbar.make(v, listaCat[position], Snackbar.LENGTH_SHORT).show()
-                txtCat = listaCat[position]
+                Snackbar.make(v, listaCalculationMethod[position], Snackbar.LENGTH_SHORT).show()
+                txtCalculationMethod = listaCalculationMethod[position]
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
-                Snackbar.make(v, "No hay nada seleccionado", Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(v, "Seleccione el método", Snackbar.LENGTH_SHORT).show()
             }
         })
 
@@ -134,57 +149,46 @@ class AltaIndicadorFragment : Fragment() {
                 validarAction = false
             }
             if(validarAction){
+                var anio = Calendar.getInstance().get(Calendar.YEAR)
+                var mes = Calendar.getInstance().get(Calendar.MONTH)
+                var dia = Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
+                var hora = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
+                println(hora.toString())
+
+                var calculationPeriodFrom : String = anio.toString()+"-"+mes.toString()+"-"+dia.toString()
+                var calculationPeriodTo : String = anio.toString()+"-"+mes.toString()+"-"+dia.toString()
+
                 // Aca se persiste en la BD
                 println("")
                 println("GRABANDO....")
-                println(inputID.text.toString())
-                println(inputTitulo.text)
-                println(inputDescripcion.text)
-                println(inputFormula.text)
-                println(txtFrec)
-                println(txtCat)
-
-                calculationMethod =""
-                source = ""
-                businessTarget = ""
-                dateNextCalculation =""
-                address = ""
-                area = ""
-
-                if(inputCheck1.isChecked) {
-                    println(inputCheck1.text)
-                    calculationMethod ="calculationMethod"
-                }
-                if(inputCheck2.isChecked) {
-                    println(inputCheck2.text)
-                    source = "source"
-                }
-                if(inputCheck3.isChecked) {
-                    println(inputCheck3.text)
-                    businessTarget = "businessTarget"
-                }
-                if(inputCheck4.isChecked) {
-                    println(inputCheck4.text)
-                    dateNextCalculation ="dateNextCalculation"
-                }
-                if(inputCheck5.isChecked) {
-                    println(inputCheck5.text)
-                    address = "address"
-                }
-                if(inputCheck6.isChecked) {
-                    println(inputCheck6.text)
-                    area = "area"
-                }
+                txtID = inputID.text.toString()
+                println(txtID)
+                txtTitulo = inputTitulo.text.toString()
+                println(txtTitulo)
+                txtDescripcion = inputDescripcion.text.toString()
+                println(txtDescripcion)
+                txtFormula = inputFormula.text.toString()
+                println(txtFormula)
+                println("Frec : " + txtFrecuencia)
+                println("Categ : " + txtCategoria)
+                println("Método : " + txtCalculationMethod)
+                println("From : " + calculationPeriodFrom)
+                println("To : " + calculationPeriodTo)
+                txtSource = inputSource.text.toString()
+                println(txtSource)
+                txtBusinessTarget = inputBusinessTarget.text.toString()
+                println(txtBusinessTarget)
+                txtDateNextCalculation = anio.toString()+"-"+mes.toString()+"-"+dia.toString()
+                println(txtDateNextCalculation)
+                txtArea = inputArea.text.toString()
+                println(txtArea)
 
                 var ocb = OCBUtils()
 
-                ocb.createKpi(inputID.text.toString(),txtCat,txtFrec,inputDescripcion.text.toString(),null,null,address!!,null,null,null,
-                calculationMethod!!,null,"Ciudades Futuras","kpiValue",inputTitulo.text.toString(),source!!,null,businessTarget!!,inputFormula.text.toString()!!,null,null, area!!)
+                ocb.createKpi(inputID.text.toString(),txtCategoria,txtFrecuencia,inputDescripcion.text.toString(),null,null,null,calculationPeriodFrom,calculationPeriodTo,txtDateNextCalculation,
+                        txtCalculationMethod!!,null,"Ciudades Futuras","",inputTitulo.text.toString(),txtSource!!,null,txtBusinessTarget!!,inputFormula.text.toString()!!,null,null, txtArea!!)
 
-                //TODO
-
-                //println("vuelvo a HOME")
-
+                // vuelvo a HOME
                  val action = AltaIndicadorFragmentDirections.actionAltaIndicadorFragmentToHomeFragment()
                  v.findNavController().navigate(action)
 
@@ -197,12 +201,6 @@ class AltaIndicadorFragment : Fragment() {
             inputTitulo.setText("")
             inputDescripcion.setText("")
             inputFormula.setText("")
-            inputCheck1.setChecked(false)
-            inputCheck2.setChecked(false)
-            inputCheck3.setChecked(false)
-            inputCheck4.setChecked(false)
-            inputCheck5.setChecked(false)
-            inputCheck6.setChecked(false)
             validarAction=true
         }
     }

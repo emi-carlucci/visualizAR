@@ -12,6 +12,7 @@ import android.widget.TextView
 import androidx.navigation.findNavController
 import com.google.android.material.snackbar.Snackbar
 import edu.ort.visualizar.R
+import edu.ort.visualizar.activities.MainActivity.Companion.ocbUtils
 import edu.ort.visualizar.models.*
 import edu.ort.visualizar.utils.DateUtils
 import edu.ort.visualizar.utils.OCBUtils
@@ -58,8 +59,8 @@ class AccionesIndicadorFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         v = inflater.inflate(R.layout.fragment_acciones_indicador, container, false)
@@ -74,8 +75,8 @@ class AccionesIndicadorFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        var ocb = OCBUtils()
-        var indicador : KpiModel? = ocb.getKpi("kpi-2016-Ciudad-containers-faults")
+        var indicador = AccionesIndicadorFragmentArgs.fromBundle(requireArguments()).indicador!!
+
         if (indicador !== null) {
             var parsedDate = DateUtils().parseDate(indicador.dateModified?.value.toString())
             tvIndicatorName.text = indicador!!.name!!.value.toString()
@@ -90,7 +91,7 @@ class AccionesIndicadorFragment : Fragment() {
                 var builder = AlertDialog.Builder(activity)
                 builder.setTitle(getString(R.string.confirm_delete))
                 builder.setPositiveButton(getString(R.string.delete), DialogInterface.OnClickListener { dialog, id ->
-                    var deleteOk : Boolean? = false //ocb.deleteKpi(indicador.id.toString())
+                    var deleteOk : Boolean? = ocbUtils.deleteKpi(indicador.id.toString())
                     dialog.cancel()
                     if (deleteOk != null && deleteOk){
                         val action =
