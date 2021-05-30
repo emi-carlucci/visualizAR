@@ -7,7 +7,7 @@ import java.util.*
 class DateUtils {
 
     private val inputPattern = "yyyy-MM-dd'T'HH:mm:ss.SSSX"
-    private val outputPattern = "dd-MM-yyyy hh:mm"
+    private val outputPattern = "dd-MM-yyyy hh:mm a"
 
     fun parseDate(dateString: String): String{
         val inFormat = SimpleDateFormat(inputPattern, Locale.getDefault())

@@ -1,5 +1,6 @@
 package edu.ort.visualizar.fragments
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,50 +11,40 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.navigation.findNavController
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import edu.ort.visualizar.R
+import edu.ort.visualizar.activities.MainActivity.Companion.ocbUtils
 import edu.ort.visualizar.models.KpiModel
-import edu.ort.visualizar.utils.OCBUtils
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [ActualizarValorFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class ActualizarValorFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    lateinit var indicador: KpiModel
+
     lateinit var v : View
+    lateinit var indicador: KpiModel
     lateinit var btnActualizarValor : Button
     lateinit var textViewUpdateIndicadorValorActualValue : TextView
     lateinit var textViewUpdateIndicadorName: TextView
     lateinit var editTextUpdateIndicadorNewValueInput: EditText
-    //private var param2: String? = null
+    lateinit var textViewFormualaIndicadorName: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         indicador = ActualizarValorFragmentArgs.fromBundle(requireArguments()).indicador!!
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
+    @SuppressLint("SetTextI18n")
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         v = inflater.inflate(R.layout.fragment_actualizar_valor_indicador, container, false)
         btnActualizarValor = v.findViewById(R.id.buttonUpdateIndicadorValue)
         textViewUpdateIndicadorValorActualValue = v.findViewById(R.id.textViewUpdateIndicadorValorActualValue)
         textViewUpdateIndicadorName = v.findViewById(R.id.textViewUpdateIndicadorName)
-        if (indicador !== null){
-            textViewUpdateIndicadorValorActualValue.setText(indicador!!.kpiValue!!.value.toString())
-            textViewUpdateIndicadorName.setText(indicador!!.name!!.value.toString())
-        }
         editTextUpdateIndicadorNewValueInput = v.findViewById(R.id.editTextUpdateIndicadorNewValueInput)
+        textViewFormualaIndicadorName = v.findViewById(R.id.textViewUpdateIndicadorFormula)
+        textViewUpdateIndicadorValorActualValue.text = indicador.kpiValue!!.value.toString()
+        textViewUpdateIndicadorName.text = indicador.name!!.value.toString()
+        if (indicador.calculationFormula != null){
+            textViewFormualaIndicadorName.text = indicador.calculationFormula!!.value.toString()
+        } else {
+            textViewFormualaIndicadorName.text = "No definida"
+        }
         return v
     }
 
@@ -61,7 +52,7 @@ class ActualizarValorFragment : Fragment() {
         super.onStart()
         btnActualizarValor.setOnClickListener{
             if (!isValidInput(editTextUpdateIndicadorNewValueInput.text.toString())) {
-                Toast.makeText(getActivity(), "Por favor ingrese un valor", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, "Por favor ingresá un valor", Toast.LENGTH_SHORT).show()
             } else {
                 saveNewValue(editTextUpdateIndicadorNewValueInput.text.toString())
                 redirectToHome()
@@ -70,13 +61,14 @@ class ActualizarValorFragment : Fragment() {
     }
 
     private fun saveNewValue(newValue: String) {
-        var ocbUtils = OCBUtils()
-        ocbUtils.updateKpiValue(indicador?.id.toString(), newValue)
+        ocbUtils.updateKpiValue(indicador.id.toString(), newValue)
     }
 
+    @SuppressLint("ResourceType")
     private fun redirectToHome(){
         val action = ActualizarValorFragmentDirections.actionActualizarValorFragmentToAccionesIndicadorFragment2(indicador)
         v.findNavController().navigate(action)
+        v.findNavController().popBackStack(R.id.actualizarValorFragment, true)
     }
 
     private fun isValidInput(input: String): Boolean {
