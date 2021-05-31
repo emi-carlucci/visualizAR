@@ -43,7 +43,7 @@ class ActualizarValorFragment : Fragment() {
         if (indicador.calculationFormula != null){
             textViewFormualaIndicadorName.text = indicador.calculationFormula!!.value.toString()
         } else {
-            textViewFormualaIndicadorName.text = "No definida"
+            textViewFormualaIndicadorName.text = "NO DEFINIDA"
         }
         return v
     }

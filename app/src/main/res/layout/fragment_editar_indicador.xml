@@ -30,18 +30,17 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/lato"
+                android:gravity="center_horizontal|center_vertical"
                 android:text="@string/formEditar"
                 android:textSize="24sp"
                 android:textStyle="bold"
-                android:flow_horizontalAlign="center"
-                android:flow_verticalAlign="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/txtFrecuencia"
-                android:layout_width="295dp"
+                android:layout_width="285dp"
                 android:layout_height="39dp"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/lato"
@@ -69,7 +68,7 @@
 
             <TextView
                 android:id="@+id/txtCategoria"
-                android:layout_width="295dp"
+                android:layout_width="285dp"
                 android:layout_height="39dp"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/lato"
@@ -82,7 +81,7 @@
 
             <TextView
                 android:id="@+id/txtMetodo"
-                android:layout_width="295dp"
+                android:layout_width="285dp"
                 android:layout_height="39dp"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/lato"
@@ -187,7 +186,7 @@
 
             <TextView
                 android:id="@+id/organizationTextView"
-                android:layout_width="295dp"
+                android:layout_width="285dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="@string/editOrganization"
@@ -211,7 +210,7 @@
 
             <TextView
                 android:id="@+id/descriptionTextView"
-                android:layout_width="295dp"
+                android:layout_width="285dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="@string/editDescription"
@@ -235,7 +234,7 @@
 
             <TextView
                 android:id="@+id/txtCurrentStanding"
-                android:layout_width="295dp"
+                android:layout_width="285dp"
                 android:layout_height="39dp"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/lato"
@@ -263,7 +262,7 @@
 
             <TextView
                 android:id="@+id/localityTextView"
-                android:layout_width="295dp"
+                android:layout_width="285dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="@string/editLocality"
@@ -287,7 +286,7 @@
 
             <TextView
                 android:id="@+id/countryTextView"
-                android:layout_width="295dp"
+                android:layout_width="285dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="@string/editCountry"
@@ -311,7 +310,7 @@
 
             <TextView
                 android:id="@+id/calculatedPeriodFromTextView"
-                android:layout_width="295dp"
+                android:layout_width="285dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="@string/calculationPeriodFrom"
@@ -335,7 +334,7 @@
 
             <TextView
                 android:id="@+id/calculatedPeriodToTextView"
-                android:layout_width="295dp"
+                android:layout_width="285dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="@string/calculationPeriodTo"
@@ -359,7 +358,7 @@
 
             <TextView
                 android:id="@+id/nextCalculationDateTextView"
-                android:layout_width="295dp"
+                android:layout_width="285dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="@string/nextCalculationDate"
@@ -383,7 +382,7 @@
 
             <TextView
                 android:id="@+id/providerTextView"
-                android:layout_width="295dp"
+                android:layout_width="285dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="@string/editProvider"
@@ -407,7 +406,7 @@
 
             <TextView
                 android:id="@+id/nameTextView"
-                android:layout_width="295dp"
+                android:layout_width="285dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="@string/editName"
@@ -431,7 +430,7 @@
 
             <TextView
                 android:id="@+id/sourceTextView"
-                android:layout_width="295dp"
+                android:layout_width="285dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="@string/editSource"
@@ -455,7 +454,7 @@
 
             <TextView
                 android:id="@+id/processTextView"
-                android:layout_width="295dp"
+                android:layout_width="285dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="@string/editProduct"
@@ -479,7 +478,7 @@
 
             <TextView
                 android:id="@+id/businessTargetTextView"
-                android:layout_width="295dp"
+                android:layout_width="285dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="@string/editBusinessTarget"
@@ -503,7 +502,7 @@
 
             <TextView
                 android:id="@+id/calculationFormulaTextView"
-                android:layout_width="295dp"
+                android:layout_width="285dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="@string/editCalculationMethod"
@@ -527,7 +526,7 @@
 
             <TextView
                 android:id="@+id/updateExpiresTextView"
-                android:layout_width="295dp"
+                android:layout_width="285dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="@string/editExpirationDate"
@@ -551,7 +550,7 @@
 
             <TextView
                 android:id="@+id/areaTextView"
-                android:layout_width="295dp"
+                android:layout_width="285dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="@string/editArea"

@@ -12,7 +12,9 @@ import androidx.annotation.RequiresApi
 import androidx.navigation.findNavController
 import edu.ort.visualizar.R
 import com.google.android.material.snackbar.Snackbar
+import edu.ort.visualizar.activities.MainActivity.Companion.ocbUtils
 import edu.ort.visualizar.models.KpiModel
+import edu.ort.visualizar.utils.DateUtils
 
 
 class EditarIndicadorFragment : Fragment() {
@@ -45,8 +47,8 @@ class EditarIndicadorFragment : Fragment() {
     lateinit var btnConfirm : Button
     lateinit var btnRestore : Button
     lateinit var indicator: KpiModel
-    private var validateAction : Boolean = true
     private val notDefinedText : String = "NO DEFINIDO"
+    private val dateUtils = DateUtils()
     var frequencyList = listOf("hourly", "daily", "weekly", "monthly", "yearly", "quarterly", "bimonthly", "biweekly")
     var categoryList = listOf("quantitative", "qualitative", "leading", "lagging", "input", "process", "output", "practical", "directional", "actionable", "financial")
     var calculationMethodList = listOf("manual", "automatic", "semiautomatic")
@@ -88,19 +90,8 @@ class EditarIndicadorFragment : Fragment() {
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onStart() {
         super.onStart()
-        populateSpinner(spFrequency, frequencyList, requireContext())
-        populateSpinner(spCategory, categoryList, requireContext())
-        populateSpinner(spCalculationMethod, calculationMethodList, requireContext())
-        populateSpinner(spStatus, currentStandingList, requireContext())
-
-        spFrequency.setSelection(0, false)
-        spCategory.setSelection(0, false)
-        spCalculationMethod.setSelection(0, false)
-        spStatus.setSelection(0, false)
-
         spFrequency.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-                Snackbar.make(view, frequencyList[position], Snackbar.LENGTH_SHORT).show()
                 txtFrequency = frequencyList[position]
             }
             override fun onNothingSelected(parent: AdapterView<*>) {
@@ -109,7 +100,6 @@ class EditarIndicadorFragment : Fragment() {
         }
         spCategory.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-                Snackbar.make(view, categoryList[position], Snackbar.LENGTH_SHORT).show()
                 txtCategory = categoryList[position]
             }
             override fun onNothingSelected(parent: AdapterView<*>) {
@@ -118,7 +108,6 @@ class EditarIndicadorFragment : Fragment() {
         }
         spCalculationMethod.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-                Snackbar.make(view, calculationMethodList[position], Snackbar.LENGTH_SHORT).show()
                 txtCalculationMethod = calculationMethodList[position]
             }
             override fun onNothingSelected(parent: AdapterView<*>) {
@@ -127,7 +116,6 @@ class EditarIndicadorFragment : Fragment() {
         }
         spStatus.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-                Snackbar.make(view, currentStandingList[position], Snackbar.LENGTH_SHORT).show()
                 txtStatus = currentStandingList[position]
             }
             override fun onNothingSelected(parent: AdapterView<*>) {
@@ -138,40 +126,271 @@ class EditarIndicadorFragment : Fragment() {
             fillForm(indicator)
         }
         btnConfirm.setOnClickListener{
-            if(inputOrganization.text.toString() == "") {
-                Snackbar.make(v, "Ingresá la organización", Snackbar.LENGTH_SHORT).show()
-                validateAction = false
+            if (isFormValid()) {
+                resetFormErrors()
+                updateInOcb()
+                redirectToHome()
             }
-            if(inputName.text.toString() == "") {
-                Snackbar.make(v, "Ingresá el nombre", Snackbar.LENGTH_SHORT).show()
-                validateAction = false
-            }
-            if(inputDescription.text.toString() == ""){
-                Snackbar.make(v, "Ingresá la descripción", Snackbar.LENGTH_SHORT).show()
-                validateAction = false
-            }
-            if(inputCalculationFormula.text.toString() == ""){
-                Snackbar.make(v, "Ingresá la fórmula de cálculo", Snackbar.LENGTH_SHORT).show()
-                validateAction = false
-            }
-            if (validateAction) {
-//                ocbUtils.updateKpi(txtId.text.toString(),txtCategoria,txtFrecuencia,inputDescripcion.text.toString(),null,null,null,calculationPeriodFrom,calculationPeriodTo,txtdateNextCalculation,
-//                        txtCalculationMethod!!,null,inputOrganization.text.toString()!!,inputTitulo.text.toString(),txtSource!!,null,txtBusinessTarget!!,inputFormula.text.toString()!!,null,updateAt,txtArea!!)
-                val action = EditarIndicadorFragmentDirections.actionEditarIndicadorFragmentToAccionesIndicadorFragment(indicator)
-                v.findNavController().navigate(action)
-            }
-            validateAction = true
         }
     }
 
-    private fun populateSpinner (spinner: Spinner, list : List<String>, context : Context)
-    {
+    private fun redirectToHome(){
+        val action = EditarIndicadorFragmentDirections.actionEditarIndicadorFragmentToAccionesIndicadorFragment(indicator)
+        v.findNavController().navigate(action)
+        v.findNavController().popBackStack(R.id.editarIndicadorFragment, true)
+    }
+
+    private fun updateInOcb() {
+        var localInputOrganization : String? = null
+        var localInputDescription : String? = null
+        var localInputLocality : String? = null
+        var localInputCountry : String? = null
+        var localInputCalculationPeriodFrom : String? = null
+        var localInputCalculationPeriodTo : String? = null
+        var localInputNextCalculationDate : String? = null
+        var localInputProvider : String? = null
+        var localInputName : String? = null
+        var localInputSource : String? = null
+        var localInputProduct : String? = null
+        var localInputBusinessTarget : String? = null
+        var localInputCalculationFormula : String? = null
+        var localInputExpirationDate : String? = null
+        var localInputArea : String? = null
+        var localInputTxtFrequency : String? = null
+        var localInputTxtCategory : String? = null
+        var localInputTxtCalculationMethod : String? = null
+        var localInputTxtStatus : String? = null
+
+        if (indicator.category != null) {
+            localInputTxtCategory = txtCategory
+        }
+        if (indicator.calculationFrequency != null) {
+            localInputTxtFrequency = txtFrequency
+        }
+        if (indicator.description != null) {
+            localInputDescription = inputDescription.text.toString()
+        }
+        if (indicator.currentStanding != null) {
+            localInputTxtStatus = txtStatus
+        }
+        if (indicator.address != null) {
+            localInputLocality = inputLocality.text.toString()
+            localInputCountry = inputCountry.text.toString()
+        }
+        if (indicator.calculationPeriod != null) {
+            localInputCalculationPeriodFrom = inputCalculationPeriodFrom.text.toString()
+            localInputCalculationPeriodTo = inputCalculationPeriodTo.text.toString()
+        }
+        if (indicator.dateNextCalculation != null) {
+            localInputNextCalculationDate = inputNextCalculationDate.text.toString()
+        }
+        if (indicator.calculationMethod != null) {
+            localInputTxtCalculationMethod = txtCalculationMethod
+        }
+        if (indicator.provider != null) {
+            localInputProvider = inputProvider.text.toString()
+        }
+        if (indicator.organization != null) {
+            localInputOrganization = inputOrganization.text.toString()
+        }
+        if (indicator.name != null) {
+            localInputName = inputName.text.toString()
+        }
+        if (indicator.source != null) {
+            localInputSource = inputSource.text.toString()
+        }
+        if (indicator.process != null) {
+            localInputProduct = inputProduct.text.toString()
+        }
+        if (indicator.businessTarget != null) {
+            localInputBusinessTarget = inputBusinessTarget.text.toString()
+        }
+        if (indicator.calculationFormula != null) {
+            localInputCalculationFormula = inputCalculationFormula.text.toString()
+        }
+        if (indicator.dateExpires != null) {
+            localInputExpirationDate = inputExpirationDate.text.toString()
+        }
+        if (indicator.area != null) {
+            localInputArea = inputArea.text.toString()
+        }
+        ocbUtils.updateKpi(
+                indicator.id.toString(),
+                localInputTxtCategory,
+                localInputTxtFrequency,
+                localInputDescription,
+                localInputTxtStatus,
+                localInputLocality,
+                localInputCountry,
+                localInputCalculationPeriodFrom,
+                localInputCalculationPeriodTo,
+                localInputNextCalculationDate,
+                localInputTxtCalculationMethod,
+                localInputProvider,
+                localInputOrganization,
+                localInputName,
+                localInputSource,
+                localInputProduct,
+                localInputBusinessTarget,
+                localInputCalculationFormula,
+                localInputExpirationDate,
+                null,
+                localInputArea)
+    }
+
+    private fun isFormValid(): Boolean {
+        var isValid = true
+        if (inputOrganization.text.toString().isEmpty()) {
+            inputOrganization.error = "Por favor, completá el campo"
+            isValid = false
+        }
+        if (inputDescription.text.toString().isEmpty()) {
+            inputDescription.error = "Por favor, completá el campo"
+            isValid = false
+        }
+        if (inputLocality.text.toString().isEmpty()) {
+            inputLocality.error = "Por favor, completá el campo"
+            isValid = false
+        }
+        if (inputCountry.text.toString().isEmpty()) {
+            inputCountry.error = "Por favor, completá el campo"
+            isValid = false
+        }
+        if (inputCalculationPeriodFrom.text.toString().isEmpty()) {
+            inputCalculationPeriodFrom.error = "Por favor, completá el campo"
+            isValid = false
+        } else {
+            if ((!dateUtils.isValidFormat(inputCalculationPeriodFrom.text.toString())) && (inputCalculationPeriodFrom.text.toString() != notDefinedText)) {
+                inputCalculationPeriodFrom.error = "El formato debe ser AAAA-MM-DD"
+                isValid = false
+            }
+        }
+        if (inputCalculationPeriodTo.text.toString().isEmpty()) {
+            inputCalculationPeriodTo.error = "Por favor, completá el campo"
+            isValid = false
+        } else {
+            if ((!dateUtils.isValidFormat(inputCalculationPeriodTo.text.toString())) && (inputCalculationPeriodTo.text.toString() != notDefinedText)) {
+                inputCalculationPeriodTo.error = "El formato debe ser AAAA-MM-DD"
+                isValid = false
+            }
+        }
+        if (inputNextCalculationDate.text.toString().isEmpty()) {
+            inputNextCalculationDate.error = "Por favor, completá el campo"
+            isValid = false
+        } else {
+            if ((!dateUtils.isValidFormat(inputNextCalculationDate.text.toString())) && (inputNextCalculationDate.text.toString() != notDefinedText)) {
+                inputNextCalculationDate.error = "El formato debe ser AAAA-MM-DD"
+                isValid = false
+            }
+        }
+        if (inputProvider.text.toString().isEmpty()) {
+            inputProvider.error = "Por favor, completá el campo"
+            isValid = false
+        }
+        if (inputName.text.toString().isEmpty()) {
+            inputName.error = "Por favor, completá el campo"
+            isValid = false
+        }
+        if (inputSource.text.toString().isEmpty()) {
+            inputSource.error = "Por favor, completá el campo"
+            isValid = false
+        }
+        if (inputProduct.text.toString().isEmpty()) {
+            inputProduct.error = "Por favor, completá el campo"
+            isValid = false
+        }
+        if (inputBusinessTarget.text.toString().isEmpty()) {
+            inputBusinessTarget.error = "Por favor, completá el campo"
+            isValid = false
+        }
+        if (inputCalculationFormula.text.toString().isEmpty()) {
+            inputCalculationFormula.error = "Por favor, completá el campo"
+            isValid = false
+        }
+        if (inputExpirationDate.text.toString().isEmpty()) {
+            inputExpirationDate.error = "Por favor, completá el campo"
+            isValid = false
+        } else {
+            if ((!dateUtils.isValidFormat(inputExpirationDate.text.toString())) && (inputExpirationDate.text.toString() != notDefinedText)) {
+                inputExpirationDate.error = "El formato debe ser AAAA-MM-DD"
+                isValid = false
+            }
+        }
+        if (inputArea.text.toString().isEmpty()) {
+            inputArea.error = "Por favor, completá el campo"
+            isValid = false
+        }
+        return isValid
+    }
+
+    private fun resetFormErrors() {
+        inputOrganization.error = null
+        inputDescription.error = null
+        inputLocality.error = null
+        inputCountry.error = null
+        inputCalculationPeriodFrom.error = null
+        inputCalculationPeriodTo.error = null
+        inputNextCalculationDate.error = null
+        inputProvider.error = null
+        inputName.error = null
+        inputSource.error = null
+        inputProduct.error = null
+        inputBusinessTarget.error = null
+        inputCalculationFormula.error = null
+        inputExpirationDate.error = null
+        inputArea.error = null
+    }
+
+    private fun populateSpinner (spinner: Spinner, list : List<String>, context : Context) {
         val adapter = ArrayAdapter(context,android.R.layout.simple_spinner_item, list)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner.adapter = adapter
     }
 
+    private fun getSpinnerPosition (list: String, value: String): Int {
+        var position = 0
+        if (list == "frequencyList") {
+            frequencyList.forEachIndexed { index, element ->
+                if (element == value){
+                    position = index
+                }
+            }
+        } else {
+            if (list == "categoryList") {
+                categoryList.forEachIndexed { index, element ->
+                    if (element == value){
+                        position = index
+                    }
+                }
+            } else {
+                if (list == "calculationMethodList") {
+                    calculationMethodList.forEachIndexed { index, element ->
+                        if (element == value){
+                            position = index
+                        }
+                    }
+                } else {
+                    if (list == "currentStandingList") {
+                        currentStandingList.forEachIndexed { index, element ->
+                            if (element == value){
+                                position = index
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return position
+    }
+
     private fun fillForm(kpiIndicator : KpiModel) {
+        populateSpinner(spFrequency, frequencyList, requireContext())
+        populateSpinner(spCategory, categoryList, requireContext())
+        populateSpinner(spCalculationMethod, calculationMethodList, requireContext())
+        populateSpinner(spStatus, currentStandingList, requireContext())
+
+        resetFormErrors()
+
         if (kpiIndicator.id == null){
             txtId.text = notDefinedText
         } else {
@@ -179,25 +398,31 @@ class EditarIndicadorFragment : Fragment() {
         }
         if (kpiIndicator.organization == null){
             inputOrganization.setText(notDefinedText)
+            inputOrganization.isEnabled = false
         } else {
-            inputOrganization.setText(kpiIndicator.organization!!.value.toString())
+            inputOrganization.setText(kpiIndicator.organization!!.value?.name.toString())
         }
         if (kpiIndicator.description == null){
             inputDescription.setText(notDefinedText)
+            inputDescription.isEnabled = false
         } else {
             inputDescription.setText(kpiIndicator.description!!.value.toString())
         }
         if (kpiIndicator.address == null){
             inputLocality.setText(notDefinedText)
             inputCountry.setText(notDefinedText)
+            inputLocality.isEnabled = false
+            inputCountry.isEnabled = false
         } else {
             if (kpiIndicator.address!!.value?.addressLocality == null){
                 inputLocality.setText(notDefinedText)
+                inputLocality.isEnabled = false
             } else {
                 inputLocality.setText(kpiIndicator.address!!.value?.addressLocality.toString())
             }
             if (kpiIndicator.address!!.value?.addressCountry == null){
                 inputCountry.setText(notDefinedText)
+                inputCountry.isEnabled = false
             } else {
                 inputCountry.setText(kpiIndicator.address!!.value?.addressCountry.toString())
             }
@@ -205,82 +430,112 @@ class EditarIndicadorFragment : Fragment() {
         if (kpiIndicator.calculationPeriod == null){
             inputCalculationPeriodFrom.setText(notDefinedText)
             inputCalculationPeriodTo.setText(notDefinedText)
+            inputCalculationPeriodFrom.isEnabled = false
+            inputCalculationPeriodTo.isEnabled = false
         } else {
             if (kpiIndicator.calculationPeriod!!.value?.from == null){
                 inputCalculationPeriodFrom.setText(notDefinedText)
+                inputCalculationPeriodFrom.isEnabled = false
             } else {
-                inputCalculationPeriodFrom.setText(kpiIndicator.calculationPeriod!!.value?.from.toString())
+                val parsedCalculationPeriodFrom = (kpiIndicator.calculationPeriod!!.value?.from.toString()).split("T")
+                inputCalculationPeriodFrom.setText(parsedCalculationPeriodFrom[0])
             }
             if (kpiIndicator.calculationPeriod!!.value?.to == null){
                 inputCalculationPeriodTo.setText(notDefinedText)
+                inputCalculationPeriodTo.isEnabled = false
             } else {
-                inputCalculationPeriodTo.setText(kpiIndicator.calculationPeriod!!.value?.to.toString())
+                val parsedCalculationPeriodTo = (kpiIndicator.calculationPeriod!!.value?.to.toString()).split("T")
+                inputCalculationPeriodTo.setText(parsedCalculationPeriodTo[0])
             }
         }
         if (kpiIndicator.dateNextCalculation == null){
             inputNextCalculationDate.setText(notDefinedText)
+            inputNextCalculationDate.isEnabled = false
         } else {
-            inputNextCalculationDate.setText(kpiIndicator.dateNextCalculation!!.value.toString())
+            val parsedNextCalculationDate = (kpiIndicator.dateNextCalculation!!.value.toString()).split("T")
+            inputNextCalculationDate.setText(parsedNextCalculationDate[0])
         }
         if (kpiIndicator.provider == null){
             inputProvider.setText(notDefinedText)
+            inputProvider.isEnabled = false
         } else {
             inputProvider.setText(kpiIndicator.provider!!.value?.name.toString())
         }
         if (kpiIndicator.name == null){
             inputName.setText(notDefinedText)
+            inputName.isEnabled = false
         } else {
             inputName.setText(kpiIndicator.name!!.value.toString())
         }
         if (kpiIndicator.source == null){
             inputSource.setText(notDefinedText)
+            inputSource.isEnabled = false
         } else {
             inputSource.setText(kpiIndicator.source!!.value.toString())
         }
         if (kpiIndicator.process == null){
             inputProduct.setText(notDefinedText)
+            inputProduct.isEnabled = false
         } else {
             inputProduct.setText(kpiIndicator.process!!.value.toString())
         }
         if (kpiIndicator.businessTarget == null){
             inputBusinessTarget.setText(notDefinedText)
+            inputBusinessTarget.isEnabled = false
         } else {
             inputBusinessTarget.setText(kpiIndicator.businessTarget!!.value.toString())
         }
         if (kpiIndicator.calculationFormula == null){
             inputCalculationFormula.setText(notDefinedText)
+            inputCalculationFormula.isEnabled = false
         } else {
             inputCalculationFormula.setText(kpiIndicator.calculationFormula!!.value.toString())
         }
         if (kpiIndicator.dateExpires == null){
             inputExpirationDate.setText(notDefinedText)
+            inputExpirationDate.isEnabled = false
         } else {
-            inputExpirationDate.setText(kpiIndicator.dateExpires!!.value.toString())
+            val parsedExpirationDate = (kpiIndicator.dateExpires!!.value.toString()).split("T")
+            inputExpirationDate.setText(parsedExpirationDate[0])
         }
         if (kpiIndicator.area == null){
             inputArea.setText(notDefinedText)
+            inputArea.isEnabled = false
         } else {
             inputArea.setText(kpiIndicator.area!!.value.toString())
         }
-        txtFrequency = if (kpiIndicator.calculationFrequency == null){
-            notDefinedText
+        if (kpiIndicator.calculationFrequency == null){
+            spFrequency.setSelection(0, false)
+            spFrequency.isEnabled = false
         } else {
-            kpiIndicator.calculationFrequency!!.value.toString()
+            val posFrequency = getSpinnerPosition("frequencyList", kpiIndicator.calculationFrequency!!.value.toString())
+            spFrequency.setSelection(posFrequency, false)
         }
-        txtCategory = if (kpiIndicator.category == null){
-            notDefinedText
+        if (kpiIndicator.category == null){
+            spCategory.setSelection(0, false)
+            spCategory.isEnabled = false
         } else {
-            kpiIndicator.category!!.value?.get(0) ?: notDefinedText
+            val posCategory = kpiIndicator.category!!.value?.get(0)?.let { getSpinnerPosition("categoryList", it) }
+            if (posCategory != null) {
+                spCategory.setSelection(posCategory, false)
+            } else {
+                spCategory.setSelection(0, false)
+                spCategory.isEnabled = false
+            }
         }
-        txtCalculationMethod = if (kpiIndicator.calculationMethod == null){
-            notDefinedText
+        if (kpiIndicator.calculationMethod == null){
+            spCalculationMethod.setSelection(0, false)
+            spCalculationMethod.isEnabled = false
         } else {
-            kpiIndicator.calculationMethod!!.value.toString()
+            val posCalculationMethod = getSpinnerPosition("calculationMethodList", kpiIndicator.calculationMethod!!.value.toString())
+            spCalculationMethod.setSelection(posCalculationMethod, false)
         }
-        txtStatus = if (kpiIndicator.currentStanding == null){
-            notDefinedText
+        if (kpiIndicator.currentStanding == null){
+            spStatus.setSelection(0, false)
+            spStatus.isEnabled = false
         } else {
-            kpiIndicator.currentStanding!!.value.toString()
+            val posStatus = getSpinnerPosition("currentStandingList", kpiIndicator.currentStanding!!.value.toString())
+            spStatus.setSelection(posStatus, false)
         }
     }
 }
