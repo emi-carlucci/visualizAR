@@ -44,7 +44,7 @@
         android:id="@+id/tvAccionesTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:fontFamily="@font/lato_bold"
         android:text="@string/indicators_admin_title"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
@@ -58,10 +58,10 @@
         android:id="@+id/tvAccionesIndicatorName"
         android:layout_width="wrap_content"
         android:layout_height="20dp"
-        android:layout_marginTop="10dp"
         android:fontFamily="@font/lato"
         android:textAllCaps="true"
-        android:textSize="18sp"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -75,7 +75,6 @@
         android:layout_marginLeft="70dp"
         android:layout_marginEnd="70dp"
         android:layout_marginRight="70dp"
-        android:fontFamily="@font/lato"
         android:text="@string/indicators_admin_btn_edit"
         android:textAllCaps="false"
         app:layout_constraintBottom_toTopOf="@+id/btnAccionesDeleteIndicator"
@@ -114,6 +113,7 @@
         android:layout_marginEnd="30dp"
         android:layout_marginRight="30dp"
         android:text="@string/indicators_admin_view_more"
+        android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/guideline6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -141,7 +141,7 @@
         android:fontFamily="@font/lato_bold"
         android:textAllCaps="true"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        android:textSize="36sp"
+        android:textSize="42sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -166,13 +166,15 @@
         android:id="@+id/ivAccionesInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="7dp"
+        android:layout_marginRight="7dp"
+        android:foregroundGravity="center"
         android:src="@android:drawable/ic_dialog_info"
-        android:tint="#3F51B5"
         app:layout_constraintBottom_toBottomOf="@+id/tvAccionesLastUpdateDate"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toTopOf="@+id/tvAccionesLastUpdateLabel" />
+        app:layout_constraintEnd_toStartOf="@+id/tvAccionesLastUpdateLabel"
+        app:layout_constraintTop_toTopOf="@+id/tvAccionesLastUpdateLabel"
+        app:layout_constraintVertical_bias="0.142"
+        app:tint="#3F51B5" />
 
     <TextView
         android:id="@+id/tvAccionesLastUpdateLabel"
@@ -181,9 +183,9 @@
         android:text="@string/indicators_admin_last_update"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
-        app:layout_constraintStart_toEndOf="@+id/ivAccionesInfo"
-        app:layout_constraintTop_toBottomOf="@+id/btnAccionesUpdateValue" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnAccionesUpdateValue"
+        app:layout_constraintVertical_bias="0.506" />
 
     <TextView
         android:id="@+id/tvAccionesLastUpdateDate"
@@ -191,8 +193,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvAccionesLastUpdateLabel"
         app:layout_constraintVertical_bias="0.0" />
 

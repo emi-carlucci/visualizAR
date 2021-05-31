@@ -37,5 +37,4 @@ class IndicadorSearchListContainerFragment(kpiId : String) : Fragment() {
             transaction.replace(R.id.fragment_indicador_list_placeholder, IndicadorEmptyListFragment()).commit()
         }
     }
-
 }
