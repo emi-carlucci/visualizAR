@@ -218,7 +218,7 @@
             <EditText
                 android:id="@+id/txtSource"
                 android:layout_width="300dp"
-                android:layout_height="50dp"
+                android:layout_height="55dp"
                 android:layout_marginBottom="20dp"
                 android:ems="10"
                 android:fontFamily="@font/lato"
@@ -233,7 +233,7 @@
             <EditText
                 android:id="@+id/inputTarget"
                 android:layout_width="300dp"
-                android:layout_height="50dp"
+                android:layout_height="55dp"
                 android:layout_marginBottom="20dp"
                 android:ems="10"
                 android:fontFamily="@font/lato"
@@ -248,7 +248,7 @@
             <EditText
                 android:id="@+id/inputDateNextCalculation"
                 android:layout_width="300dp"
-                android:layout_height="50dp"
+                android:layout_height="55dp"
                 android:layout_marginBottom="20dp"
                 android:ems="10"
                 android:fontFamily="@font/lato"
@@ -263,7 +263,7 @@
             <EditText
                 android:id="@+id/inputArea"
                 android:layout_width="300dp"
-                android:layout_height="50dp"
+                android:layout_height="55dp"
                 android:layout_marginBottom="20dp"
                 android:ems="10"
                 android:fontFamily="@font/lato"
