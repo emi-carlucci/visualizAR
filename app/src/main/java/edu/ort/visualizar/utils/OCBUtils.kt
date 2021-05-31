@@ -81,13 +81,12 @@ class OCBUtils {
         if (description != null) descriptionValue = Description(description)
         if (currentStanding != null) currentStandingValue = CurrentStanding(currentStanding)
         if (calculationMethod != null) calculationMethodValue = CalculationMethod(calculationMethod)
-        if (kpiValue != null) kpiValueValue = KpiValue(kpiValue)
+        if (kpiValue != null) kpiValueValue = KpiValue(convertStringToFloat(kpiValue))
         if (name != null) nameValue = Name(name)
         if (source != null) sourceValue = Source(source)
         if (process != null) processValue = Process(process)
         if (businessTarget != null) businessTargetValue = BusinessTarget(businessTarget)
         if (calculationFormula != null) calculationFormulaValue = CalculationFormula(calculationFormula)
-        if (dateExpires != null) dateExpiresValue = DateExpires(dateExpires)
         if (updatedAt != null) updatedAtValue = UpdatedAt(updatedAt)
         if (area != null) areaValue = Area(area)
         if (provider != null) {
@@ -105,6 +104,11 @@ class OCBUtils {
         if (calculationPeriodFrom != null && calculationPeriodTo != null) {
             val calculationPeriodData = CalculationPeriodValue(calculationPeriodTo, calculationPeriodFrom)
             calculationPeriodValue = CalculationPeriod(calculationPeriodData)
+        }
+        if (dateExpires != null) {
+            var dateExpiresType: String? = null
+            if (!onlyUpdate) dateExpiresType = "DateTime"
+            dateExpiresValue = DateExpires(dateExpiresType, dateExpires)
         }
         if (dateNextCalculation != null) {
             var dateNextCalculationType: String? = null
@@ -138,6 +142,14 @@ class OCBUtils {
         return kpiList
     }
 
+    fun convertStringToFloat(value: String): Double? {
+        return try {
+            value.toDouble()
+        } catch (ex: Exception) {
+            0.0
+        }
+    }
+
     fun getKpi(id: String): KpiModel? {
         var kpi: KpiModel? = null
         val getKpiUrl = "$url/$id?options=dateModified,dateCreated"
@@ -156,7 +168,7 @@ class OCBUtils {
     fun updateKpiValue(id: String, value: String): Boolean? {
         var result = false
         val updateKpiValueUrl = "$url/$id/attrs"
-        val kpiValueModel = KpiValue(value)
+        val kpiValueModel = KpiValue(convertStringToFloat(value))
         val updateKpiValueModel = KpiModel(kpiValue = kpiValueModel)
         val response = makeRequest(updateKpiValueUrl, patchMethod, updateKpiValueModel)
         if (response != null && response == "") result = true

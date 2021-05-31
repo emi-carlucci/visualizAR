@@ -95,7 +95,7 @@ data class OrganizationValue (
 ): Serializable
 
 data class KpiValue (
-        var value: String?
+        var value: Double?
 ): Serializable
 
 data class Name (
@@ -123,6 +123,7 @@ data class DateCreated (
 ): Serializable
 
 data class DateExpires (
+        var type: String?,
         var value: String?
 ): Serializable
 
