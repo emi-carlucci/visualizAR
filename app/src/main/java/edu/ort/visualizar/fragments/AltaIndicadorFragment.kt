@@ -1,6 +1,8 @@
 package edu.ort.visualizar.fragments
 
+import android.annotation.SuppressLint
 import android.content.Context
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -33,6 +35,7 @@ class AltaIndicadorFragment : Fragment() {
     lateinit var inputExpirationDate : EditText
     lateinit var inputValue : EditText
     lateinit var inputArea : EditText
+    lateinit var idExistError : TextView
     lateinit var spCalculationMethod : Spinner
     lateinit var spFrequency : Spinner
     lateinit var spCategory : Spinner
@@ -79,9 +82,12 @@ class AltaIndicadorFragment : Fragment() {
         txtStatus = currentStandingList[0]
         btnConfirm = v.findViewById(R.id.btnConfirmarNew)
         btnRestore = v.findViewById(R.id.btnRestoreNew)
+        btnCheckID = v.findViewById(R.id.btnAltaCargarKpiNew)
+        idExistError = v.findViewById(R.id.textCheckResultNew)
         return v
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onStart() {
         super.onStart()
 
@@ -93,7 +99,9 @@ class AltaIndicadorFragment : Fragment() {
         spCategory.setSelection(0, false)
         spCalculationMethod.setSelection(0, false)
         spStatus.setSelection(0, false)
-        btnCheckID.visibility = View.INVISIBLE
+        idExistError.text = "El ID ya existe"
+        idExistError.setTextColor(Color.RED)
+        idExistError.visibility = View.INVISIBLE
 
         spFrequency.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
@@ -273,8 +281,11 @@ class AltaIndicadorFragment : Fragment() {
         spinner.adapter = adapter
     }
 
+    @SuppressLint("SetTextI18n")
     private fun resetForm() {
-        btnCheckID.visibility = View.INVISIBLE
+        idExistError.text = "El ID ya existe"
+        idExistError.setTextColor(Color.RED)
+        idExistError.visibility = View.INVISIBLE
         spFrequency.setSelection(0, false)
         spCategory.setSelection(0, false)
         spCalculationMethod.setSelection(0, false)
@@ -321,9 +332,12 @@ class AltaIndicadorFragment : Fragment() {
         v.findNavController().popBackStack(R.id.altaIndicadorFragment, true)
     }
 
+    @SuppressLint("SetTextI18n")
     private fun validateId() : Boolean {
         var result = true
-        btnCheckID.visibility = View.INVISIBLE
+        idExistError.text = "El ID ya existe"
+        idExistError.setTextColor(Color.RED)
+        idExistError.visibility = View.INVISIBLE
         txtId.error = null
         if (txtId.text.toString().isEmpty()){
             result = false
@@ -331,8 +345,12 @@ class AltaIndicadorFragment : Fragment() {
         } else {
             val getKpi = ocbUtils.getKpi(txtId.text.toString())
             if (getKpi != null) {
-                btnCheckID.visibility = View.VISIBLE
+                idExistError.visibility = View.VISIBLE
                 result = false
+            } else {
+                idExistError.text = "ID válido"
+                idExistError.setTextColor(Color.GREEN)
+                idExistError.visibility = View.VISIBLE
             }
         }
         return result
