@@ -51,7 +51,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/txtCurrentStanding" />
 
             <Spinner
-                android:id="@+id/spFrecuenciaNew"
+                android:id="@+id/spFrecuencia"
                 android:layout_width="200dp"
                 android:layout_height="42dp"
                 android:layout_marginBottom="8dp"
@@ -92,7 +92,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/txtCategoria" />
 
             <Spinner
-                android:id="@+id/spCategoriaNew"
+                android:id="@+id/spCategoria"
                 android:layout_width="200dp"
                 android:layout_height="42dp"
                 android:layout_marginBottom="8dp"
@@ -106,7 +106,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/txtCategoria" />
 
             <Spinner
-                android:id="@+id/spCalculationMethodNew"
+                android:id="@+id/spCalculationMethod"
                 android:layout_width="200dp"
                 android:layout_height="42dp"
                 android:layout_marginBottom="8dp"
@@ -135,7 +135,7 @@
                 app:layout_constraintTop_toBottomOf="@id/txtMetodo" />
 
             <Button
-                android:id="@+id/btnRestoreNew"
+                android:id="@+id/btnRestore"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/lato"
@@ -147,7 +147,7 @@
                 app:layout_constraintStart_toStartOf="@+id/cajaBotonera2" />
 
             <Button
-                android:id="@+id/btnConfirmarNew"
+                android:id="@+id/btnConfirmar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/lato"
@@ -172,7 +172,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/txtEditarIndicador" />
 
             <TextView
-                android:id="@+id/idTextViewValueNew"
+                android:id="@+id/idTextViewValue"
                 android:layout_width="295dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
@@ -193,10 +193,10 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/idTextViewValueNew" />
+                app:layout_constraintTop_toBottomOf="@+id/idTextViewValue" />
 
             <EditText
-                android:id="@+id/organizationInputTextNew"
+                android:id="@+id/organizationInputText"
                 android:layout_width="295dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
@@ -217,10 +217,10 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/organizationInputTextNew" />
+                app:layout_constraintTop_toBottomOf="@+id/organizationInputText" />
 
             <EditText
-                android:id="@+id/descriptionTextInputNew"
+                android:id="@+id/descriptionTextInput"
                 android:layout_width="295dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
@@ -242,10 +242,10 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/areaTextInputNew" />
+                app:layout_constraintTop_toBottomOf="@+id/areaTextInput" />
 
             <Spinner
-                android:id="@+id/spCurrentStandingNew"
+                android:id="@+id/spCurrentStanding"
                 android:layout_width="200dp"
                 android:layout_height="42dp"
                 android:layout_marginBottom="8dp"
@@ -269,10 +269,10 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/descriptionTextInputNew" />
+                app:layout_constraintTop_toBottomOf="@+id/descriptionTextInput" />
 
             <EditText
-                android:id="@+id/localityTextInputNew"
+                android:id="@+id/localityTextInput"
                 android:layout_width="295dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
@@ -293,10 +293,10 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/localityTextInputNew" />
+                app:layout_constraintTop_toBottomOf="@+id/localityTextInput" />
 
             <EditText
-                android:id="@+id/countryTextInputNew"
+                android:id="@+id/countryTextInput"
                 android:layout_width="295dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
@@ -317,10 +317,10 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/countryTextInputNew" />
+                app:layout_constraintTop_toBottomOf="@+id/countryTextInput" />
 
             <EditText
-                android:id="@+id/calculatedPeriodFromTextInputNew"
+                android:id="@+id/calculatedPeriodFromTextInput"
                 android:layout_width="295dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
@@ -341,10 +341,10 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/calculatedPeriodFromTextInputNew" />
+                app:layout_constraintTop_toBottomOf="@+id/calculatedPeriodFromTextInput" />
 
             <EditText
-                android:id="@+id/calculatedPeriodToTextInputNew"
+                android:id="@+id/calculatedPeriodToTextInput"
                 android:layout_width="295dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
@@ -365,10 +365,10 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/calculatedPeriodToTextInputNew" />
+                app:layout_constraintTop_toBottomOf="@+id/calculatedPeriodToTextInput" />
 
             <EditText
-                android:id="@+id/nextCalculationDateInputTextNew"
+                android:id="@+id/nextCalculationDateInputText"
                 android:layout_width="295dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
@@ -389,10 +389,10 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/nextCalculationDateInputTextNew" />
+                app:layout_constraintTop_toBottomOf="@+id/nextCalculationDateInputText" />
 
             <EditText
-                android:id="@+id/providerInputTextNew"
+                android:id="@+id/providerInputText"
                 android:layout_width="295dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
@@ -413,10 +413,10 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/providerInputTextNew" />
+                app:layout_constraintTop_toBottomOf="@+id/providerInputText" />
 
             <EditText
-                android:id="@+id/nameInputTextNew"
+                android:id="@+id/nameInputText"
                 android:layout_width="295dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
@@ -437,10 +437,10 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/nameInputTextNew" />
+                app:layout_constraintTop_toBottomOf="@+id/nameInputText" />
 
             <EditText
-                android:id="@+id/sourceTextInputNew"
+                android:id="@+id/sourceTextInput"
                 android:layout_width="295dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
@@ -461,10 +461,10 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/sourceTextInputNew" />
+                app:layout_constraintTop_toBottomOf="@+id/sourceTextInput" />
 
             <EditText
-                android:id="@+id/processTextInputNew"
+                android:id="@+id/processTextInput"
                 android:layout_width="295dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
@@ -485,10 +485,10 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/processTextInputNew" />
+                app:layout_constraintTop_toBottomOf="@+id/processTextInput" />
 
             <EditText
-                android:id="@+id/businessTargetTextInputNew"
+                android:id="@+id/businessTargetTextInput"
                 android:layout_width="295dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
@@ -509,10 +509,10 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/businessTargetTextInputNew" />
+                app:layout_constraintTop_toBottomOf="@+id/businessTargetTextInput" />
 
             <EditText
-                android:id="@+id/calculationFormulaTextInputNew"
+                android:id="@+id/calculationFormulaTextInput"
                 android:layout_width="295dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
@@ -533,10 +533,10 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/calculationFormulaTextInputNew" />
+                app:layout_constraintTop_toBottomOf="@+id/calculationFormulaTextInput" />
 
             <EditText
-                android:id="@+id/dateExpiresTextInputNew"
+                android:id="@+id/dateExpiresTextInput"
                 android:layout_width="295dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
@@ -557,10 +557,10 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/dateExpiresTextInputNew" />
+                app:layout_constraintTop_toBottomOf="@+id/dateExpiresTextInput" />
 
             <EditText
-                android:id="@+id/areaTextInputNew"
+                android:id="@+id/areaTextInput"
                 android:layout_width="295dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"

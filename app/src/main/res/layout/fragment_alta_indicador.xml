@@ -613,8 +613,6 @@
                 android:text="@string/existentId"
                 android:textColor="#BF1313"
                 android:visibility="invisible"
-                android:flow_horizontalAlign="center"
-                android:flow_verticalAlign="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/idTextViewValueNew" />
