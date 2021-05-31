@@ -173,7 +173,7 @@ class OCBUtils {
 
     fun createKpi(id: String, category: String, calculationFrequency: String, description: String? = null,
                   currentStanding: String? = null, addressLocality: String? = null, addressCountry: String? = null,
-                  calculationPeriodFrom: String? = null, calculationPeriodTo: String? = null,dateNextCalculation: String? = null,
+                  calculationPeriodFrom: String? = null, calculationPeriodTo: String? = null, dateNextCalculation: String? = null,
                   calculationMethod: String? = null, provider: String? = null, organization: String, kpiValue: String, name: String,
                   source: String? = null, process: String? = null, businessTarget: String? = null, calculationFormula: String? = null,
                   dateExpires: String? = null, updatedAt: String? = null, area: String? = null): Boolean? {

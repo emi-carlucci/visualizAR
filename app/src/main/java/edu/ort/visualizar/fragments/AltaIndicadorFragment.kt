@@ -66,18 +66,18 @@ class AltaIndicadorFragment : Fragment() {
         inputTitulo = v.findViewById(R.id.inputTitulo)
         inputDescripcion = v.findViewById(R.id.inputDescripcion)
         inputFormula = v.findViewById(R.id.inputFormula)
-        spFrecuencia = v.findViewById(R.id.spFrecuencia)
+        spFrecuencia = v.findViewById(R.id.spFrecuenciaNew)
         txtFrecuencia = listaFrecuencia[0]
-        spCategoria = v.findViewById(R.id.spCategoria)
+        spCategoria = v.findViewById(R.id.spCategoriaNew)
         txtCategoria = listaCategoria[0]
-        spCalculationMethod = v.findViewById(R.id.spCalculationMethod)
+        spCalculationMethod = v.findViewById(R.id.spCalculationMethodNew)
         txtCalculationMethod = listaCalculationMethod[0]
         inputSource = v.findViewById(R.id.txtSource)
         inputBusinessTarget = v.findViewById(R.id.inputTarget)
         inputDateNextCalculation = v.findViewById(R.id.inputDateNextCalculation)
         inputArea = v.findViewById(R.id.inputArea)
-        btnConfirm = v.findViewById(R.id.btnConfirmar)
-        btnLimpiar = v.findViewById(R.id.btnRestore)
+        btnConfirm = v.findViewById(R.id.btnConfirmarNew)
+        btnLimpiar = v.findViewById(R.id.btnRestoreNew)
 
         return v
     }

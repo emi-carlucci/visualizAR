@@ -34,7 +34,7 @@
     <!--Inicio Fragment  indicador_alta -->
     <string name="formAlta">Nuevo Indicador</string>
     <string name="ID">ID</string>
-    <string name="checkID">ID exist ?</string>
+    <string name="checkID">¿Existe el ID?</string>
     <string name="organization">Organización</string>
     <string name="titulo">Título</string>
     <string name="descripcion">Descripción</string>
@@ -56,7 +56,7 @@
     <string name="EditArea">Area : </string>
     <!--Fin Fragment  indicador_alta -->
 
-    <!--Inicio Fragment  editar_indicador -->
+    <!--Inicio Fragment  editar_indicador y alta_indicador-->
     <string name="formEditar">Editar Indicador</string>
     <string name="delete">Eliminar</string>
     <string name="cancel">Cancelar</string>
@@ -77,6 +77,6 @@
     <string name="editExpirationDate">Fecha de Expiración</string>
     <string name="editArea">Area</string>
     <string name="editStatus">Estado:</string>
-    <!--Fin Fragment  editar_indicador -->
+    <!--Fin Fragment  editar_indicador y alta_indicador-->
 
 </resources>
