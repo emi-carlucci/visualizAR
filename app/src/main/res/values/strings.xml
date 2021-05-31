@@ -33,27 +33,42 @@
 
     <!--Inicio Fragment  indicador_alta -->
     <string name="formAlta">Nuevo Indicador</string>
-    <string name="ID">ID</string>
+    <string name="existentId">El ID ya existe</string>
     <string name="checkID">¿Existe el ID?</string>
-    <string name="organization">Organización</string>
-    <string name="titulo">Título</string>
-    <string name="descripcion">Descripción</string>
-    <string name="calculationFormula">Fórmula : For informative purposes, the formula used for calculating the indicator.</string>
-    <string name="EditFormula">Fórmula :</string>
-    <string name="txtcalculationFrequency">Frecuencia :</string>
-    <string name="txtCategory">Categoria :</string>
-    <string name="txtCalculationMethod">Método :</string>
-    <string name="txtOpcionales">Opcionales</string>
+    <string name="ID">(OBLIGATORIO) El ID asociado al indicador.</string>
+    <string name="organization">(OBLIGATORIO) Organización asociada al indicador.</string>
+    <string name="titulo">Título del indicador</string>
+    <string name="localidad">Localidad asociada al indicador.</string>
+    <string name="pais">Pais asociado a la localidad.</string>
+    <string name="calculoDesde">Fecha desde que comienza a calcularse el indicador.</string>
+    <string name="calculoHasta">Fecha hasta la que se calculará el indicador.</string>
+    <string name="proximaFechaCalculo">Próxima fecha de cálculo del indicador.</string>
+    <string name="proveedor">Proveedor asociado al indicador.</string>
+    <string name="nombre">(OBLIGATORIO) Nombre del indicador.</string>
+    <string name="valor">(OBLIGATORIO) Valor del indicador.</string>
+    <string name="fuente">Fuente asociada al indicador.</string>
+    <string name="producto">Producto asociado al indicador.</string>
+    <string name="objetivoComercial">Objetivo comercial de la medición.</string>
+    <string name="descripcion">Descripción del indicador.</string>
+    <string name="calculationFormula">La fórmula usada para calcular el indicador.</string>
+    <string name="fechaExpiracion">Fecha de expiración del indicador.</string>
+    <string name="area">Area asociada al indicador.</string>
     <string name="Altacheck1_text">CalculationMethod : The calculation method used.</string>
     <string name="Editcheck1_text">Method : </string>
     <string name="AltaSource">Source : A sequence of characters giving the source of the entity data.</string>
-    <string name="EditSource">Source : </string>
     <string name="AltaTarget">BusinessTarget : For informative purposes, the business target to which this KPI is related to.</string>
-    <string name="EditTarget">Target : </string>
     <string name="AltaDateNextCalc">DateNextCalculation : Date on which a new calculation of the KPI should be available.</string>
-    <string name="EditDateNextCalc">Next Calc : </string>
     <string name="AltaArea">Area : For organizational purposes, it allows to add extra textual geographical information such as district, burough, or any other hint which can help to identify the KPI coverage.</string>
+    <string name="EditFormula">Fórmula :</string>
+    <string name="txtcalculationFrequency">Frecuencia :</string>
+    <string name="txtValue">Valor</string>
+    <string name="txtCategory">Categoria :</string>
+    <string name="txtCalculationMethod">Método :</string>
+    <string name="txtOpcionales">Opcionales</string>
+    <string name="EditTarget">Target : </string>
+    <string name="EditDateNextCalc">Next Calc : </string>
     <string name="EditArea">Area : </string>
+    <string name="EditSource">Source : </string>
     <!--Fin Fragment  indicador_alta -->
 
     <!--Inicio Fragment  editar_indicador y alta_indicador-->

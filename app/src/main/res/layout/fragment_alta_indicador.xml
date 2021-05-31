@@ -54,7 +54,7 @@
                 android:id="@+id/spFrecuenciaNew"
                 android:layout_width="200dp"
                 android:layout_height="42dp"
-                android:layout_marginBottom="8dp"
+                android:layout_marginBottom="7dp"
                 android:fontFamily="@font/lato"
                 android:gravity="center_horizontal"
                 android:outlineAmbientShadowColor="@color/light_blue_500"
@@ -95,7 +95,7 @@
                 android:id="@+id/spCategoriaNew"
                 android:layout_width="200dp"
                 android:layout_height="42dp"
-                android:layout_marginBottom="8dp"
+                android:layout_marginBottom="7dp"
                 android:fontFamily="@font/lato"
                 android:gravity="center_horizontal"
                 android:scrollbarSize="10dp"
@@ -109,7 +109,7 @@
                 android:id="@+id/spCalculationMethodNew"
                 android:layout_width="200dp"
                 android:layout_height="42dp"
-                android:layout_marginBottom="8dp"
+                android:layout_marginBottom="7dp"
                 android:fontFamily="@font/lato"
                 android:gravity="center_horizontal"
                 android:scrollbarSize="10dp"
@@ -176,7 +176,8 @@
                 android:layout_width="295dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
-                android:gravity="center"
+                android:gravity="center|start"
+                android:hint="@string/ID"
                 android:textSize="14sp"
                 android:textStyle="normal"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -202,6 +203,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:ems="10"
+                android:hint="@string/organization"
                 android:inputType="textPersonName"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -227,6 +229,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:ems="10"
+                android:hint="@string/descripcion"
                 android:inputType="textPersonName"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -251,7 +254,7 @@
                 android:id="@+id/spCurrentStandingNew"
                 android:layout_width="200dp"
                 android:layout_height="42dp"
-                android:layout_marginBottom="8dp"
+                android:layout_marginBottom="7dp"
                 android:fontFamily="@font/lato"
                 android:gravity="center_horizontal"
                 android:outlineAmbientShadowColor="@color/light_blue_500"
@@ -272,7 +275,7 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/descriptionTextInputNew" />
+                app:layout_constraintTop_toBottomOf="@id/valueTextInputNew" />
 
             <EditText
                 android:id="@+id/localityTextInputNew"
@@ -280,12 +283,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:ems="10"
+                android:hint="@string/localidad"
                 android:inputType="textPersonName"
                 android:textSize="14sp"
-                tools:inputType="textMultiLine"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/localityTextView" />
+                app:layout_constraintTop_toBottomOf="@+id/localityTextView"
+                tools:inputType="textMultiLine" />
 
             <TextView
                 android:id="@+id/countryTextView"
@@ -305,12 +309,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:ems="10"
+                android:hint="@string/pais"
                 android:inputType="textPersonName"
                 android:textSize="14sp"
-                tools:inputType="textMultiLine"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/countryTextView" />
+                app:layout_constraintTop_toBottomOf="@+id/countryTextView"
+                tools:inputType="textMultiLine" />
 
             <TextView
                 android:id="@+id/calculatedPeriodFromTextView"
@@ -330,12 +335,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:ems="10"
+                android:hint="@string/calculoDesde"
                 android:inputType="textPersonName"
                 android:textSize="14sp"
-                tools:inputType="textMultiLine"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/calculatedPeriodFromTextView" />
+                app:layout_constraintTop_toBottomOf="@+id/calculatedPeriodFromTextView"
+                tools:inputType="textMultiLine" />
 
             <TextView
                 android:id="@+id/calculatedPeriodToTextView"
@@ -355,12 +361,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:ems="10"
+                android:hint="@string/calculoHasta"
                 android:inputType="textPersonName"
                 android:textSize="14sp"
-                tools:inputType="textMultiLine"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/calculatedPeriodToTextView" />
+                app:layout_constraintTop_toBottomOf="@+id/calculatedPeriodToTextView"
+                tools:inputType="textMultiLine" />
 
             <TextView
                 android:id="@+id/nextCalculationDateTextView"
@@ -380,12 +387,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:ems="10"
+                android:hint="@string/proximaFechaCalculo"
                 android:inputType="textPersonName"
                 android:textSize="14sp"
-                tools:inputType="textMultiLine"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/nextCalculationDateTextView" />
+                app:layout_constraintTop_toBottomOf="@+id/nextCalculationDateTextView"
+                tools:inputType="textMultiLine" />
 
             <TextView
                 android:id="@+id/providerTextView"
@@ -405,12 +413,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:ems="10"
+                android:hint="@string/proveedor"
                 android:inputType="textPersonName"
                 android:textSize="14sp"
-                tools:inputType="textMultiLine"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/providerTextView" />
+                app:layout_constraintTop_toBottomOf="@+id/providerTextView"
+                tools:inputType="textMultiLine" />
 
             <TextView
                 android:id="@+id/nameTextView"
@@ -430,12 +439,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:ems="10"
+                android:hint="@string/nombre"
                 android:inputType="textPersonName"
                 android:textSize="14sp"
-                tools:inputType="textMultiLine"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/nameTextView" />
+                app:layout_constraintTop_toBottomOf="@+id/nameTextView"
+                tools:inputType="textMultiLine" />
 
             <TextView
                 android:id="@+id/sourceTextView"
@@ -455,12 +465,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:ems="10"
+                android:hint="@string/fuente"
                 android:inputType="textPersonName"
                 android:textSize="14sp"
-                tools:inputType="textMultiLine"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/sourceTextView" />
+                app:layout_constraintTop_toBottomOf="@+id/sourceTextView"
+                tools:inputType="textMultiLine" />
 
             <TextView
                 android:id="@+id/processTextView"
@@ -480,12 +491,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:ems="10"
-                tools:inputType="textMultiLine"
+                android:hint="@string/producto"
                 android:inputType="textPersonName"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/processTextView" />
+                app:layout_constraintTop_toBottomOf="@+id/processTextView"
+                tools:inputType="textMultiLine" />
 
             <TextView
                 android:id="@+id/businessTargetTextView"
@@ -505,12 +517,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:ems="10"
+                android:hint="@string/objetivoComercial"
                 android:inputType="textPersonName"
                 android:textSize="14sp"
-                tools:inputType="textMultiLine"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/businessTargetTextView" />
+                app:layout_constraintTop_toBottomOf="@+id/businessTargetTextView"
+                tools:inputType="textMultiLine" />
 
             <TextView
                 android:id="@+id/calculationFormulaTextView"
@@ -530,12 +543,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:ems="10"
+                android:hint="@string/calculationFormula"
                 android:inputType="textPersonName"
                 android:textSize="14sp"
-                tools:inputType="textMultiLine"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/calculationFormulaTextView" />
+                app:layout_constraintTop_toBottomOf="@+id/calculationFormulaTextView"
+                tools:inputType="textMultiLine" />
 
             <TextView
                 android:id="@+id/updateExpiresTextView"
@@ -555,12 +569,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:ems="10"
+                android:hint="@string/fechaExpiracion"
                 android:inputType="textPersonName"
-                tools:inputType="textMultiLine"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/updateExpiresTextView" />
+                app:layout_constraintTop_toBottomOf="@+id/updateExpiresTextView"
+                tools:inputType="textMultiLine" />
 
             <TextView
                 android:id="@+id/areaTextView"
@@ -580,12 +595,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:ems="10"
+                android:hint="@string/area"
                 android:inputType="textPersonName"
                 android:textSize="14sp"
-                tools:inputType="textMultiLine"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/areaTextView" />
+                app:layout_constraintTop_toBottomOf="@+id/areaTextView"
+                tools:inputType="textMultiLine" />
 
             <TextView
                 android:id="@+id/textCheckResultNew"
@@ -594,9 +610,11 @@
                 android:layout_marginTop="2dp"
                 android:fontFamily="@font/lato"
                 android:gravity="center"
-                android:text=""
-                app:flow_horizontalAlign="center"
-                app:flow_verticalAlign="center"
+                android:text="@string/existentId"
+                android:textColor="#BF1313"
+                android:visibility="invisible"
+                android:flow_horizontalAlign="center"
+                android:flow_verticalAlign="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/idTextViewValueNew" />
@@ -608,11 +626,37 @@
                 android:layout_marginTop="2dp"
                 android:text="@string/checkID"
                 android:textAllCaps="false"
-                app:flow_horizontalAlign="center"
-                app:flow_verticalAlign="center"
+                android:flow_horizontalAlign="center"
+                android:flow_verticalAlign="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/textCheckResultNew" />
+
+            <TextView
+                android:id="@+id/valueTextViewNew"
+                android:layout_width="285dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/txtValue"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/descriptionTextInputNew" />
+
+            <EditText
+                android:id="@+id/valueTextInputNew"
+                android:layout_width="295dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:ems="10"
+                android:hint="@string/valor"
+                android:inputType="numberDecimal"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/valueTextViewNew"
+                tools:inputType="textMultiLine" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
