@@ -250,16 +250,88 @@ class EditarIndicadorFragment : Fragment() {
             inputOrganization.error = "Por favor, completá el campo"
             isValid = false
         }
+        if (inputOrganization.text.toString().contains("=")) {
+            inputOrganization.error = "El campo no puede contener ="
+            isValid = false
+        }
         if (inputDescription.text.toString().isEmpty()) {
             inputDescription.error = "Por favor, completá el campo"
+            isValid = false
+        }
+        if (inputDescription.text.toString().contains("=")) {
+            inputDescription.error = "El campo no puede contener ="
             isValid = false
         }
         if (inputLocality.text.toString().isEmpty()) {
             inputLocality.error = "Por favor, completá el campo"
             isValid = false
         }
+        if (inputLocality.text.toString().contains("=")) {
+            inputLocality.error = "El campo no puede contener ="
+            isValid = false
+        }
         if (inputCountry.text.toString().isEmpty()) {
             inputCountry.error = "Por favor, completá el campo"
+            isValid = false
+        }
+        if (inputCountry.text.toString().contains("=")) {
+            inputCountry.error = "El campo no puede contener ="
+            isValid = false
+        }
+        if (inputProvider.text.toString().isEmpty()) {
+            inputProvider.error = "Por favor, completá el campo"
+            isValid = false
+        }
+        if (inputProvider.text.toString().contains("=")) {
+            inputProvider.error = "El campo no puede contener ="
+            isValid = false
+        }
+        if (inputName.text.toString().isEmpty()) {
+            inputName.error = "Por favor, completá el campo"
+            isValid = false
+        }
+        if (inputName.text.toString().contains("=")) {
+            inputName.error = "El campo no puede contener ="
+            isValid = false
+        }
+        if (inputSource.text.toString().isEmpty()) {
+            inputSource.error = "Por favor, completá el campo"
+            isValid = false
+        }
+        if (inputSource.text.toString().contains("=")) {
+            inputSource.error = "El campo no puede contener ="
+            isValid = false
+        }
+        if (inputProduct.text.toString().isEmpty()) {
+            inputProduct.error = "Por favor, completá el campo"
+            isValid = false
+        }
+        if (inputProduct.text.toString().contains("=")) {
+            inputProduct.error = "El campo no puede contener ="
+            isValid = false
+        }
+        if (inputBusinessTarget.text.toString().isEmpty()) {
+            inputBusinessTarget.error = "Por favor, completá el campo"
+            isValid = false
+        }
+        if (inputBusinessTarget.text.toString().contains("=")) {
+            inputBusinessTarget.error = "El campo no puede contener ="
+            isValid = false
+        }
+        if (inputCalculationFormula.text.toString().isEmpty()) {
+            inputCalculationFormula.error = "Por favor, completá el campo"
+            isValid = false
+        }
+        if (inputCalculationFormula.text.toString().contains("=")) {
+            inputCalculationFormula.error = "El campo no puede contener ="
+            isValid = false
+        }
+        if (inputArea.text.toString().isEmpty()) {
+            inputArea.error = "Por favor, completá el campo"
+            isValid = false
+        }
+        if (inputArea.text.toString().contains("=")) {
+            inputArea.error = "El campo no puede contener ="
             isValid = false
         }
         if (inputCalculationPeriodFrom.text.toString().isEmpty()) {
@@ -289,30 +361,6 @@ class EditarIndicadorFragment : Fragment() {
                 isValid = false
             }
         }
-        if (inputProvider.text.toString().isEmpty()) {
-            inputProvider.error = "Por favor, completá el campo"
-            isValid = false
-        }
-        if (inputName.text.toString().isEmpty()) {
-            inputName.error = "Por favor, completá el campo"
-            isValid = false
-        }
-        if (inputSource.text.toString().isEmpty()) {
-            inputSource.error = "Por favor, completá el campo"
-            isValid = false
-        }
-        if (inputProduct.text.toString().isEmpty()) {
-            inputProduct.error = "Por favor, completá el campo"
-            isValid = false
-        }
-        if (inputBusinessTarget.text.toString().isEmpty()) {
-            inputBusinessTarget.error = "Por favor, completá el campo"
-            isValid = false
-        }
-        if (inputCalculationFormula.text.toString().isEmpty()) {
-            inputCalculationFormula.error = "Por favor, completá el campo"
-            isValid = false
-        }
         if (inputExpirationDate.text.toString().isEmpty()) {
             inputExpirationDate.error = "Por favor, completá el campo"
             isValid = false
@@ -321,10 +369,6 @@ class EditarIndicadorFragment : Fragment() {
                 inputExpirationDate.error = "El formato debe ser AAAA-MM-DD"
                 isValid = false
             }
-        }
-        if (inputArea.text.toString().isEmpty()) {
-            inputArea.error = "Por favor, completá el campo"
-            isValid = false
         }
         return isValid
     }

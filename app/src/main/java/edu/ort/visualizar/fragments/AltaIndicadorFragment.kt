@@ -160,16 +160,64 @@ class AltaIndicadorFragment : Fragment() {
             txtId.error = "Por favor, completá el campo"
             isValid = false
         }
+        if (txtId.text.toString().contains("=")) {
+            txtId.error = "El campo no puede contener ="
+            isValid = false
+        }
         if (inputOrganization.text.toString().isEmpty()) {
             inputOrganization.error = "Por favor, completá el campo"
+            isValid = false
+        }
+        if (inputOrganization.text.toString().contains("=")) {
+            inputOrganization.error = "El campo no puede contener ="
             isValid = false
         }
         if (inputName.text.toString().isEmpty()) {
             inputName.error = "Por favor, completá el campo"
             isValid = false
         }
+        if (inputName.text.toString().contains("=")) {
+            inputName.error = "El campo no puede contener ="
+            isValid = false
+        }
         if (inputValue.text.toString().isEmpty()) {
             inputValue.error = "Por favor, completá el campo"
+            isValid = false
+        }
+        if (inputDescription.text.toString().contains("=")) {
+            inputDescription.error = "El campo no puede contener ="
+            isValid = false
+        }
+        if (inputCountry.text.toString().contains("=")) {
+            inputCountry.error = "El campo no puede contener ="
+            isValid = false
+        }
+        if (inputCountry.text.toString().contains("=")) {
+            inputCountry.error = "El campo no puede contener ="
+            isValid = false
+        }
+        if (inputProvider.text.toString().contains("=")) {
+            inputProvider.error = "El campo no puede contener ="
+            isValid = false
+        }
+        if (inputSource.text.toString().contains("=")) {
+            inputSource.error = "El campo no puede contener ="
+            isValid = false
+        }
+        if (inputProduct.text.toString().contains("=")) {
+            inputProduct.error = "El campo no puede contener ="
+            isValid = false
+        }
+        if (inputBusinessTarget.text.toString().contains("=")) {
+            inputBusinessTarget.error = "El campo no puede contener ="
+            isValid = false
+        }
+        if (inputCalculationFormula.text.toString().contains("=")) {
+            inputCalculationFormula.error = "El campo no puede contener ="
+            isValid = false
+        }
+        if (inputArea.text.toString().contains("=")) {
+            inputArea.error = "El campo no puede contener ="
             isValid = false
         }
         if ((inputCalculationPeriodFrom.text.toString().isNotEmpty()) && (!dateUtils.isValidFormat(inputCalculationPeriodFrom.text.toString()))) {
