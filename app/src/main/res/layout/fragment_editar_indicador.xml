@@ -2,126 +2,578 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/frameLayout"
+    android:id="@+id/main_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_span="20"
-    tools:context="edu.ort.visualizar.fragments.EditarIndicadorFragment">
+    app:layout_constraintTop_toTopOf="@+id/inputTitulo"
+    tools:context="edu.ort.visualizar.fragments.AltaIndicadorFragment">
 
-    <TextView
-        android:id="@+id/idformName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/lato"
-        android:text="@string/formEditar"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/inputIndicadorTitulo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.852" />
-
-    <Button
-        android:id="@+id/btnConfirmar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/lato"
-        android:text="Confirmar"
-        android:textAllCaps="false"
-        android:textSize="18sp"
-        app:backgroundTint="#4CAF50"
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
+        android:layout_width="413dp"
+        android:layout_height="584dp"
+        android:fillViewport="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.799"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.866" />
+        app:layout_constraintVertical_bias="0.496">
 
-    <Button
-        android:id="@+id/btnRestablecer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/lato"
-        android:text="Restablecer"
-        android:textAllCaps="false"
-        android:textSize="18sp"
-        app:backgroundTint="#F44336"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnConfirmar"
-        app:layout_constraintHorizontal_bias="0.811"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.866" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/inputIndicadorTitulo"
-        android:layout_width="275dp"
-        android:layout_height="52dp"
-        android:ems="10"
-        android:fontFamily="@font/lato"
-        android:hint="Título"
-        android:inputType="text"
-        android:textSize="14sp"
-        android:typeface="normal"
-        app:layout_constraintBottom_toTopOf="@+id/inputIndicadorDescripcion"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.507"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.863" />
+            <TextView
+                android:id="@+id/txtEditarIndicador"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/lato"
+                android:gravity="center_horizontal|center_vertical"
+                android:text="@string/formEditar"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/inputIndicadorDescripcion"
-        android:layout_width="275dp"
-        android:layout_height="170dp"
-        android:ems="10"
-        android:fontFamily="@font/lato"
-        android:gravity="start|top"
-        android:hint="Descripcion"
-        android:inputType="textMultiLine"
-        android:textSize="14sp"
-        android:typeface="normal"
-        app:layout_constraintBottom_toTopOf="@+id/inputFormula"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.507"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.89" />
+            <TextView
+                android:id="@+id/txtFrecuencia"
+                android:layout_width="285dp"
+                android:layout_height="39dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/lato"
+                android:text="@string/txtcalculationFrequency"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtCurrentStanding" />
 
-    <EditText
-        android:id="@+id/inputFormula"
-        android:layout_width="275dp"
-        android:layout_height="52dp"
-        android:ems="10"
-        android:fontFamily="@font/lato"
-        android:hint="Formula"
-        android:inputType="textPersonName"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textSize="14sp"
-        android:typeface="normal"
-        app:layout_constraintBottom_toTopOf="@+id/inputFrecuencia"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.919" />
+            <Spinner
+                android:id="@+id/spFrecuencia"
+                android:layout_width="200dp"
+                android:layout_height="42dp"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/lato"
+                android:gravity="center_horizontal"
+                android:outlineAmbientShadowColor="@color/light_blue_500"
+                android:scrollbarSize="10dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textSize="14sp"
+                android:typeface="normal"
+                app:layout_constraintBottom_toBottomOf="@+id/txtFrecuencia"
+                app:layout_constraintEnd_toEndOf="@+id/txtFrecuencia" />
 
-    <EditText
-        android:id="@+id/inputFrecuencia"
-        android:layout_width="275dp"
-        android:layout_height="52dp"
-        android:ems="10"
-        android:fontFamily="@font/lato"
-        android:hint="Frecuencia"
-        android:inputType="textPersonName"
-        android:textSize="14sp"
-        android:typeface="normal"
-        app:layout_constraintBottom_toTopOf="@+id/btnConfirmar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.507"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.892" />
+            <TextView
+                android:id="@+id/txtCategoria"
+                android:layout_width="285dp"
+                android:layout_height="39dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/lato"
+                android:text="@string/txtCategory"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtFrecuencia" />
+
+            <TextView
+                android:id="@+id/txtMetodo"
+                android:layout_width="285dp"
+                android:layout_height="39dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/lato"
+                android:text="@string/txtCalculationMethod"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtCategoria" />
+
+            <Spinner
+                android:id="@+id/spCategoria"
+                android:layout_width="200dp"
+                android:layout_height="42dp"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/lato"
+                android:gravity="center_horizontal"
+                android:scrollbarSize="10dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textSize="14sp"
+                android:typeface="normal"
+                app:layout_constraintBottom_toBottomOf="@+id/txtCategoria"
+                app:layout_constraintEnd_toEndOf="@+id/txtCategoria" />
+
+            <Spinner
+                android:id="@+id/spCalculationMethod"
+                android:layout_width="200dp"
+                android:layout_height="42dp"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/lato"
+                android:gravity="center_horizontal"
+                android:scrollbarSize="10dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textSize="14sp"
+                android:typeface="normal"
+                app:layout_constraintBottom_toBottomOf="@+id/txtMetodo"
+                app:layout_constraintEnd_toEndOf="@+id/txtMetodo" />
+
+            <TextView
+                android:id="@+id/cajaBotonera2"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="25dp"
+                android:ems="10"
+                android:fontFamily="@font/lato"
+                android:textSize="14sp"
+                android:typeface="normal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtMetodo" />
+
+            <Button
+                android:id="@+id/btnRestore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/lato"
+                android:text="Restablecer"
+                android:textAllCaps="false"
+                android:textSize="18sp"
+                app:backgroundTint="#F44336"
+                app:layout_constraintBottom_toBottomOf="@+id/cajaBotonera2"
+                app:layout_constraintStart_toStartOf="@+id/cajaBotonera2" />
+
+            <Button
+                android:id="@+id/btnConfirmar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/lato"
+                android:text="Confirmar"
+                android:textAllCaps="false"
+                android:textSize="18sp"
+                app:backgroundTint="#4CAF50"
+                app:layout_constraintBottom_toBottomOf="@+id/cajaBotonera2"
+                app:layout_constraintEnd_toEndOf="@+id/cajaBotonera2" />
+
+            <TextView
+                android:id="@+id/idTextView"
+                android:layout_width="295dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:gravity="center"
+                android:text="@string/editId"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtEditarIndicador" />
+
+            <TextView
+                android:id="@+id/idTextViewValue"
+                android:layout_width="295dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:gravity="center"
+                android:textSize="18sp"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/idTextView" />
+
+            <TextView
+                android:id="@+id/organizationTextView"
+                android:layout_width="285dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/editOrganization"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/idTextViewValue" />
+
+            <EditText
+                android:id="@+id/organizationInputText"
+                android:layout_width="295dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/organizationTextView" />
+
+            <TextView
+                android:id="@+id/descriptionTextView"
+                android:layout_width="285dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/editDescription"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/organizationInputText" />
+
+            <EditText
+                android:id="@+id/descriptionTextInput"
+                android:layout_width="295dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/descriptionTextView" />
+
+            <TextView
+                android:id="@+id/txtCurrentStanding"
+                android:layout_width="285dp"
+                android:layout_height="39dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/lato"
+                android:text="@string/editStatus"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/areaTextInput" />
+
+            <Spinner
+                android:id="@+id/spCurrentStanding"
+                android:layout_width="200dp"
+                android:layout_height="42dp"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/lato"
+                android:gravity="center_horizontal"
+                android:outlineAmbientShadowColor="@color/light_blue_500"
+                android:scrollbarSize="10dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textSize="14sp"
+                android:typeface="normal"
+                app:layout_constraintBottom_toBottomOf="@+id/txtCurrentStanding"
+                app:layout_constraintEnd_toEndOf="@+id/txtCurrentStanding" />
+
+            <TextView
+                android:id="@+id/localityTextView"
+                android:layout_width="285dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/editLocality"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/descriptionTextInput" />
+
+            <EditText
+                android:id="@+id/localityTextInput"
+                android:layout_width="295dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/localityTextView" />
+
+            <TextView
+                android:id="@+id/countryTextView"
+                android:layout_width="285dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/editCountry"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/localityTextInput" />
+
+            <EditText
+                android:id="@+id/countryTextInput"
+                android:layout_width="295dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/countryTextView" />
+
+            <TextView
+                android:id="@+id/calculatedPeriodFromTextView"
+                android:layout_width="285dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/calculationPeriodFrom"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/countryTextInput" />
+
+            <EditText
+                android:id="@+id/calculatedPeriodFromTextInput"
+                android:layout_width="295dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/calculatedPeriodFromTextView" />
+
+            <TextView
+                android:id="@+id/calculatedPeriodToTextView"
+                android:layout_width="285dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/calculationPeriodTo"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/calculatedPeriodFromTextInput" />
+
+            <EditText
+                android:id="@+id/calculatedPeriodToTextInput"
+                android:layout_width="295dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/calculatedPeriodToTextView" />
+
+            <TextView
+                android:id="@+id/nextCalculationDateTextView"
+                android:layout_width="285dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/nextCalculationDate"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/calculatedPeriodToTextInput" />
+
+            <EditText
+                android:id="@+id/nextCalculationDateInputText"
+                android:layout_width="295dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/nextCalculationDateTextView" />
+
+            <TextView
+                android:id="@+id/providerTextView"
+                android:layout_width="285dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/editProvider"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/nextCalculationDateInputText" />
+
+            <EditText
+                android:id="@+id/providerInputText"
+                android:layout_width="295dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/providerTextView" />
+
+            <TextView
+                android:id="@+id/nameTextView"
+                android:layout_width="285dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/editName"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/providerInputText" />
+
+            <EditText
+                android:id="@+id/nameInputText"
+                android:layout_width="295dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/nameTextView" />
+
+            <TextView
+                android:id="@+id/sourceTextView"
+                android:layout_width="285dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/editSource"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/nameInputText" />
+
+            <EditText
+                android:id="@+id/sourceTextInput"
+                android:layout_width="295dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sourceTextView" />
+
+            <TextView
+                android:id="@+id/processTextView"
+                android:layout_width="285dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/editProduct"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sourceTextInput" />
+
+            <EditText
+                android:id="@+id/processTextInput"
+                android:layout_width="295dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/processTextView" />
+
+            <TextView
+                android:id="@+id/businessTargetTextView"
+                android:layout_width="285dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/editBusinessTarget"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/processTextInput" />
+
+            <EditText
+                android:id="@+id/businessTargetTextInput"
+                android:layout_width="295dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/businessTargetTextView" />
+
+            <TextView
+                android:id="@+id/calculationFormulaTextView"
+                android:layout_width="285dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/editCalculationMethod"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/businessTargetTextInput" />
+
+            <EditText
+                android:id="@+id/calculationFormulaTextInput"
+                android:layout_width="295dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/calculationFormulaTextView" />
+
+            <TextView
+                android:id="@+id/updateExpiresTextView"
+                android:layout_width="285dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/editExpirationDate"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/calculationFormulaTextInput" />
+
+            <EditText
+                android:id="@+id/dateExpiresTextInput"
+                android:layout_width="295dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/updateExpiresTextView" />
+
+            <TextView
+                android:id="@+id/areaTextView"
+                android:layout_width="285dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/editArea"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/dateExpiresTextInput" />
+
+            <EditText
+                android:id="@+id/areaTextInput"
+                android:layout_width="295dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/areaTextView" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
