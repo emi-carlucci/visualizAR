@@ -54,14 +54,14 @@ class ActualizarValorFragment : Fragment() {
             if (!isValidInput(editTextUpdateIndicadorNewValueInput.text.toString())) {
                 Toast.makeText(activity, "Por favor ingresá un valor", Toast.LENGTH_SHORT).show()
             } else {
-                saveNewValue(editTextUpdateIndicadorNewValueInput.text.toString())
-                redirectToHome()
+                val result = ocbUtils.updateKpiValue(indicador.id.toString(), editTextUpdateIndicadorNewValueInput.text.toString())
+                if (result) {
+                    redirectToHome()
+                } else {
+                    Toast.makeText(activity, getString(R.string.generic_error), Toast.LENGTH_SHORT).show()
+                }
             }
         }
-    }
-
-    private fun saveNewValue(newValue: String) {
-        ocbUtils.updateKpiValue(indicador.id.toString(), newValue)
     }
 
     @SuppressLint("ResourceType")

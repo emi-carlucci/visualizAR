@@ -140,9 +140,13 @@ class AltaIndicadorFragment : Fragment() {
         }
         btnConfirm.setOnClickListener{
             if (isFormValid()) {
-                createInOcb()
-                resetForm()
-                redirectToHome()
+                val result = createInOcb()
+                if (result) {
+                    resetForm()
+                    redirectToHome()
+                } else {
+                    Toast.makeText(activity, getString(R.string.generic_error), Toast.LENGTH_SHORT).show()
+                }
             }
         }
         btnRestore.setOnClickListener {
@@ -187,7 +191,8 @@ class AltaIndicadorFragment : Fragment() {
         return isValid
     }
 
-    private fun createInOcb() {
+    private fun createInOcb() : Boolean {
+        val result: Boolean
         var localInputDescription : String? = null
         var localInputLocality : String? = null
         var localInputCountry : String? = null
@@ -249,30 +254,30 @@ class AltaIndicadorFragment : Fragment() {
         if (inputArea.text.toString().isNotEmpty()) {
             localInputArea = inputArea.text.toString()
         }
-
-        ocbUtils.createKpi(
-                localInputId,
-                localInputTxtCategory,
-                localInputTxtFrequency,
-                localInputDescription,
-                localInputTxtStatus,
-                localInputLocality,
-                localInputCountry,
-                localInputCalculationPeriodFrom,
-                localInputCalculationPeriodTo,
-                localInputNextCalculationDate,
-                localInputTxtCalculationMethod,
-                localInputProvider,
-                localInputOrganization,
-                localInputValue,
-                localInputName,
-                localInputSource,
-                localInputProduct,
-                localInputBusinessTarget,
-                localInputCalculationFormula,
-                localInputExpirationDate,
-                null,
-                localInputArea)
+        result = ocbUtils.createKpi(
+                 localInputId,
+                 localInputTxtCategory,
+                 localInputTxtFrequency,
+                 localInputDescription,
+                 localInputTxtStatus,
+                 localInputLocality,
+                 localInputCountry,
+                 localInputCalculationPeriodFrom,
+                 localInputCalculationPeriodTo,
+                 localInputNextCalculationDate,
+                 localInputTxtCalculationMethod,
+                 localInputProvider,
+                 localInputOrganization,
+                 localInputValue,
+                 localInputName,
+                 localInputSource,
+                 localInputProduct,
+                 localInputBusinessTarget,
+                 localInputCalculationFormula,
+                 localInputExpirationDate,
+                 null,
+                 localInputArea)
+        return result
     }
 
     private fun populateSpinner (spinner: Spinner, list : List<String>, context : Context) {

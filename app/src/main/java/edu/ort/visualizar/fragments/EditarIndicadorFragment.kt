@@ -127,9 +127,13 @@ class EditarIndicadorFragment : Fragment() {
         }
         btnConfirm.setOnClickListener{
             if (isFormValid()) {
-                resetFormErrors()
-                updateInOcb()
-                redirectToHome()
+                val result = updateInOcb()
+                if (result) {
+                    resetFormErrors()
+                    redirectToHome()
+                } else {
+                    Toast.makeText(activity, getString(R.string.generic_error), Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }
@@ -140,7 +144,8 @@ class EditarIndicadorFragment : Fragment() {
         v.findNavController().popBackStack(R.id.editarIndicadorFragment, true)
     }
 
-    private fun updateInOcb() {
+    private fun updateInOcb() : Boolean {
+        val result: Boolean
         var localInputOrganization : String? = null
         var localInputDescription : String? = null
         var localInputLocality : String? = null
@@ -214,28 +219,29 @@ class EditarIndicadorFragment : Fragment() {
         if (indicator.area != null) {
             localInputArea = inputArea.text.toString()
         }
-        ocbUtils.updateKpi(
-                indicator.id.toString(),
-                localInputTxtCategory,
-                localInputTxtFrequency,
-                localInputDescription,
-                localInputTxtStatus,
-                localInputLocality,
-                localInputCountry,
-                localInputCalculationPeriodFrom,
-                localInputCalculationPeriodTo,
-                localInputNextCalculationDate,
-                localInputTxtCalculationMethod,
-                localInputProvider,
-                localInputOrganization,
-                localInputName,
-                localInputSource,
-                localInputProduct,
-                localInputBusinessTarget,
-                localInputCalculationFormula,
-                localInputExpirationDate,
-                null,
-                localInputArea)
+        result = ocbUtils.updateKpi(
+                 indicator.id.toString(),
+                 localInputTxtCategory,
+                 localInputTxtFrequency,
+                 localInputDescription,
+                 localInputTxtStatus,
+                 localInputLocality,
+                 localInputCountry,
+                 localInputCalculationPeriodFrom,
+                 localInputCalculationPeriodTo,
+                 localInputNextCalculationDate,
+                 localInputTxtCalculationMethod,
+                 localInputProvider,
+                 localInputOrganization,
+                 localInputName,
+                 localInputSource,
+                 localInputProduct,
+                 localInputBusinessTarget,
+                 localInputCalculationFormula,
+                 localInputExpirationDate,
+                 null,
+                 localInputArea)
+        return result
     }
 
     private fun isFormValid(): Boolean {

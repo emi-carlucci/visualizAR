@@ -55,9 +55,9 @@ class AccionesIndicadorFragment : Fragment() {
             val builder = AlertDialog.Builder(activity)
             builder.setTitle(getString(R.string.confirm_delete))
             builder.setPositiveButton(getString(R.string.delete)) { dialog, _ ->
-                val deleteOk : Boolean? = ocbUtils.deleteKpi(indicator.id.toString())
+                val deleteOk : Boolean = ocbUtils.deleteKpi(indicator.id.toString())
                 dialog.cancel()
-                if (deleteOk != null && deleteOk){
+                if (deleteOk){
                     val action = AccionesIndicadorFragmentDirections.actionAccionesIndicadorFragmentToHomeFragment()
                     v.findNavController().navigate(action)
                 } else {

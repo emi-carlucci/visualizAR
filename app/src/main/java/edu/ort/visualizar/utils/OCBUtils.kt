@@ -142,7 +142,7 @@ class OCBUtils {
         return kpiList
     }
 
-    fun convertStringToFloat(value: String): Double? {
+    private fun convertStringToFloat(value: String): Double? {
         return try {
             value.toDouble()
         } catch (ex: Exception) {
@@ -165,7 +165,7 @@ class OCBUtils {
         return kpi
     }
 
-    fun updateKpiValue(id: String, value: String): Boolean? {
+    fun updateKpiValue(id: String, value: String): Boolean {
         var result = false
         val updateKpiValueUrl = "$url/$id/attrs"
         val kpiValueModel = KpiValue(convertStringToFloat(value))
@@ -175,7 +175,7 @@ class OCBUtils {
         return result
     }
 
-    fun deleteKpi(id: String): Boolean? {
+    fun deleteKpi(id: String): Boolean {
         var result = false
         val deleteKpiUrl = "$url/$id"
         val response = makeRequest(deleteKpiUrl, deleteMethod)
@@ -188,7 +188,7 @@ class OCBUtils {
                   calculationPeriodFrom: String? = null, calculationPeriodTo: String? = null, dateNextCalculation: String? = null,
                   calculationMethod: String? = null, provider: String? = null, organization: String, kpiValue: String, name: String,
                   source: String? = null, process: String? = null, businessTarget: String? = null, calculationFormula: String? = null,
-                  dateExpires: String? = null, updatedAt: String? = null, area: String? = null): Boolean? {
+                  dateExpires: String? = null, updatedAt: String? = null, area: String? = null): Boolean {
         var result = false
         val createKpiModel = buildKpiBody(false, id, category, calculationFrequency, description, currentStanding, addressLocality,
                 addressCountry, calculationPeriodFrom, calculationPeriodTo, dateNextCalculation, calculationMethod, provider,
@@ -203,7 +203,7 @@ class OCBUtils {
                   calculationPeriodFrom: String? = null, calculationPeriodTo: String? = null, dateNextCalculation: String? = null,
                   calculationMethod: String? = null, provider: String? = null, organization: String? = null,
                   name: String? = null, source: String? = null, process: String? = null, businessTarget: String? = null,
-                  calculationFormula: String? = null, dateExpires: String? = null, updatedAt: String? = null, area: String? = null): Boolean? {
+                  calculationFormula: String? = null, dateExpires: String? = null, updatedAt: String? = null, area: String? = null): Boolean {
         var result = false
         val updateKpiUrl = "$url/$id/attrs"
         val updateKpiModel = buildKpiBody(true, null, category, calculationFrequency, description, currentStanding,

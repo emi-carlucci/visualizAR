@@ -18,9 +18,10 @@
     <string name="indicators_admin_view_more">Ver más</string>
     <string name="indicators_admin_actual_value">Valor Actual</string>
     <string name="indicators_admin_btn_update_value">Actualizar Actual</string>
-    <string name="indicators_admin_last_update">Última Modificación:</string>
+    <string name="indicators_admin_last_update">Última Modificación</string>
     <string name="confirm_delete">Estás por borrar un indicador. ¿Seguro?</string>
-    <string name="error_delete">Error</string>
+    <string name="error_delete">Ocurrió un error. Intentá nuevamente más tarde</string>
+    <string name="generic_error">Ocurrió un error. Intentá nuevamente más tarde</string>
     <!--Fin Fragment administrador de indicadores -->
 
     <!--Inicio Fragment administrador de indicadores -->
