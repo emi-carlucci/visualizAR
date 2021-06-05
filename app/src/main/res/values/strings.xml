@@ -22,6 +22,7 @@
     <string name="confirm_delete">Estás por borrar un indicador. ¿Seguro?</string>
     <string name="error_delete">Ocurrió un error. Intentá nuevamente más tarde</string>
     <string name="generic_error">Ocurrió un error. Intentá nuevamente más tarde</string>
+    <string name="view_details_page_title">En detalle</string>
     <!--Fin Fragment administrador de indicadores -->
 
     <!--Inicio Fragment administrador de indicadores -->

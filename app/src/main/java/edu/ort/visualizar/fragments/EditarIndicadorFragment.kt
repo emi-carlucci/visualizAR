@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.annotation.RequiresApi
+import androidx.core.view.isVisible
 import androidx.navigation.findNavController
 import edu.ort.visualizar.R
 import com.google.android.material.snackbar.Snackbar
@@ -46,6 +47,7 @@ class EditarIndicadorFragment : Fragment() {
     lateinit var txtStatus : String
     lateinit var btnConfirm : Button
     lateinit var btnRestore : Button
+    lateinit var txtPageTitle :  TextView
     lateinit var indicator: KpiModel
     private val notDefinedText : String = "NO DEFINIDO"
     private val dateUtils = DateUtils()
@@ -82,9 +84,40 @@ class EditarIndicadorFragment : Fragment() {
         txtStatus = currentStandingList[0]
         btnConfirm = v.findViewById(R.id.btnConfirmar)
         btnRestore = v.findViewById(R.id.btnRestore)
+        txtPageTitle = v.findViewById(R.id.txtEditarIndicador)
         indicator = EditarIndicadorFragmentArgs.fromBundle(requireArguments()).indicador!!
         fillForm(indicator)
+        val isViewDetails = EditarIndicadorFragmentArgs.fromBundle(requireArguments()).isViewDetails
+        if (isViewDetails){
+            disableEdition()
+        }
         return v
+    }
+
+    private fun disableEdition(){
+        inputOrganization.isEnabled = false
+        inputOrganization.isEnabled = false
+        inputDescription.isEnabled = false
+        inputLocality.isEnabled = false
+        inputCountry.isEnabled = false
+        inputCalculationPeriodFrom.isEnabled = false
+        inputCalculationPeriodTo.isEnabled = false
+        inputNextCalculationDate.isEnabled = false
+        inputProvider.isEnabled = false
+        inputName.isEnabled = false
+        inputSource.isEnabled = false
+        inputProduct.isEnabled = false
+        inputBusinessTarget.isEnabled = false
+        inputCalculationFormula.isEnabled = false
+        inputExpirationDate.isEnabled = false
+        inputArea.isEnabled = false
+        spFrequency.isEnabled = false
+        spCategory.isEnabled = false
+        spCalculationMethod.isEnabled = false
+        spStatus.isEnabled = false
+        btnConfirm.isVisible = false
+        btnRestore.isVisible = false
+        txtPageTitle.text = getString(R.string.view_details_page_title)
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
