@@ -49,8 +49,8 @@
         android:label="fragment_editar_indicador"
         tools:layout="@layout/fragment_editar_indicador" >
         <argument
-            android:name="indicador"
-            app:argType="edu.ort.visualizar.models.KpiModel"
+            android:name="indicadorId"
+            app:argType="string"
             app:nullable="true" />
         <action
             android:id="@+id/action_editarIndicadorFragment_to_accionesIndicadorFragment"
@@ -66,8 +66,8 @@
         android:label="fragment_actualizar_valor_indicador"
         tools:layout="@layout/fragment_actualizar_valor_indicador" >
         <argument
-            android:name="indicador"
-            app:argType="edu.ort.visualizar.models.KpiModel"
+            android:name="indicadorId"
+            app:argType="string"
             app:nullable="true" />
         <action
             android:id="@+id/action_actualizarValorFragment_to_accionesIndicadorFragment2"

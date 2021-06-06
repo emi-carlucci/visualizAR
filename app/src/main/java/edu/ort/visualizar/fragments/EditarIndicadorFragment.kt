@@ -85,12 +85,18 @@ class EditarIndicadorFragment : Fragment() {
         btnConfirm = v.findViewById(R.id.btnConfirmar)
         btnRestore = v.findViewById(R.id.btnRestore)
         txtPageTitle = v.findViewById(R.id.txtEditarIndicador)
-        indicator = EditarIndicadorFragmentArgs.fromBundle(requireArguments()).indicador!!
-        fillForm(indicator)
-        val isViewDetails = EditarIndicadorFragmentArgs.fromBundle(requireArguments()).isViewDetails
-        if (isViewDetails){
-            disableEdition()
+        indicator = EditarIndicadorFragmentArgs.fromBundle(requireArguments()).indicadorId?.let { ocbUtils.getKpi(it) }!!
+        if (indicator != null) {
+            fillForm(indicator)
+            val isViewDetails = EditarIndicadorFragmentArgs.fromBundle(requireArguments()).isViewDetails
+            if (isViewDetails){
+                disableEdition()
+            }
+        } else {
+            Toast.makeText(activity, getString(R.string.generic_error), Toast.LENGTH_SHORT).show()
+            redirectToHome()
         }
+
         return v
     }
 

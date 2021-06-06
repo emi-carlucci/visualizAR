@@ -11,6 +11,7 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.navigation.findNavController
+import com.google.android.material.snackbar.Snackbar
 import edu.ort.visualizar.R
 import edu.ort.visualizar.activities.MainActivity.Companion.ocbUtils
 import edu.ort.visualizar.models.KpiModel
@@ -27,7 +28,12 @@ class ActualizarValorFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        indicador = ActualizarValorFragmentArgs.fromBundle(requireArguments()).indicador!!
+        indicador = ActualizarValorFragmentArgs.fromBundle(requireArguments()).indicadorId?.let { ocbUtils.getKpi(it) }!!
+        if (indicador == null){
+            Toast.makeText(activity, getString(R.string.generic_error), Toast.LENGTH_SHORT).show()
+            redirectToHome()
+        }
+
     }
 
     @SuppressLint("SetTextI18n")
