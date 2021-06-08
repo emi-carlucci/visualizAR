@@ -12,6 +12,9 @@ import androidx.navigation.findNavController
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.textfield.TextInputEditText
 import edu.ort.visualizar.R
+import edu.ort.visualizar.activities.MainActivity
+import edu.ort.visualizar.activities.MainActivity.Companion.ocbUtils
+import edu.ort.visualizar.models.KpiModel
 
 class HomeFragment : Fragment() {
 
@@ -21,14 +24,13 @@ class HomeFragment : Fragment() {
     lateinit var searchButton : Button
     lateinit var resetButton : Button
 
+
     override fun onResume() {
         super.onResume()
         searchButton.visibility = View.VISIBLE
         resetButton.visibility = View.GONE
         searchInput.text?.clear()
-        val ft: FragmentTransaction = parentFragmentManager.beginTransaction()
-        ft.replace(R.id.indicador_list_fragment_container, IndicadorListContainerFragment())
-        ft.commit()
+        fillList("")
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -42,14 +44,13 @@ class HomeFragment : Fragment() {
             val action = HomeFragmentDirections.actionHomeFragmentToAltaIndicadorFragment()
             homeView.findNavController().navigate(action)
         }
+
         searchButton.setOnClickListener{
             var kpiIdData = searchInput.text.toString()
             if (kpiIdData != ""){
                 searchButton.visibility = View.GONE
                 resetButton.visibility = View.VISIBLE
-                val ft: FragmentTransaction = parentFragmentManager.beginTransaction()
-                ft.replace(R.id.indicador_list_fragment_container, IndicadorSearchListContainerFragment(kpiIdData))
-                ft.commit()
+                fillList(kpiIdData)
             } else {
                 Toast.makeText(activity,"Por favor, ingresá un ID",Toast.LENGTH_SHORT).show()
             }
@@ -58,10 +59,28 @@ class HomeFragment : Fragment() {
             searchInput.text?.clear()
             searchButton.visibility = View.VISIBLE
             resetButton.visibility = View.GONE
-            val ft: FragmentTransaction = parentFragmentManager.beginTransaction()
-            ft.replace(R.id.indicador_list_fragment_container, IndicadorListContainerFragment())
-            ft.commit()
+            fillList("")
         }
         return homeView
+    }
+
+    private fun fillList(kpiIdValue: String){
+        var indicators : List<KpiModel>? = null
+        if(kpiIdValue != ""){
+            var indicator = ocbUtils.getKpi(kpiIdValue)
+            if (indicator != null){
+                indicators = listOf(indicator)
+            }
+        }else{
+            indicators = ocbUtils.getKpiList()!!
+        }
+        val transaction: FragmentTransaction = childFragmentManager.beginTransaction()
+        if (indicators != null && indicators!!.isNotEmpty()) {
+            transaction.replace(R.id.indicador_list_fragment_container, IndicadorListFragment(
+                indicators!!
+            )).commit()
+        } else {
+            transaction.replace(R.id.indicador_list_fragment_container, IndicadorEmptyListFragment()).commit()
+        }
     }
 }
