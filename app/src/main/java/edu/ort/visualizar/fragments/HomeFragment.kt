@@ -21,16 +21,6 @@ class HomeFragment : Fragment() {
     lateinit var searchButton : Button
     lateinit var resetButton : Button
 
-    override fun onResume() {
-        super.onResume()
-        searchButton.visibility = View.VISIBLE
-        resetButton.visibility = View.GONE
-        searchInput.text?.clear()
-        val ft: FragmentTransaction = parentFragmentManager.beginTransaction()
-        ft.replace(R.id.indicador_list_fragment_container, IndicadorListContainerFragment())
-        ft.commit()
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         homeView = inflater.inflate(R.layout.fragment_home, container, false)
         btnAddIndicator = homeView.findViewById(R.id.floatingActionButton)
@@ -63,5 +53,15 @@ class HomeFragment : Fragment() {
             ft.commit()
         }
         return homeView
+    }
+
+    override fun onResume() {
+        super.onResume()
+        searchButton.visibility = View.VISIBLE
+        resetButton.visibility = View.GONE
+        searchInput.text?.clear()
+        val ft: FragmentTransaction = parentFragmentManager.beginTransaction()
+        ft.replace(R.id.indicador_list_fragment_container, IndicadorListContainerFragment())
+        ft.commit()
     }
 }

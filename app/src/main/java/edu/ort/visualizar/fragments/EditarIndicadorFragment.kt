@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.annotation.RequiresApi
+import androidx.core.view.isVisible
 import androidx.navigation.findNavController
 import edu.ort.visualizar.R
 import com.google.android.material.snackbar.Snackbar
@@ -46,6 +47,7 @@ class EditarIndicadorFragment : Fragment() {
     lateinit var txtStatus : String
     lateinit var btnConfirm : Button
     lateinit var btnRestore : Button
+    lateinit var txtPageTitle : TextView
     lateinit var indicator: KpiModel
     private val notDefinedText : String = "NO DEFINIDO"
     private val dateUtils = DateUtils()
@@ -82,9 +84,46 @@ class EditarIndicadorFragment : Fragment() {
         txtStatus = currentStandingList[0]
         btnConfirm = v.findViewById(R.id.btnConfirmar)
         btnRestore = v.findViewById(R.id.btnRestore)
-        indicator = EditarIndicadorFragmentArgs.fromBundle(requireArguments()).indicador!!
-        fillForm(indicator)
+        txtPageTitle = v.findViewById(R.id.txtEditarIndicador)
+        indicator = EditarIndicadorFragmentArgs.fromBundle(requireArguments()).indicadorId?.let { ocbUtils.getKpi(it) }!!
+        if (indicator != null) {
+            fillForm(indicator)
+            val isViewDetails = EditarIndicadorFragmentArgs.fromBundle(requireArguments()).isViewDetails
+            if (isViewDetails){
+                disableEdition()
+            }
+        } else {
+            Toast.makeText(activity, getString(R.string.generic_error), Toast.LENGTH_SHORT).show()
+            redirectToHome()
+        }
+
         return v
+    }
+
+    private fun disableEdition(){
+        inputOrganization.isEnabled = false
+        inputOrganization.isEnabled = false
+        inputDescription.isEnabled = false
+        inputLocality.isEnabled = false
+        inputCountry.isEnabled = false
+        inputCalculationPeriodFrom.isEnabled = false
+        inputCalculationPeriodTo.isEnabled = false
+        inputNextCalculationDate.isEnabled = false
+        inputProvider.isEnabled = false
+        inputName.isEnabled = false
+        inputSource.isEnabled = false
+        inputProduct.isEnabled = false
+        inputBusinessTarget.isEnabled = false
+        inputCalculationFormula.isEnabled = false
+        inputExpirationDate.isEnabled = false
+        inputArea.isEnabled = false
+        spFrequency.isEnabled = false
+        spCategory.isEnabled = false
+        spCalculationMethod.isEnabled = false
+        spStatus.isEnabled = false
+        btnConfirm.isVisible = false
+        btnRestore.isVisible = false
+        txtPageTitle.text = getString(R.string.view_details_page_title)
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
@@ -247,126 +286,126 @@ class EditarIndicadorFragment : Fragment() {
     private fun isFormValid(): Boolean {
         var isValid = true
         if (inputOrganization.text.toString().isEmpty()) {
-            inputOrganization.error = "Por favor, completá el campo"
+            inputOrganization.error = getString(R.string.completeInput)
             isValid = false
         }
         if (inputOrganization.text.toString().contains("=")) {
-            inputOrganization.error = "El campo no puede contener ="
+            inputOrganization.error = getString(R.string.invalidEqualChar)
             isValid = false
         }
         if (inputDescription.text.toString().isEmpty()) {
-            inputDescription.error = "Por favor, completá el campo"
+            inputDescription.error = getString(R.string.completeInput)
             isValid = false
         }
         if (inputDescription.text.toString().contains("=")) {
-            inputDescription.error = "El campo no puede contener ="
+            inputDescription.error = getString(R.string.invalidEqualChar)
             isValid = false
         }
         if (inputLocality.text.toString().isEmpty()) {
-            inputLocality.error = "Por favor, completá el campo"
+            inputLocality.error = getString(R.string.completeInput)
             isValid = false
         }
         if (inputLocality.text.toString().contains("=")) {
-            inputLocality.error = "El campo no puede contener ="
+            inputLocality.error = getString(R.string.invalidEqualChar)
             isValid = false
         }
         if (inputCountry.text.toString().isEmpty()) {
-            inputCountry.error = "Por favor, completá el campo"
+            inputCountry.error = getString(R.string.completeInput)
             isValid = false
         }
         if (inputCountry.text.toString().contains("=")) {
-            inputCountry.error = "El campo no puede contener ="
+            inputCountry.error = getString(R.string.invalidEqualChar)
             isValid = false
         }
         if (inputProvider.text.toString().isEmpty()) {
-            inputProvider.error = "Por favor, completá el campo"
+            inputProvider.error = getString(R.string.completeInput)
             isValid = false
         }
         if (inputProvider.text.toString().contains("=")) {
-            inputProvider.error = "El campo no puede contener ="
+            inputProvider.error = getString(R.string.invalidEqualChar)
             isValid = false
         }
         if (inputName.text.toString().isEmpty()) {
-            inputName.error = "Por favor, completá el campo"
+            inputName.error = getString(R.string.completeInput)
             isValid = false
         }
         if (inputName.text.toString().contains("=")) {
-            inputName.error = "El campo no puede contener ="
+            inputName.error = getString(R.string.invalidEqualChar)
             isValid = false
         }
         if (inputSource.text.toString().isEmpty()) {
-            inputSource.error = "Por favor, completá el campo"
+            inputSource.error = getString(R.string.completeInput)
             isValid = false
         }
         if (inputSource.text.toString().contains("=")) {
-            inputSource.error = "El campo no puede contener ="
+            inputSource.error = getString(R.string.invalidEqualChar)
             isValid = false
         }
         if (inputProduct.text.toString().isEmpty()) {
-            inputProduct.error = "Por favor, completá el campo"
+            inputProduct.error = getString(R.string.completeInput)
             isValid = false
         }
         if (inputProduct.text.toString().contains("=")) {
-            inputProduct.error = "El campo no puede contener ="
+            inputProduct.error = getString(R.string.invalidEqualChar)
             isValid = false
         }
         if (inputBusinessTarget.text.toString().isEmpty()) {
-            inputBusinessTarget.error = "Por favor, completá el campo"
+            inputBusinessTarget.error = getString(R.string.completeInput)
             isValid = false
         }
         if (inputBusinessTarget.text.toString().contains("=")) {
-            inputBusinessTarget.error = "El campo no puede contener ="
+            inputBusinessTarget.error = getString(R.string.invalidEqualChar)
             isValid = false
         }
         if (inputCalculationFormula.text.toString().isEmpty()) {
-            inputCalculationFormula.error = "Por favor, completá el campo"
+            inputCalculationFormula.error = getString(R.string.completeInput)
             isValid = false
         }
         if (inputCalculationFormula.text.toString().contains("=")) {
-            inputCalculationFormula.error = "El campo no puede contener ="
+            inputCalculationFormula.error = getString(R.string.invalidEqualChar)
             isValid = false
         }
         if (inputArea.text.toString().isEmpty()) {
-            inputArea.error = "Por favor, completá el campo"
+            inputArea.error = getString(R.string.completeInput)
             isValid = false
         }
         if (inputArea.text.toString().contains("=")) {
-            inputArea.error = "El campo no puede contener ="
+            inputArea.error = getString(R.string.invalidEqualChar)
             isValid = false
         }
         if (inputCalculationPeriodFrom.text.toString().isEmpty()) {
-            inputCalculationPeriodFrom.error = "Por favor, completá el campo"
+            inputCalculationPeriodFrom.error = getString(R.string.completeInput)
             isValid = false
         } else {
             if ((!dateUtils.isValidFormat(inputCalculationPeriodFrom.text.toString())) && (inputCalculationPeriodFrom.text.toString() != notDefinedText)) {
-                inputCalculationPeriodFrom.error = "El formato debe ser AAAA-MM-DD"
+                inputCalculationPeriodFrom.error = getString(R.string.invalidDate)
                 isValid = false
             }
         }
         if (inputCalculationPeriodTo.text.toString().isEmpty()) {
-            inputCalculationPeriodTo.error = "Por favor, completá el campo"
+            inputCalculationPeriodTo.error = getString(R.string.completeInput)
             isValid = false
         } else {
             if ((!dateUtils.isValidFormat(inputCalculationPeriodTo.text.toString())) && (inputCalculationPeriodTo.text.toString() != notDefinedText)) {
-                inputCalculationPeriodTo.error = "El formato debe ser AAAA-MM-DD"
+                inputCalculationPeriodTo.error = getString(R.string.invalidDate)
                 isValid = false
             }
         }
         if (inputNextCalculationDate.text.toString().isEmpty()) {
-            inputNextCalculationDate.error = "Por favor, completá el campo"
+            inputNextCalculationDate.error = getString(R.string.completeInput)
             isValid = false
         } else {
             if ((!dateUtils.isValidFormat(inputNextCalculationDate.text.toString())) && (inputNextCalculationDate.text.toString() != notDefinedText)) {
-                inputNextCalculationDate.error = "El formato debe ser AAAA-MM-DD"
+                inputNextCalculationDate.error = getString(R.string.invalidDate)
                 isValid = false
             }
         }
         if (inputExpirationDate.text.toString().isEmpty()) {
-            inputExpirationDate.error = "Por favor, completá el campo"
+            inputExpirationDate.error = getString(R.string.completeInput)
             isValid = false
         } else {
             if ((!dateUtils.isValidFormat(inputExpirationDate.text.toString())) && (inputExpirationDate.text.toString() != notDefinedText)) {
-                inputExpirationDate.error = "El formato debe ser AAAA-MM-DD"
+                inputExpirationDate.error = getString(R.string.invalidDate)
                 isValid = false
             }
         }

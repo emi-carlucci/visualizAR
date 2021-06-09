@@ -99,7 +99,7 @@ class AltaIndicadorFragment : Fragment() {
         spCategory.setSelection(0, false)
         spCalculationMethod.setSelection(0, false)
         spStatus.setSelection(0, false)
-        idExistError.text = "El ID ya existe"
+        idExistError.text = getString(R.string.existentKpiId)
         idExistError.setTextColor(Color.RED)
         idExistError.visibility = View.INVISIBLE
 
@@ -157,83 +157,83 @@ class AltaIndicadorFragment : Fragment() {
     private fun isFormValid(): Boolean {
         var isValid = true
         if (txtId.text.toString().isEmpty()) {
-            txtId.error = "Por favor, completá el campo"
+            txtId.error = getString(R.string.completeInput)
             isValid = false
         }
         if (txtId.text.toString().contains("=")) {
-            txtId.error = "El campo no puede contener ="
+            txtId.error = getString(R.string.invalidEqualChar)
             isValid = false
         }
         if (inputOrganization.text.toString().isEmpty()) {
-            inputOrganization.error = "Por favor, completá el campo"
+            inputOrganization.error = getString(R.string.completeInput)
             isValid = false
         }
         if (inputOrganization.text.toString().contains("=")) {
-            inputOrganization.error = "El campo no puede contener ="
+            inputOrganization.error = getString(R.string.invalidEqualChar)
             isValid = false
         }
         if (inputName.text.toString().isEmpty()) {
-            inputName.error = "Por favor, completá el campo"
+            inputName.error = getString(R.string.completeInput)
             isValid = false
         }
         if (inputName.text.toString().contains("=")) {
-            inputName.error = "El campo no puede contener ="
+            inputName.error = getString(R.string.invalidEqualChar)
             isValid = false
         }
         if (inputValue.text.toString().isEmpty()) {
-            inputValue.error = "Por favor, completá el campo"
+            inputValue.error = getString(R.string.completeInput)
             isValid = false
         }
         if (inputDescription.text.toString().contains("=")) {
-            inputDescription.error = "El campo no puede contener ="
+            inputDescription.error = getString(R.string.invalidEqualChar)
             isValid = false
         }
         if (inputCountry.text.toString().contains("=")) {
-            inputCountry.error = "El campo no puede contener ="
+            inputCountry.error = getString(R.string.invalidEqualChar)
             isValid = false
         }
         if (inputCountry.text.toString().contains("=")) {
-            inputCountry.error = "El campo no puede contener ="
+            inputCountry.error = getString(R.string.invalidEqualChar)
             isValid = false
         }
         if (inputProvider.text.toString().contains("=")) {
-            inputProvider.error = "El campo no puede contener ="
+            inputProvider.error = getString(R.string.invalidEqualChar)
             isValid = false
         }
         if (inputSource.text.toString().contains("=")) {
-            inputSource.error = "El campo no puede contener ="
+            inputSource.error = getString(R.string.invalidEqualChar)
             isValid = false
         }
         if (inputProduct.text.toString().contains("=")) {
-            inputProduct.error = "El campo no puede contener ="
+            inputProduct.error = getString(R.string.invalidEqualChar)
             isValid = false
         }
         if (inputBusinessTarget.text.toString().contains("=")) {
-            inputBusinessTarget.error = "El campo no puede contener ="
+            inputBusinessTarget.error = getString(R.string.invalidEqualChar)
             isValid = false
         }
         if (inputCalculationFormula.text.toString().contains("=")) {
-            inputCalculationFormula.error = "El campo no puede contener ="
+            inputCalculationFormula.error = getString(R.string.invalidEqualChar)
             isValid = false
         }
         if (inputArea.text.toString().contains("=")) {
-            inputArea.error = "El campo no puede contener ="
+            inputArea.error = getString(R.string.invalidEqualChar)
             isValid = false
         }
         if ((inputCalculationPeriodFrom.text.toString().isNotEmpty()) && (!dateUtils.isValidFormat(inputCalculationPeriodFrom.text.toString()))) {
-            inputCalculationPeriodFrom.error = "El formato debe ser AAAA-MM-DD"
+            inputCalculationPeriodFrom.error = getString(R.string.invalidDate)
             isValid = false
         }
         if ((inputCalculationPeriodTo.text.toString().isNotEmpty()) && (!dateUtils.isValidFormat(inputCalculationPeriodTo.text.toString()))) {
-            inputCalculationPeriodTo.error = "El formato debe ser AAAA-MM-DD"
+            inputCalculationPeriodTo.error = getString(R.string.invalidDate)
             isValid = false
         }
         if ((inputNextCalculationDate.text.toString().isNotEmpty()) && (!dateUtils.isValidFormat(inputNextCalculationDate.text.toString()))) {
-            inputNextCalculationDate.error = "El formato debe ser AAAA-MM-DD"
+            inputNextCalculationDate.error = getString(R.string.invalidDate)
             isValid = false
         }
         if ((inputExpirationDate.text.toString().isNotEmpty()) && (!dateUtils.isValidFormat(inputExpirationDate.text.toString()))) {
-            inputExpirationDate.error = "El formato debe ser AAAA-MM-DD"
+            inputExpirationDate.error = getString(R.string.invalidDate)
             isValid = false
         }
         return isValid
@@ -336,7 +336,7 @@ class AltaIndicadorFragment : Fragment() {
 
     @SuppressLint("SetTextI18n")
     private fun resetForm() {
-        idExistError.text = "El ID ya existe"
+        idExistError.text = getString(R.string.existentKpiId)
         idExistError.setTextColor(Color.RED)
         idExistError.visibility = View.INVISIBLE
         spFrequency.setSelection(0, false)
@@ -388,20 +388,20 @@ class AltaIndicadorFragment : Fragment() {
     @SuppressLint("SetTextI18n")
     private fun validateId() : Boolean {
         var result = true
-        idExistError.text = "El ID ya existe"
+        idExistError.text = getString(R.string.existentKpiId)
         idExistError.setTextColor(Color.RED)
         idExistError.visibility = View.INVISIBLE
         txtId.error = null
         if (txtId.text.toString().isEmpty()){
             result = false
-            txtId.error = "Por favor, ingresá el ID"
+            txtId.error = getString(R.string.pleaseEnterId)
         } else {
             val getKpi = ocbUtils.getKpi(txtId.text.toString())
             if (getKpi != null) {
                 idExistError.visibility = View.VISIBLE
                 result = false
             } else {
-                idExistError.text = "ID válido"
+                idExistError.text = getString(R.string.validId)
                 idExistError.setTextColor(Color.GREEN)
                 idExistError.visibility = View.VISIBLE
             }
