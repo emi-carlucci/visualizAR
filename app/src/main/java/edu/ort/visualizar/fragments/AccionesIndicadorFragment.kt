@@ -40,24 +40,24 @@ class AccionesIndicadorFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        var indicador = AccionesIndicadorFragmentArgs.fromBundle(requireArguments()).indicador
-        val updatedIndicator = ocbUtils.getKpi(indicador.id.toString())
+        var indicator = AccionesIndicadorFragmentArgs.fromBundle(requireArguments()).indicador
+        val updatedIndicator = ocbUtils.getKpi(indicator.id.toString())
         if (updatedIndicator != null){
-            indicador = updatedIndicator
+            indicator = updatedIndicator
         }
-        val parsedDate = DateUtils().parseDate(indicador.dateModified?.value.toString())
-        tvIndicatorName.text = indicador.name!!.value.toString()
-        tvIndicatorValue.text = indicador.kpiValue!!.value.toString()
+        val parsedDate = DateUtils().parseDate(indicator.dateModified?.value.toString())
+        tvIndicatorName.text = indicator.name!!.value.toString()
+        tvIndicatorValue.text = indicator.kpiValue!!.value.toString()
         tvLastUpdateDate.text = parsedDate
         btnEdit.setOnClickListener{
-            val action = AccionesIndicadorFragmentDirections.actionAccionesIndicadorFragmentToEditarIndicadorFragment(indicador.id, false)
+            val action = AccionesIndicadorFragmentDirections.actionAccionesIndicadorFragmentToEditarIndicadorFragment(indicator.id, false)
             v.findNavController().navigate(action)
         }
         btnDelete.setOnClickListener{
             val builder = AlertDialog.Builder(activity)
             builder.setTitle(getString(R.string.confirm_delete))
             builder.setPositiveButton(getString(R.string.delete)) { dialog, _ ->
-                val deleteOk : Boolean = ocbUtils.deleteKpi(indicador.id.toString())
+                val deleteOk : Boolean = ocbUtils.deleteKpi(indicator.id.toString())
                 dialog.cancel()
                 if (deleteOk){
                     val action = AccionesIndicadorFragmentDirections.actionAccionesIndicadorFragmentToHomeFragment()
@@ -74,12 +74,12 @@ class AccionesIndicadorFragment : Fragment() {
             alert.show()
         }
         btnUpdate.setOnClickListener{
-            val action = AccionesIndicadorFragmentDirections.actionAccionesIndicadorFragmentToActualizarValorFragment(indicador.id)
+            val action = AccionesIndicadorFragmentDirections.actionAccionesIndicadorFragmentToActualizarValorFragment(indicator.id)
             v.findNavController().navigate(action)
         }
 
         tvViewDetails.setOnClickListener{
-            val action = AccionesIndicadorFragmentDirections.actionAccionesIndicadorFragmentToEditarIndicadorFragment(indicador.id, true)
+            val action = AccionesIndicadorFragmentDirections.actionAccionesIndicadorFragmentToEditarIndicadorFragment(indicator.id, true)
             v.findNavController().navigate(action)
         }
     }

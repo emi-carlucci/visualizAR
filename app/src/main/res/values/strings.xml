@@ -22,7 +22,7 @@
     <string name="confirm_delete">Estás por borrar un indicador. ¿Seguro?</string>
     <string name="error_delete">Ocurrió un error. Intentá nuevamente más tarde</string>
     <string name="generic_error">Ocurrió un error. Intentá nuevamente más tarde</string>
-    <string name="view_details_page_title">En detalle</string>
+    <string name="view_details_page_title">Detalle de Indicador</string>
     <!--Fin Fragment administrador de indicadores -->
 
     <!--Inicio Fragment administrador de indicadores -->
@@ -95,5 +95,14 @@
     <string name="editArea">Area</string>
     <string name="editStatus">Estado:</string>
     <!--Fin Fragment  editar_indicador y alta_indicador-->
+
+    <!--Inicio validation messages-->
+    <string name="completeInput">Por favor, completá el campo</string>
+    <string name="invalidEqualChar">El campo no puede contener =</string>
+    <string name="invalidDate">El formato debe ser AAAA-MM-DD</string>
+    <string name="existentKpiId">El ID ya existe</string>
+    <string name="validId">ID válido</string>
+    <string name="pleaseEnterId">Por favor, ingresá el ID</string>
+    <!--Fin Fragment validation messages-->
 
 </resources>
