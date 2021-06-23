@@ -21,6 +21,7 @@ class AccionesIndicadorFragment : Fragment() {
     lateinit var btnEdit : Button
     lateinit var btnDelete : Button
     lateinit var btnUpdate : Button
+    lateinit var tvViewDetails : TextView
     lateinit var tvIndicatorName : TextView
     lateinit var tvIndicatorValue: TextView
     lateinit var tvLastUpdateDate : TextView
@@ -30,6 +31,7 @@ class AccionesIndicadorFragment : Fragment() {
         btnEdit = v.findViewById(R.id.btnAccionesEditIndicator)
         btnDelete = v.findViewById(R.id.btnAccionesDeleteIndicator)
         btnUpdate = v.findViewById(R.id.btnAccionesUpdateValue)
+        tvViewDetails = v.findViewById(R.id.tvAccionesViewDetails)
         tvIndicatorName = v.findViewById(R.id.tvAccionesIndicatorName)
         tvIndicatorValue = v.findViewById(R.id.tvAccionesIndicatorValue)
         tvLastUpdateDate = v.findViewById(R.id.tvAccionesLastUpdateDate)
@@ -48,7 +50,7 @@ class AccionesIndicadorFragment : Fragment() {
         tvIndicatorValue.text = indicator.kpiValue!!.value.toString()
         tvLastUpdateDate.text = parsedDate
         btnEdit.setOnClickListener{
-            val action = AccionesIndicadorFragmentDirections.actionAccionesIndicadorFragmentToEditarIndicadorFragment(indicator)
+            val action = AccionesIndicadorFragmentDirections.actionAccionesIndicadorFragmentToEditarIndicadorFragment(indicator.id, false)
             v.findNavController().navigate(action)
         }
         btnDelete.setOnClickListener{
@@ -72,7 +74,12 @@ class AccionesIndicadorFragment : Fragment() {
             alert.show()
         }
         btnUpdate.setOnClickListener{
-            val action = AccionesIndicadorFragmentDirections.actionAccionesIndicadorFragmentToActualizarValorFragment(indicator)
+            val action = AccionesIndicadorFragmentDirections.actionAccionesIndicadorFragmentToActualizarValorFragment(indicator.id)
+            v.findNavController().navigate(action)
+        }
+
+        tvViewDetails.setOnClickListener{
+            val action = AccionesIndicadorFragmentDirections.actionAccionesIndicadorFragmentToEditarIndicadorFragment(indicator.id, true)
             v.findNavController().navigate(action)
         }
     }

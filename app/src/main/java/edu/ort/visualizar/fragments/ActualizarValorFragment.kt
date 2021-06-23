@@ -18,16 +18,23 @@ import edu.ort.visualizar.models.KpiModel
 class ActualizarValorFragment : Fragment() {
 
     lateinit var v : View
-    lateinit var indicador: KpiModel
     lateinit var btnActualizarValor : Button
     lateinit var textViewUpdateIndicadorValorActualValue : TextView
     lateinit var textViewUpdateIndicadorName: TextView
     lateinit var editTextUpdateIndicadorNewValueInput: EditText
     lateinit var textViewFormualaIndicadorName: TextView
+    private var indicator: KpiModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        indicador = ActualizarValorFragmentArgs.fromBundle(requireArguments()).indicador!!
+        val indicatorId = ActualizarValorFragmentArgs.fromBundle(requireArguments()).indicadorId
+        if (indicatorId != null) {
+            indicator = ocbUtils.getKpi(indicatorId)
+        }
+        if (indicator == null){
+            Toast.makeText(activity, getString(R.string.generic_error), Toast.LENGTH_SHORT).show()
+            redirectToHome()
+        }
     }
 
     @SuppressLint("SetTextI18n")
@@ -38,10 +45,10 @@ class ActualizarValorFragment : Fragment() {
         textViewUpdateIndicadorName = v.findViewById(R.id.textViewUpdateIndicadorName)
         editTextUpdateIndicadorNewValueInput = v.findViewById(R.id.editTextUpdateIndicadorNewValueInput)
         textViewFormualaIndicadorName = v.findViewById(R.id.textViewUpdateIndicadorFormula)
-        textViewUpdateIndicadorValorActualValue.text = indicador.kpiValue!!.value.toString()
-        textViewUpdateIndicadorName.text = indicador.name!!.value.toString()
-        if (indicador.calculationFormula != null){
-            textViewFormualaIndicadorName.text = indicador.calculationFormula!!.value.toString()
+        textViewUpdateIndicadorValorActualValue.text = indicator?.kpiValue!!.value.toString()
+        textViewUpdateIndicadorName.text = indicator?.name!!.value.toString()
+        if (indicator!!.calculationFormula != null){
+            textViewFormualaIndicadorName.text = indicator!!.calculationFormula!!.value.toString()
         } else {
             textViewFormualaIndicadorName.text = "NO DEFINIDA"
         }
@@ -54,7 +61,7 @@ class ActualizarValorFragment : Fragment() {
             if (!isValidInput(editTextUpdateIndicadorNewValueInput.text.toString())) {
                 Toast.makeText(activity, "Por favor ingresá un valor", Toast.LENGTH_SHORT).show()
             } else {
-                val result = ocbUtils.updateKpiValue(indicador.id.toString(), editTextUpdateIndicadorNewValueInput.text.toString())
+                val result = ocbUtils.updateKpiValue(indicator?.id.toString(), editTextUpdateIndicadorNewValueInput.text.toString())
                 if (result) {
                     redirectToHome()
                 } else {
@@ -66,8 +73,10 @@ class ActualizarValorFragment : Fragment() {
 
     @SuppressLint("ResourceType")
     private fun redirectToHome(){
-        val action = ActualizarValorFragmentDirections.actionActualizarValorFragmentToAccionesIndicadorFragment2(indicador)
-        v.findNavController().navigate(action)
+        val action = indicator?.let { ActualizarValorFragmentDirections.actionActualizarValorFragmentToAccionesIndicadorFragment2(it) }
+        if (action != null) {
+            v.findNavController().navigate(action)
+        }
         v.findNavController().popBackStack(R.id.actualizarValorFragment, true)
     }
 
